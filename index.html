@@ -2,26 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>OSALP 2025-04 | Nurturing Future Risk Managers and Actuaries | CUHK Statistics and Data Science</title>
-
-    <!-- Bootstrap -->
+    <meta http-equiv <!-- Bootstrap -->    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="./css/bootstrap-4.4.1.css" rel="stylesheet">
 
     <style>
       .wrapper { margin: auto; width: 94%; }
+
       body { font-family: 'Helvetica Neue', Arial, sans-serif; }
       .page-banner img { width: 100%; height: auto; }
 
-      /* Color + heading style */
       .main-content h1, h2, h3 { color: #002F6C; }
+
       .highlight-box {
         background: #f8f8f8;
         padding: 15px;
         border-left: 5px solid #002F6C;
         margin-bottom: 20px;
       }
+
       table.table { border-collapse: collapse; width: 100%; }
       th, td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
       th { background-color: #f0f0f0; }
@@ -33,12 +31,18 @@
         margin: 25px 0 10px;
         font-size: 1.4em;
       }
+
       .session-table th { background: #004080; color: white; }
 
-      /* Navbar theme (your original uses bg-OSALP-blue, define it here) */
       .bg-OSALP-blue { background-color: #002F6C !important; }
 
-      footer { background: #002F6C; color: white; padding: 30px 0; margin-top: 60px; }
+      footer {
+        background: #002F6C;
+        color: white;
+        padding: 30px 0;
+        margin-top: 60px;
+      }
+
       ul.objectives { margin: 5px 0 10px 20px; }
 
       .note-box {
@@ -47,7 +51,9 @@
         padding: 12px 15px;
         margin: 15px 0 20px;
       }
+
       .small-muted { font-size: 0.9em; color: #555; }
+
       .badge-fallback {
         display: inline-block;
         background: #ffe8e8;
@@ -65,6 +71,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-OSALP-blue">
       <div class="container">
         <a class="navbar-brand" href="#">OSALP 2025-04</a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -74,28 +81,32 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="https://www.cuhk.edu.hk" target="_blank" rel="noopener">
-                <img src="images/A-CUHK.png" height="50" alt="CUHK" />
+                <img src="images/A-CUHK.png" height="50" alt="CUHK">
                 <span class="sr-only">CUHK</span>
               </a>
             </li>
+
             <li class="nav-item active">
               <a class="nav-link" href="https://www.sci.cuhk.edu.hk" target="_blank" rel="noopener">
-                <img src="images/B-SCI.png" height="50" alt="Science Faculty, CUHK" />
+                <img src="images/B-SCI.png" height="50" alt="Science Faculty, CUHK">
                 <span class="sr-only">Science Faculty, CUHK</span>
               </a>
             </li>
+
             <li class="nav-item active">
               <a class="nav-link" href="https://www.sta.cuhk.edu.hk" target="_blank" rel="noopener">
-                <img src="images/C-STA.png" height="50" alt="Department of Statistics and Data Science, CUHK" />
+                <img src="images/C-STA.png" height="50" alt="Department of Statistics and Data Science, CUHK">
                 <span class="sr-only">Department of Statistics and Data Science, CUHK</span>
               </a>
             </li>
+
             <li class="nav-item active">
               <a class="nav-link" href="#">
                 Nurturing Future Risk Managers and Actuaries: <br>
                 An AI-powered Journey for Gifted Secondary Students
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="https://www.sta.cuhk.edu.hk" target="_blank" rel="noopener">
                 Department of Statistics and Data Science, <br>
@@ -135,19 +146,31 @@
 
           <h3>General Information</h3>
           <table class="table">
-            <tr><td><strong>Programme Provider</strong></td><td>Department of Statistics and Data Science, The Chinese University of Hong Kong</td></tr>
-            <tr><td><strong>Programme Leader</strong></td><td>Prof. YAU Chun Yip</td></tr>
-            <tr><td><strong>Curriculum &amp; Learning Support Specialist</strong></td><td>Mr. KAN Kin Wai</td></tr>
-            <tr><td><strong>Administrative &amp; Outreach Coordinator</strong></td><td>Ms. NG Yan Yau, Yanny</td></tr>
+            <tr>
+              <td><strong>Programme Provider</strong></td>
+              <td>Department of Statistics and Data Science, The Chinese University of Hong Kong</td>
+            </tr>
+            <tr>
+              <td><strong>Programme Leader</strong></td>
+              <td>Prof. YAU Chun Yip</td>
+            </tr>
+            <tr>
+              <td><strong>Curriculum &amp; Learning Support Specialist</strong></td>
+              <td>Mr. KAN Kin Wai</td>
+            </tr>
+            <tr>
+              <td><strong>Administrative &amp; Outreach Coordinator</strong></td>
+              <td>Ms. NG Yan Yau, Yanny</td>
+            </tr>
           </table>
 
           <h3>Participant Notices (Updated)</h3>
           <div class="note-box">
             <ul style="margin-bottom:0;">
-              <li><strong>You may bring your own laptop to each lesson.</strong></li>
-              <li><strong>There are no electrical sockets in the classroom</strong> — ensure your laptop is <strong>fully charged beforehand</strong>. [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)</li>
-              <li>If you need to be absent for special reasons, please submit the Leave Notification Form with supporting documents. [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)[2](https://gocuhk-my.sharepoint.com/personal/michael_kwkan_cuhk_edu_hk/Documents/GEF%20Fund/2026/2025-04%20Schedule_EN_v2.pdf?web=1)</li>
-              <li class="small-muted">Note: The schedule is for reference only and is subject to the programme provider’s version. [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)</li>
+              <li><strong>Please bring your own laptop to each lesson.</strong></li>
+              <li><strong>There are no electrical sockets in the classroom</strong> — ensure your laptop is <strong>fully charged beforehand</strong>.</li>
+              <li>If you want to excuse yourself from any sessions for special reasons, you should notify us by submitting the Leave Notification Form and provide relevant documents.</li>
+              <li class="small-muted">The schedule is for reference only and is subject to the programme provider’s version.</li>
             </ul>
           </div>
 
@@ -163,74 +186,80 @@
             <li>Ongoing monitoring via formative assessments, student feedback surveys, and real-time pacing/content adjustments</li>
           </ul>
 
-          <h3>Detailed Lesson Schedule (Aligned to 2025-04 Schedule_EN_260417)</h3>
+          <h3>Detailed Lesson Schedule</h3>
 
           <!-- Phase 1 -->
           <div class="phase-title">
             Phase 1 (A4STM001C): Foundational Knowledge in Mathematics, Statistics, and Finance (17.5 hours)
-            <span class="badge-fallback">Fallback (adverse weather): 10 Jul 2026 (Fri)</span> [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)
+            <span class="badge-fallback">Alternative/Fallback Date (adverse weather): 10 Jul 2026 (Fri)</span>
           </div>
+
           <table class="table table-bordered session-table">
             <thead>
               <tr>
-                <th>Session</th><th>Date</th><th>Time</th><th>Venue</th><th>Instructor(s) / Support</th><th>Topic / Contents / Remarks</th>
+                <th>Session</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Venue</th>
+                <th>Instructor(s) / Support</th>
+                <th>Topic / Contents / Remarks</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>1</td>
-                <td>16 May 2026 (Sat)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>10:30–12:30 Lecture / 12:30–14:00 Lunch / 14:00–15:30 Tutorial</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>16 May 2026 (Sat)</td>
+                <td>10:30–12:30 Lecture / 12:30–14:00 Lunch / 14:00–15:30 Tutorial</td>
                 <td>
                   Lecture: Room 103, Y C Liang Hall, CUHK<br>
                   Tutorial: G25, Lady Shaw Building, CUHK
-                </td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                </td>
                 <td>Prof. Chan Kin Wai + Mr. Kan Kin Wai + TBC</td>
-                <td>Day 1: Arithmetic &amp; algebra; money/saving/interest. Quizzes, real-life cases, Copilot for examples/simulations. Differentiated instruction.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Day 1: Arithmetic &amp; algebra; money/saving/interest. Quizzes, real-life cases, Copilot for examples/simulations. Differentiated instruction.</td>
               </tr>
               <tr>
                 <td>2</td>
-                <td>30 May 2026 (Sat)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>10:30–12:30 Lecture / 12:30–14:00 Lunch / 14:00–15:30 Tutorial</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>30 May 2026 (Sat)</td>
+                <td>10:30–12:30 Lecture / 12:30–14:00 Lunch / 14:00–15:30 Tutorial</td>
                 <td>
                   Lecture: Room 103, Y C Liang Hall, CUHK<br>
                   Tutorial: G25, Lady Shaw Building, CUHK
-                </td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                </td>
                 <td>Prof. Chan Kin Wai + Mr. Kan Kin Wai + TBC</td>
-                <td>Day 2: Statistics foundations (data types, collection, mean/median/mode, variability). Group surveys, graphs with Copilot code/visualization.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Day 2: Statistics foundations (data types, collection, mean/median/mode, variability). Group surveys, graphs with Copilot code/visualization.</td>
               </tr>
               <tr>
                 <td>3</td>
-                <td>20 Jun 2026 (Sat)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>10:30–12:30 Lecture / 12:30–14:00 Lunch / 14:00–15:30 Tutorial</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>20 Jun 2026 (Sat)</td>
+                <td>10:30–12:30 Lecture / 12:30–14:00 Lunch / 14:00–15:30 Tutorial</td>
                 <td>
                   Lecture: Room 103, Y C Liang Hall, CUHK<br>
                   Tutorial: G25, Lady Shaw Building, CUHK
-                </td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                </td>
                 <td>Prof. Chan Kin Wai + Mr. Kan Kin Wai + TBC</td>
-                <td>Day 3: Probability basics (rules, random variables). Games, Copilot calculations/scenarios.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Day 3: Probability basics (rules, random variables). Games, Copilot calculations/scenarios.</td>
               </tr>
               <tr>
                 <td>4</td>
-                <td>4 Jul 2026 (Sat)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>10:30–12:30 Lecture / 12:30–14:00 Lunch / 14:00–15:30 Tutorial</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>4 Jul 2026 (Sat)</td>
+                <td>10:30–12:30 Lecture / 12:30–14:00 Lunch / 14:00–15:30 Tutorial</td>
                 <td>
                   Lecture: Room 103, Y C Liang Hall, CUHK<br>
                   Tutorial: G25, Lady Shaw Building, CUHK
-                </td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                </td>
                 <td>Prof. Chan Kin Wai + Mr. Kan Kin Wai + TBC</td>
-                <td>Day 4: Discrete distributions (permutations/combinations, Bernoulli/Binomial). Copilot explanations/computations.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Day 4: Discrete distributions (permutations/combinations, Bernoulli/Binomial). Copilot explanations/computations.</td>
               </tr>
               <tr>
                 <td>5</td>
-                <td>11 Jul 2026 (Sat)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>10:30–12:30 Lecture / 12:30–14:00 Lunch / 14:00–15:30 Tutorial</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>11 Jul 2026 (Sat)</td>
+                <td>10:30–12:30 Lecture / 12:30–14:00 Lunch / 14:00–15:30 Tutorial</td>
                 <td>
                   Lecture: Room 103, Y C Liang Hall, CUHK<br>
                   Tutorial: G25, Lady Shaw Building, CUHK
-                </td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                </td>
                 <td>Prof. Chan Kin Wai + Mr. Kan Kin Wai + TBC</td>
-                <td>Day 5: Finance intro (markets, stocks/bonds, risk-return). Portfolio simulations, Copilot insights. Mentor tutorials; formative feedback.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Day 5: Finance intro (markets, stocks/bonds, risk-return). Portfolio simulations, Copilot insights. Mentor tutorials; formative feedback.</td>
               </tr>
             </tbody>
           </table>
@@ -238,182 +267,198 @@
           <!-- Phase 2 -->
           <div class="phase-title">
             Phase 2 (A4STM002C): Introduction to Risk Management Science
-            <span class="badge-fallback">Fallback (adverse weather): 15 Aug 2026 (Sat)</span> [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)
+            <span class="badge-fallback">Alternative/Fallback Date (adverse weather): 15 Aug 2026 (Sat)</span>
           </div>
+
           <table class="table table-bordered session-table">
             <thead>
               <tr>
-                <th>Session</th><th>Date</th><th>Time</th><th>Venue</th><th>Instructor(s) / Support</th><th>Topic / Contents / Remarks</th>
+                <th>Session</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Venue</th>
+                <th>Instructor(s) / Support</th>
+                <th>Topic / Contents / Remarks</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>6</td>
-                <td>15 Jul 2026 (Wed)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>15 Jul 2026 (Wed)</td>
+                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td>
                 <td>
                   Lecture: Room 103, Y C Liang Hall, CUHK<br>
                   Tutorial: G25, Lady Shaw Building, CUHK
-                </td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                </td>
                 <td>Prof. Tony Sit + Mr. Kan Kin Wai + TBC</td>
-                <td>Day 1: Risk intro &amp; stats review. R data input/visualization (bar/histograms), Copilot code generation.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Day 1: Risk intro &amp; stats review. R data input/visualization (bar/histograms), Copilot code generation.</td>
               </tr>
               <tr>
                 <td>7</td>
-                <td>17 Jul 2026 (Fri)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>17 Jul 2026 (Fri)</td>
+                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td>
                 <td>
                   Lecture: Room 103, Y C Liang Hall, CUHK<br>
                   Tutorial: G25, Lady Shaw Building, CUHK
-                </td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                </td>
                 <td>Prof. Tony Sit + Mr. Kan Kin Wai + TBC</td>
-                <td>Day 2: Probability distributions (normal/binomial/Poisson). R simulations/histograms, Copilot optimization.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Day 2: Probability distributions (normal/binomial/Poisson). R simulations/histograms, Copilot optimization.</td>
               </tr>
               <tr>
                 <td>8</td>
-                <td>22 Jul 2026 (Wed)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>22 Jul 2026 (Wed)</td>
+                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td>
                 <td>
                   Lecture: Room 103, Y C Liang Hall, CUHK<br>
                   Tutorial: G25, Lady Shaw Building, CUHK
-                </td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                </td>
                 <td>Prof. Tony Sit + Mr. Kan Kin Wai + TBC</td>
-                <td>Day 3: Law of Large Numbers. R simulations, Copilot result interpretation.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Day 3: Law of Large Numbers. R simulations, Copilot result interpretation.</td>
               </tr>
               <tr>
                 <td>9</td>
-                <td>24 Jul 2026 (Fri)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>24 Jul 2026 (Fri)</td>
+                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td>
                 <td>
                   Lecture: Room 103, Y C Liang Hall, CUHK<br>
                   Tutorial: G25, Lady Shaw Building, CUHK
-                </td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                </td>
                 <td>Prof. Tony Sit + Mr. Kan Kin Wai + TBC</td>
-                <td>Day 4: Risk ID/assessment (VaR intro). R VaR calculation, Copilot scripting, group discussions.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Day 4: Risk ID/assessment (VaR intro). R VaR calculation, Copilot scripting, group discussions.</td>
               </tr>
               <tr>
                 <td>10</td>
-                <td>25 Jul 2026 (Sat)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>25 Jul 2026 (Sat)</td>
+                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td>
                 <td>
                   Lecture: Room 103, Y C Liang Hall, CUHK<br>
                   Tutorial: G25, Lady Shaw Building, CUHK
-                </td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                </td>
                 <td>Guest Speaker (TBC) + Mr. Kan Kin Wai</td>
-                <td>Day 5: Summative MCQ (1h, FRM-style) + Guest lecture on industry trends.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Day 5: Summative MCQ (1h, FRM-style) + Guest lecture on industry trends.</td>
               </tr>
             </tbody>
           </table>
 
           <!-- Phase 3 -->
           <div class="phase-title">
-            Phase 3 (A4STM003C): Actuarial Science and Insurance Principles
-            <span class="badge-fallback">Fallback (adverse weather): 22 Aug 2026 (Sat)</span> [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)
+            Phase 3 (A4STM003C): Actuarial Science and Insurance Principles (16 hours)
+            <span class="badge-fallback">Alternative/Fallback Date (adverse weather): 22 Aug 2026 (Sat)</span>
           </div>
+
           <table class="table table-bordered session-table">
             <thead>
               <tr>
-                <th>Session</th><th>Date</th><th>Time</th><th>Venue</th><th>Instructor(s) / Support</th><th>Topic / Contents / Remarks</th>
+                <th>Session</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Venue</th>
+                <th>Instructor(s) / Support</th>
+                <th>Topic / Contents / Remarks</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>11</td>
-                <td>29 Jul 2026 (Wed)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>29 Jul 2026 (Wed)</td>
+                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td>
                 <td>
                   Lecture: L1, Institute of Chinese Studies, CUHK<br>
                   Tutorial: G25, Lady Shaw Building, CUHK
-                </td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                </td>
                 <td>Prof. Tony Sit + Mr. Kan Kin Wai + TBC</td>
-                <td>Day 1: Actuarial overview, insurance basics. Excel risk/probability calcs, Copilot premium calculator.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Day 1: Actuarial overview, insurance basics. Excel risk/probability calcs, Copilot premium calculator.</td>
               </tr>
               <tr>
                 <td>12</td>
-                <td>31 Jul 2026 (Fri)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>31 Jul 2026 (Fri)</td>
+                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td>
                 <td>
                   Lecture: L1, Institute of Chinese Studies, CUHK<br>
                   Tutorial: G25, Lady Shaw Building, CUHK
-                </td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                </td>
                 <td>Prof. Tony Sit + Mr. Kan Kin Wai + TBC</td>
-                <td>Day 2: Annuities/PV, life contingencies, mortality tables. Excel PV calcs, Copilot formulas.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Day 2: Annuities/PV, life contingencies, mortality tables. Excel PV calcs, Copilot formulas.</td>
               </tr>
               <tr>
                 <td>13</td>
-                <td>5 Aug 2026 (Wed)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>5 Aug 2026 (Wed)</td>
+                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td>
                 <td>
                   Lecture: L1, Institute of Chinese Studies, CUHK<br>
                   Tutorial: G25, Lady Shaw Building, CUHK
-                </td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                </td>
                 <td>Prof. Tony Sit + Mr. Kan Kin Wai + TBC</td>
-                <td>Day 3: Survival models, claims frequency/severity, pricing. Excel curves/premium sims, Copilot models.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Day 3: Survival models, claims frequency/severity, pricing. Excel curves/premium sims, Copilot models.</td>
               </tr>
               <tr>
                 <td>14</td>
-                <td>8 Aug 2026 (Sat)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>8 Aug 2026 (Sat)</td>
+                <td>10:30–12:30 (Lecture) / 12:30–14:00 (Lunch) / 14:00–16:00 (Tutorial)</td>
                 <td>
                   Lecture: L1, Institute of Chinese Studies, CUHK<br>
                   Tutorial: G25, Lady Shaw Building, CUHK
-                </td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                </td>
                 <td>Guest Speaker (TBC) + Mr. Kan Kin Wai</td>
-                <td>Day 4: Summative MCQ (SOA-style) + Guest lecture.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Day 4: Summative MCQ (SOA-style) + Guest lecture.</td>
               </tr>
             </tbody>
           </table>
 
           <!-- Phase 4 -->
-          <div class="phase-title">
-            Phase 4 (A4STM004C): Capstone Project Development (7.5 hours)
-          </div>
+          <div class="phase-title">Phase 4 (A4STM004C): Capstone Project Development (7.5 hours)</div>
+
           <table class="table table-bordered session-table">
             <thead>
               <tr>
-                <th>Session</th><th>Date</th><th>Time</th><th>Venue</th><th>Instructor(s) / Support</th><th>Topic / Contents / Remarks</th>
+                <th>Session</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Venue</th>
+                <th>Instructor(s) / Support</th>
+                <th>Topic / Contents / Remarks</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>15</td>
-                <td>12 Aug 2026 (Wed)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>13:30–16:00</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>L1, Institute of Chinese Studies, CUHK (TBC)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>12 Aug 2026 (Wed)</td>
+                <td>13:30–16:00</td>
+                <td>L1, Institute of Chinese Studies, CUHK (TBC)</td>
                 <td>Mr. Kan Kin Wai</td>
-                <td>Kick-off: Conclude Phases 1–3, announce capstone, group formation (5 per group), topic selection (fund risk analysis or insurance/annuity design).</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Kick-off: Conclude Phases 1–3, announce capstone, group formation (5 per group), topic selection (fund risk analysis or insurance/annuity design).</td>
               </tr>
               <tr>
                 <td>16</td>
-                <td>26 Aug 2026 (Wed)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>13:30–14:45</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>Zoom</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>26 Aug 2026 (Wed)</td>
+                <td>13:30–14:45</td>
+                <td>Zoom</td>
                 <td>Mr. Kan Kin Wai</td>
-                <td>Weekly progress check &amp; learning support specialist feedback.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Weekly progress check &amp; learning support specialist feedback.</td>
               </tr>
               <tr>
                 <td>17</td>
-                <td>9 Sep 2026 (Wed)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>16:30–17:45</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>Zoom</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>9 Sep 2026 (Wed)</td>
+                <td>16:30–17:45</td>
+                <td>Zoom</td>
                 <td>Mr. Kan Kin Wai</td>
-                <td>Weekly progress check &amp; learning support specialist feedback.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Weekly progress check &amp; learning support specialist feedback.</td>
               </tr>
               <tr>
                 <td>18</td>
-                <td>23 Sep 2026 (Wed)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>16:30–17:45</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>Zoom</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>23 Sep 2026 (Wed)</td>
+                <td>16:30–17:45</td>
+                <td>Zoom</td>
                 <td>Mr. Kan Kin Wai</td>
-                <td>Weekly progress check &amp; learning support specialist feedback.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Weekly progress check &amp; learning support specialist feedback.</td>
               </tr>
               <tr>
                 <td>19</td>
-                <td>7 Oct 2026 (Wed)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>16:30–17:45</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>Zoom</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>7 Oct 2026 (Wed)</td>
+                <td>16:30–17:45</td>
+                <td>Zoom</td>
                 <td>Mr. Kan Kin Wai</td>
-                <td>Dry-run presentations &amp; final adjustments.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Dry-run presentations &amp; final adjustments.</td>
               </tr>
             </tbody>
           </table>
@@ -421,22 +466,28 @@
           <!-- Phase 5 -->
           <div class="phase-title">
             Phase 5 (A4STM005C): Showcase Event (4 hours)
-            <span class="badge-fallback">Fallback (adverse weather): 24 Oct 2026 (Sat)</span> [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)
+            <span class="badge-fallback">Alternative/Fallback Date (adverse weather): 24 Oct 2026 (Sat)</span>
           </div>
+
           <table class="table table-bordered session-table">
             <thead>
               <tr>
-                <th>Session</th><th>Date</th><th>Time</th><th>Venue</th><th>Instructor(s) / Support</th><th>Topic / Contents / Remarks</th>
+                <th>Session</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Venue</th>
+                <th>Instructor(s) / Support</th>
+                <th>Topic / Contents / Remarks</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>20</td>
-                <td>17 Oct 2026 (Sat)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>13:00–17:00</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
-                <td>CUHK Shatin Campus (TBC)</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>17 Oct 2026 (Sat)</td>
+                <td>13:00–17:00</td>
+                <td>CUHK Shatin Campus (TBC)</td>
                 <td>Programme Team + Mentors (TBC)</td>
-                <td>Group project presentations, peer &amp; mentor feedback, award ceremony (top 3 teams), parent/guest invitation.</td> <!-- [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf) -->
+                <td>Group project presentations, peer &amp; mentor feedback, award ceremony (top 3 teams), parent/guest invitation.</td>
               </tr>
             </tbody>
           </table>
@@ -445,21 +496,20 @@
           <p>
             Students work in groups of 5 to conduct either (i) risk analysis of a real fund/portfolio or (ii) design innovative insurance/annuity products.
             Full support via Microsoft Copilot and Zoom mentoring sessions.
-            Final showcase held on <strong>17 October 2026 (Saturday), 13:00–17:00</strong> (CUHK Shatin Campus, TBC). [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)
+            Final showcase held on <strong>17 October 2026 (Saturday), 13:00–17:00</strong> (CUHK Shatin Campus, TBC).
           </p>
 
           <h3>Venue &amp; Transport Notes</h3>
           <div class="note-box">
             <ul style="margin-bottom:0;">
-              <li>Showcase venue: CUHK Shatin Campus (TBC). [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)</li>
+              <li>Showcase venue: CUHK Shatin Campus (TBC).</li>
               <li>
-                Shuttle bus guidance (map/route reference):
                 Please take a paid shuttle bus from the University Station stop to the Sir Run Run Shaw Hall stop.
-                (Details: <a href="https://transport.cuhk.edu.hk/route/up/" target="_blank" rel="noopener">https://transport.cuhk.edu.hk/route/up/</a>) [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)
+                (Details: <a href="https://transport.cuhk.edu.hk/route/up/" target="_blank" rel="noopener">https://transport.cuhk.edu.hk/route/up/</a>)
               </li>
               <li>
                 CUHK Campus Map:
-                <a href="https://www.cuhk.edu.hk/english/campus/cuhk-campus-map.html" target="_blank" rel="noopener">https://www.cuhk.edu.hk/english/campus/cuhk-campus-map.html</a> [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)
+                <a href="https://www.cuhk.edu.hk/english/campus/cuhk-campus-map.html" target="_blank" rel="noopener">https://www.cuhk.edu.hk/english/campus/cuhk-campus-map.html</a>
               </li>
             </ul>
           </div>
@@ -476,9 +526,8 @@
           </p>
 
           <hr>
-          <p style="font-size:0.9em;">
-            Last updated: <strong>17 April 2026</strong> • Schedule aligned to <em>2025-04 Schedule_EN_260417</em> [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)
-          </p>
+          <p style="font-size:0.9em;">Last updated: 17 April 2026</p>
+
         </section>
 
         <!-- Sidebar -->
@@ -490,10 +539,6 @@
             <a href="https://www.youtube.com/@cuhk.sta.elearn" target="_blank" rel="noopener" class="list-group-item">Promotional Videos</a>
             <a href="#" class="list-group-item">Parent Consent Forms</a>
             <a href="#" class="list-group-item">Microsoft Copilot Guidelines</a>
-            <!-- Optional: if you want to publish the Leave Notification Form link (found in Schedule_EN_v2) -->
-            <a href="https://form.jotform.com/260130443369452" target="_blank" rel="noopener" class="list-group-item">
-              Leave Notification Form (Absence)
-            </a> <!-- [2](https://gocuhk-my.sharepoint.com/personal/michael_kwkan_cuhk_edu_hk/Documents/GEF%20Fund/2026/2025-04%20Schedule_EN_v2.pdf?web=1) -->
           </div>
 
           <h4>Key Dates</h4>
@@ -501,22 +546,22 @@
             <strong>Enrolment closes:</strong> 18 March 2026<br>
             <strong>First session:</strong> 16 May 2026<br>
             <strong>Final Showcase:</strong> 17 October 2026<br>
-            <span class="small-muted"><strong>Showcase fallback:</strong> 24 October 2026 (Sat)</span> [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)
+            <span class="small-muted"><strong>Showcase fallback:</strong> 24 October 2026 (Sat)</span>
           </p>
 
           <h4>Venues (Summary)</h4>
           <p class="small">
-            <strong>Phase 1–2:</strong> Lecture: Room 103, Y C Liang Hall, CUHK; Tutorial: G25, Lady Shaw Building, CUHK [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)<br>
-            <strong>Phase 3:</strong> Lecture: L1, Institute of Chinese Studies, CUHK; Tutorial: G25, Lady Shaw Building, CUHK [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)<br>
-            <strong>Phase 4 Kick-off:</strong> L1, Institute of Chinese Studies, CUHK (TBC) [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)<br>
-            <strong>Showcase:</strong> CUHK Shatin Campus (TBC) [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)
+            <strong>Phase 1–2:</strong> Lecture: Room 103, Y C Liang Hall, CUHK; Tutorial: G25, Lady Shaw Building, CUHK<br>
+            <strong>Phase 3:</strong> Lecture: L1, Institute of Chinese Studies, CUHK; Tutorial: G25, Lady Shaw Building, CUHK<br>
+            <strong>Phase 4 Kick-off:</strong> L1, Institute of Chinese Studies, CUHK (TBC)<br>
+            <strong>Showcase:</strong> CUHK Shatin Campus (TBC)
           </p>
 
           <h4>Participant Notice</h4>
           <p class="small">
             Bring your own laptop to every face-to-face session.
-            <strong>No electrical sockets in the classroom</strong> — ensure your laptop is fully charged beforehand. [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)
-            Submit Leave Notification Form for any absences with supporting documents. [1](https://outlook.office.com/owa/?viewmodel=IAttachmentViewModelPopoutFactory&AttachmentId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAAARIAEADNznCR399ZQbgKwEslPnmD&ItemId=AAkALgAAAAAAHYQDEapmEc2byACqAC%2fEWg0ApxKat%2bR6nkW7g2KQvWQg2QAEtfxf9wAA&AttachmentName=2025-04+Schedule_EN_260417.pdf)[2](https://gocuhk-my.sharepoint.com/personal/michael_kwkan_cuhk_edu_hk/Documents/GEF%20Fund/2026/2025-04%20Schedule_EN_v2.pdf?web=1)
+            <strong>No electrical sockets in the classroom</strong> — ensure your laptop is fully charged beforehand.
+            Submit Leave Notification Form for any absences with supporting documents.
           </p>
         </aside>
       </div>
@@ -546,10 +591,11 @@
       </div>
     </footer>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- JavaScript -->
     <script src="./js/jquery-3.4.1.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./js/popper.min.js"></script>
     <script src="./js/bootstrap-4.4.1.js"></script>
   </body>
 </html>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OSALP 2025-04 | Nurturing Future Risk Managers and Actuaries | CUHK Statistics and Data Science</title>
