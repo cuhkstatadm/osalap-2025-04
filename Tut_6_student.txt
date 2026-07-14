@@ -1,0 +1,692 @@
+\begin{document}
+
+\begin{center}
+{\Large \textbf{Tutorial 6: AI-Assisted Risk Modelling and Diversification in R}}\\[0.3em]
+{\large \color{DeepBlue}\textbf{Student Exploration: Simulation, Correlation and Diversification}}\\[0.55em]
+{\small \OSALPLine}\\[-0.1em]
+{\small \textbf{Programme:} \ProgrammeTitle}
+\end{center}
+
+\bigskip
+
+\section{Dependence: Covariance, Correlation and the Hidden Link Between Risks}
+
+\begin{MiniMissionBox}{Can two risky things become safer together?}
+You will explore how two uncertain quantities move together, and why this matters for diversification.
+\end{MiniMissionBox}
+
+\begin{KeyResultBox}
+For two random variables \(X\) and \(Y\),
+\[
+\operatorname{Cov}(X,Y) = E[(X-E[X])(Y-E[Y])] = E[XY]-E[X]E[Y].
+\]
+The correlation coefficient is
+\[
+\rho_{X,Y} = \frac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y}, \qquad -1\leq \rho_{X,Y}\leq 1.
+\]
+Covariance and correlation tell us whether two uncertain quantities tend to move together, move in opposite directions, or have little linear co-movement.
+\end{KeyResultBox}
+
+\begin{PromptBox}{Simulating Correlated Returns}{\stars{$\star\star\star$ Advanced}}
+\begin{itshape}
+"Act as a quantitative finance tutor. Please write beginner-friendly R code to simulate two asset returns with a chosen correlation (e.g., -0.5). Since I only know the Uniform distribution, use runif() to generate the base returns and independent noise. Then calculate the sample correlation and plot the points."
+\end{itshape}
+\end{PromptBox}
+
+\begin{PredictionBox}{What will a negative correlation look like?}
+Before plotting, sketch the scatter plot for \(\rho=-0.5\). Should the cloud slope upward, downward, or show no clear pattern?
+\end{PredictionBox}
+
+\begin{InvestigationBox}{Creating Two Artificial Assets With Chosen Correlation}{\stars{$\star\star\star$ Advanced}}
+\textbf{Idea:} Instead of relying on real market data, we create artificial return data using the Uniform distribution. By carefully mixing a shared variable and an independent variable, we can control the correlation!
+
+\medskip
+
+\textbf{R Code:}
+\begin{lstlisting}
+set.seed(2026)
+number_of_days <- 1000
+chosen_correlation <- -0.5
+
+# Step 1: Create a base sequence of uniform returns for Asset A.
+# We center it at 0 so our correlation mixing math works cleanly.
+asset_A_centered <- runif(
+  n = number_of_days,
+  min = -0.02,
+  max = 0.02
+)
+
+# Step 2: Create independent noise using the same uniform spread.
+independent_noise <- runif(
+  n = number_of_days,
+  min = -0.02,
+  max = 0.02
+)
+
+# Step 3: Create Asset B by mixing Asset A and the noise.
+# This mathematical trick guarantees the correlation we want!
+asset_B_centered <- chosen_correlation * asset_A_centered +
+  sqrt(1 - chosen_correlation^2) * independent_noise
+
+# Step 4: Add a small average expected return to both (e.g., 0.05% daily)
+asset_A_return <- asset_A_centered + 0.0005
+asset_B_return <- asset_B_centered + 0.0005
+
+# Check the generated correlation
+cor(asset_A_return, asset_B_return)
+
+plot(
+  asset_A_return,
+  asset_B_return,
+  pch = 16,
+  col = rgb(0, 0, 1, 0.35),
+  main = "Simulated Asset Returns with Chosen Correlation",
+  xlab = "Asset A Daily Return",
+  ylab = "Asset B Daily Return"
+)
+abline(h = 0.0005, v = 0.0005, col = "gray")
+\end{lstlisting}
+\end{InvestigationBox}
+
+\begin{ReflectionBox}{Correlation as a Story}
+In words, what does \(\rho=-0.5\) mean? Does it mean that one asset always goes up when the other goes down? Why or why not?
+\end{ReflectionBox}
+
+\begin{CommonMistakeBox}
+Correlation is not the same as causation. If two assets move together, it does not automatically mean one causes the other to move. There may be a shared economic factor, such as interest rates, inflation expectations or market sentiment.
+\end{CommonMistakeBox}
+
+\section{The Diversification Engine: Portfolio Variance}
+
+\begin{MiniMissionBox}{Find the hidden engine of diversification}
+You will test how changing correlation changes portfolio risk, even when the individual assets stay the same.
+\end{MiniMissionBox}
+
+\begin{KeyResultBox}
+For a two-asset portfolio with weights \(w_A\) and \(w_B=1-w_A\), expected return is
+\[
+E[R_p] = w_AE[R_A]+w_BE[R_B].
+\]
+Portfolio variance is
+\[
+\sigma_p^2 = w_A^2\sigma_A^2 + w_B^2\sigma_B^2 + 2w_Aw_B\rho_{AB}\sigma_A\sigma_B.
+\]
+The final term,
+\[
+2w_Aw_B\rho_{AB}\sigma_A\sigma_B,
+\]
+is the \Blue{dependence term}. It is the mathematical reason why diversification may work or fail.
+\end{KeyResultBox}
+
+\begin{PromptBox}{Manual Portfolio Risk Function}{\stars{$\star\star$ Intermediate}}
+\begin{itshape}
+"Please help me write an R function that calculates the expected return and volatility of a two-asset portfolio. The function should take asset weights, expected returns, volatilities and correlation as inputs. Use clear variable names suitable for beginners."
+\end{itshape}
+\end{PromptBox}
+
+\begin{ExampleBox}{Portfolio Mean and Volatility Function}{\stars{$\star\star$ Intermediate}}
+\textbf{R Code:}
+\begin{lstlisting}
+rm(list = ls())
+
+calculate_portfolio_stats <- function(weight_asset1, weight_asset2, 
+                                      return_asset1, return_asset2, 
+                                      volatility_asset1, volatility_asset2, 
+                                      correlation) {
+  
+  if (abs(weight_asset1 + weight_asset2 - 1) > 1e-6) {
+    warning("Heads up: Your asset weights do not sum to 1 (100%).")
+  }
+  
+  # Step 1: Expected Return
+  expected_portfolio_return <- (weight_asset1 * return_asset1) + (weight_asset2 * return_asset2)
+  
+  # Step 2: Variance
+  variance_asset1 <- volatility_asset1^2
+  variance_asset2 <- volatility_asset2^2
+  covariance <- volatility_asset1 * volatility_asset2 * correlation
+  
+  portfolio_variance <- (weight_asset1^2 * variance_asset1) + 
+                        (weight_asset2^2 * variance_asset2) + 
+                        (2 * weight_asset1 * weight_asset2 * covariance)
+  
+  # Step 3: Volatility
+  portfolio_volatility <- sqrt(portfolio_variance)
+  
+  # Step 4: Output
+  results <- list(
+    Expected_Return = expected_portfolio_return,
+    Volatility = portfolio_volatility
+  )
+  
+  return(results)
+}
+
+my_portfolio <- calculate_portfolio_stats(
+  weight_asset1 = 0.60, 
+  weight_asset2 = 0.40,
+  return_asset1 = 0.10, 
+  return_asset2 = 0.05,
+  volatility_asset1 = 0.15, 
+  volatility_asset2 = 0.05,
+  correlation = 0.20
+)
+
+print(my_portfolio)
+\end{lstlisting}
+\end{ExampleBox}
+
+\begin{PredictionBox}{Rank the four correlation worlds}
+Before calculating, rank \(+1\), \(0\), \(-0.3\) and \(-1\) from highest portfolio risk to lowest portfolio risk.
+\end{PredictionBox}
+
+\begin{InvestigationBox}{Changing Correlation While Keeping Everything Else Fixed}{\stars{$\star\star$ Intermediate}}
+\textbf{Task.} Compare portfolio volatility when correlation is \(+1\), \(0\), \(-0.3\), and \(-1\).
+
+\medskip
+
+\textbf{R Code:}
+\begin{lstlisting}
+# 1. Define the different correlation values we want to test
+correlation_values <- c(1, 0, -0.3, -1)
+
+# 2. Create an empty vector to store the volatilities we calculate
+portfolio_volatilities <- c()
+
+# 3. Use a 'for' loop to run our calculation for EACH correlation value
+for (cor in correlation_values) {
+  
+  # Call the function we created earlier
+  temp_portfolio <- calculate_portfolio_stats(
+    weight_asset1 = 0.60, 
+    weight_asset2 = 0.40,
+    return_asset1 = 0.10, 
+    return_asset2 = 0.05,
+    volatility_asset1 = 0.15, 
+    volatility_asset2 = 0.05,
+    correlation = cor # <--- We plug in the current correlation from our loop here!
+  )
+  
+  # Extract the Volatility from the result and add it to our storage vector
+  portfolio_volatilities <- c(portfolio_volatilities, temp_portfolio$Volatility)
+}
+
+# 4. Combine the correlations and their resulting volatilities into a neat table
+comparison_table <- data.frame(
+  Correlation = correlation_values,
+  Volatility = portfolio_volatilities
+)
+
+# 5. Print the final comparison table
+print(comparison_table)
+\end{lstlisting}
+\end{InvestigationBox}
+
+\begin{ReflectionBox}{The Deep Idea}
+Why can correlation change portfolio risk without changing portfolio expected return? What does this tell us about the difference between return and risk?
+\end{ReflectionBox}
+
+\section{Exploring the Efficient Frontier by R}
+
+\begin{MiniMissionBox}{Draw the map of risk and return}
+You will create a visual map of portfolio choices and compare how different correlations change the curve.
+\end{MiniMissionBox}
+
+\begin{PromptBox}{Efficient Frontier Under Different Correlations}{\stars{$\star\star\star$ Advanced}}
+\begin{itshape}
+"Act as an R programming mentor. I want to explore a two-asset efficient frontier. Asset A has expected return 12\% and volatility 20\%. Asset B has expected return 8\% and volatility 10\%. Test portfolio weights from 0\% to 100\% in 1\% steps. Plot expected return against volatility. Repeat this for correlations +1, 0, -0.3 and -1. Use clear names and beginner-friendly comments."
+\end{itshape}
+\end{PromptBox}
+
+\begin{PredictionBox}{Which curve bends furthest left?}
+Before running the graph, predict which correlation should produce the strongest diversification benefit.
+\end{PredictionBox}
+
+\begin{InvestigationBox}{Drawing Several Frontier Curves}{\stars{$\star\star\star$ Advanced}}
+\textbf{R Code:}
+\begin{lstlisting}
+# If you don't have ggplot2 installed, you will need to run this line once:
+# install.packages("ggplot2")
+
+# Load the library so we can use its plotting functions
+library(ggplot2)
+
+# 1. Define our asset characteristics (using decimals)
+return_asset_A <- 0.12
+volatility_asset_A <- 0.20
+return_asset_B <- 0.08
+volatility_asset_B <- 0.10
+
+# 2. Define the correlations and the sequence of weights to test
+correlations_to_test <- c(1, 0, -0.3, -1)
+
+# seq() creates a sequence of numbers. Here, from 0 to 1 in steps of 0.01 (1%)
+weights_asset_A <- seq(from = 0, to = 1, by = 0.01) 
+
+# 3. Create an empty data frame (table) to store all our results
+frontier_data <- data.frame(
+  Volatility = numeric(),
+  Expected_Return = numeric(),
+  Correlation = character() # We treat correlation as a category/text for coloring the chart
+)
+
+# 4. Nested Loops: Calculate stats for EVERY weight, for EVERY correlation
+for (cor in correlations_to_test) {
+  
+  for (weight_A in weights_asset_A) {
+    
+    # Since they must sum to 1, Asset B's weight is just 1 minus Asset A's weight
+    weight_B <- 1 - weight_A
+    
+    # Calculate Expected Return
+    port_return <- (weight_A * return_asset_A) + (weight_B * return_asset_B)
+    
+    # Calculate Volatility
+    variance_A <- volatility_asset_A^2
+    variance_B <- volatility_asset_B^2
+    covariance <- volatility_asset_A * volatility_asset_B * cor
+    
+    port_variance <- (weight_A^2 * variance_A) + 
+                     (weight_B^2 * variance_B) + 
+                     (2 * weight_A * weight_B * covariance)
+    
+    port_volatility <- sqrt(port_variance)
+    
+    # Save this specific calculation as a temporary row
+    temp_row <- data.frame(
+      Volatility = port_volatility,
+      Expected_Return = port_return,
+      Correlation = as.character(cor) # Store as text so ggplot colors it cleanly
+    )
+    
+    # Add this row to the bottom of our main table using rbind (Row Bind)
+    frontier_data <- rbind(frontier_data, temp_row)
+  }
+}
+
+# 5. Plot the Efficient Frontier using ggplot2
+ggplot(data = frontier_data, aes(x = Volatility, y = Expected_Return, color = Correlation)) +
+  geom_path(linewidth = 1) +  # geom_path connects dots exactly in the order we calculated them
+  labs(
+    title = "Two-Asset Efficient Frontier",
+    subtitle = "How correlation affects the risk/return tradeoff",
+    x = "Portfolio Volatility (Risk)",
+    y = "Expected Portfolio Return"
+  ) +
+  theme_minimal() # A clean, simple background theme for the chart
+\end{lstlisting}
+\end{InvestigationBox}
+
+\begin{CommonMistakeBox}
+A very beautiful efficient frontier does not automatically mean the portfolio is realistic. Real markets have transaction costs, liquidity constraints, estimation error, changing correlations and practical restrictions on short selling.
+\end{CommonMistakeBox}
+
+\section{Minimum Variance Portfolio and Sharpe Ratio}
+
+\begin{MiniMissionBox}{Choose the best portfolio, but define ``best'' first}
+You will compare two ideas of optimality: lowest risk and best risk-adjusted return.
+\end{MiniMissionBox}
+
+\begin{KeyResultBox}
+The \Blue{minimum variance portfolio} is the portfolio with the lowest volatility among the tested weights.
+
+\medskip
+
+The \Blue{Sharpe ratio} is
+\[
+\text{Sharpe Ratio} = \frac{E[R_p]-R_f}{\sigma_p}.
+\]
+It measures extra expected return per unit of volatility. A higher expected return is not automatically better if it requires too much risk.
+\end{KeyResultBox}
+
+\begin{PromptBox}{Minimum Variance and Maximum Sharpe Ratio}{\stars{$\star\star\star$ Advanced}}
+\begin{itshape}
+"Please extend the two-asset frontier code. For a chosen correlation, calculate the portfolio volatility, expected return and Sharpe ratio for every weight. Identify the minimum variance portfolio and the maximum Sharpe ratio portfolio. Use a 3\% risk-free rate."
+\end{itshape}
+\end{PromptBox}
+
+\begin{InvestigationBox}{Comparing Two Kinds of Optimality}{\stars{$\star\star\star$ Advanced}}
+\textbf{R Code:}
+\begin{lstlisting}
+# 1. Define our asset characteristics and the risk-free rate
+return_asset_A <- 0.12
+volatility_asset_A <- 0.20
+return_asset_B <- 0.08
+volatility_asset_B <- 0.10
+risk_free_rate <- 0.03 # 3% Risk-Free Rate
+
+# Let's choose a correlation of 0 (no relationship) for this analysis
+chosen_correlation <- 0  
+
+# 2. Create sequences for our weights (from 0 to 1 in steps of 0.01)
+weights_asset_A <- seq(from = 0, to = 1, by = 0.01)
+
+# Since weights must sum to 1, Asset B's weight is 1 minus Asset A's weight
+# Notice we are subtracting an entire list of numbers from 1 all at once!
+weights_asset_B <- 1 - weights_asset_A
+
+# 3. Calculate metrics for ALL weight combinations simultaneously (Vectorization)
+
+# Expected Return
+portfolio_returns <- (weights_asset_A * return_asset_A) + (weights_asset_B * return_asset_B)
+
+# Volatility
+variance_A <- volatility_asset_A^2
+variance_B <- volatility_asset_B^2
+covariance <- volatility_asset_A * volatility_asset_B * chosen_correlation
+
+portfolio_variances <- (weights_asset_A^2 * variance_A) + 
+                       (weights_asset_B^2 * variance_B) + 
+                       (2 * weights_asset_A * weights_asset_B * covariance)
+
+portfolio_volatilities <- sqrt(portfolio_variances)
+
+# 4. Calculate the Sharpe Ratio for every portfolio
+# Formula: (Expected Return - Risk-Free Rate) / Volatility
+sharpe_ratios <- (portfolio_returns - risk_free_rate) / portfolio_volatilities
+
+# 5. Combine everything into a neat master table (Data Frame)
+portfolio_data <- data.frame(
+  Weight_Asset_A = weights_asset_A,
+  Weight_Asset_B = weights_asset_B,
+  Expected_Return = portfolio_returns,
+  Volatility = portfolio_volatilities,
+  Sharpe_Ratio = sharpe_ratios
+)
+
+# 6. Identify the Minimum Variance Portfolio (MVP)
+# which.min() finds the exact row index where Volatility is the lowest
+row_mvp <- which.min(portfolio_data$Volatility)
+min_variance_portfolio <- portfolio_data[row_mvp, ] # Extract that specific row
+
+# 7. Identify the Maximum Sharpe Ratio Portfolio (The Optimal Risky Portfolio)
+# which.max() finds the exact row index where the Sharpe Ratio is the highest
+row_max_sharpe <- which.max(portfolio_data$Sharpe_Ratio)
+max_sharpe_portfolio <- portfolio_data[row_max_sharpe, ] # Extract that specific row
+
+# 8. Print the final discoveries!
+cat("\n--- Minimum Variance Portfolio (Lowest Risk) ---\n")
+print(min_variance_portfolio)
+
+cat("\n--- Maximum Sharpe Ratio Portfolio (Best Risk-Adjusted Return) ---\n")
+print(max_sharpe_portfolio)
+\end{lstlisting}
+\end{InvestigationBox}
+
+\begin{ExampleBox}{Visualising the Two Special Portfolios}{\stars{$\star\star\star$ Advanced}}
+\textbf{R Code:}
+\begin{lstlisting}
+# Make sure the ggplot2 library is loaded
+library(ggplot2)
+
+# Create the visualization step-by-step
+frontier_plot <- ggplot(data = portfolio_data, aes(x = Volatility, y = Expected_Return)) +
+  
+  # Layer 1: Draw the Efficient Frontier line
+  geom_path(linewidth = 1, color = "darkblue") +
+  
+  # Layer 2: Add a large red dot for the Minimum Variance Portfolio (MVP)
+  # Notice how we tell ggplot to temporarily use a different dataset for this dot!
+  geom_point(data = min_variance_portfolio, 
+             aes(x = Volatility, y = Expected_Return), 
+             color = "red", size = 4) +
+  
+  # Layer 3: Add a large green dot for the Maximum Sharpe Ratio Portfolio
+  geom_point(data = max_sharpe_portfolio, 
+             aes(x = Volatility, y = Expected_Return), 
+             color = "forestgreen", size = 4) +
+  
+  # Layer 4: Add text labels next to our dots so we know what they are
+  # hjust controls horizontal alignment, and we shift the x/y slightly so the text doesn't overlap the dot
+  annotate("text", 
+           x = min_variance_portfolio$Volatility + 0.003, 
+           y = min_variance_portfolio$Expected_Return, 
+           label = "Min Variance (Lowest Risk)", color = "red", hjust = 0, fontface = "bold") +
+           
+  annotate("text", 
+           x = max_sharpe_portfolio$Volatility, 
+           y = max_sharpe_portfolio$Expected_Return + 0.002, 
+           label = "Max Sharpe (Best Trade-off)", color = "forestgreen", vjust = 0, fontface = "bold") +
+  
+  # Layer 5: Add neat titles and axis labels
+  labs(
+    title = "Efficient Frontier with Optimal Portfolios",
+    subtitle = "Highlighting the Minimum Variance and Maximum Sharpe points (Correlation = 0)",
+    x = "Portfolio Volatility (Risk)",
+    y = "Expected Portfolio Return"
+  ) +
+  
+  # Layer 6: Apply a clean, professional theme
+  theme_minimal()
+
+# Display the final plot!
+print(frontier_plot)
+\end{lstlisting}
+\end{ExampleBox}
+
+\section{AI-Assisted Interpretation: Good Prompting and Critical Checking}
+
+\begin{PromptBox}{Asking AI to Interpret Frontier Results}{\stars{$\star\star$ Insight}}
+\begin{itshape}
+"I have generated an efficient frontier for two assets in R. The minimum variance portfolio and maximum Sharpe ratio portfolio are different. Please explain in student-friendly language why these two portfolios can differ. Then suggest three reflection questions connecting the result to actuarial risk management."
+\end{itshape}
+\end{PromptBox}
+
+\begin{InvestigationBox}{Critiquing An AI Explanation}{\stars{$\star\star$ Insight}}
+\textbf{Task.} Ask an AI tool to explain the difference between minimum variance and maximum Sharpe ratio. Then check whether its answer includes all three of the following ideas:
+
+\begin{enumerate}
+\item Minimum variance focuses only on reducing volatility.
+\item Sharpe ratio balances excess return against volatility.
+\item The better portfolio depends on the decision-maker's objective and risk appetite.
+\end{enumerate}
+
+\medskip
+
+\end{InvestigationBox}
+
+\begin{CommonMistakeBox}
+Do not ask AI only for ``the answer''. Ask it to explain assumptions, define variables, comment the code, suggest checks, and identify possible weaknesses. In actuarial work, understanding the assumptions is often as important as producing the calculation.
+\end{CommonMistakeBox}
+
+\section{Challenge Extension: When Diversification Fails}
+
+\begin{MiniMissionBox}{Stress test the comfort zone}
+You will check how the same portfolio can become riskier when correlation changes during stress.
+\end{MiniMissionBox}
+
+\begin{KeyResultBox}
+Diversification works best when risks are not perfectly positively correlated. It can fail when many assets become exposed to the same hidden factor. In market crises, assets that seemed different may suddenly move together.
+\end{KeyResultBox}
+
+\begin{InvestigationBox}{Stress Testing Correlation}{\stars{$\star\star\star$ Challenge}}
+\textbf{Task.} Suppose a portfolio was designed under correlation \(-0.3\), but during a stress period the correlation becomes \(+0.8\). Compare the volatility of the same portfolio weight under both assumptions.
+
+\medskip
+
+\textbf{R Code:}
+\begin{lstlisting}
+# 1. Define the volatilities (from our previous exercises)
+volatility_asset_A <- 0.20
+volatility_asset_B <- 0.10
+
+# 2. Choose a portfolio weight to test (Let's use a 50/50 split)
+weight_A <- 0.50
+weight_B <- 0.50
+
+# 3. Define our two scenarios
+correlation_normal <- -0.3
+correlation_stress <- 0.80
+
+# 4. Calculate Variance and Volatility for the NORMAL scenario
+covariance_normal <- volatility_asset_A * volatility_asset_B * correlation_normal
+variance_normal <- (weight_A^2 * volatility_asset_A^2) + 
+                   (weight_B^2 * volatility_asset_B^2) + 
+                   (2 * weight_A * weight_B * covariance_normal)
+volatility_normal <- sqrt(variance_normal)
+
+# 5. Calculate Variance and Volatility for the STRESS scenario
+covariance_stress <- volatility_asset_A * volatility_asset_B * correlation_stress
+variance_stress <- (weight_A^2 * volatility_asset_A^2) + 
+                   (weight_B^2 * volatility_asset_B^2) + 
+                   (2 * weight_A * weight_B * covariance_stress)
+volatility_stress <- sqrt(variance_stress)
+
+# 6. Calculate the percentage increase in risk
+risk_increase_pct <- ((volatility_stress - volatility_normal) / volatility_normal) * 100
+
+# 7. Print the results clearly
+cat("--- Portfolio Stress Test Results ---\n")
+cat("Portfolio Weight: 50% Asset A, 50% Asset B\n\n")
+cat("Normal Volatility (Correlation = -0.3):", round(volatility_normal * 100, 2), "%\n")
+cat("Stress Volatility (Correlation = +0.8):", round(volatility_stress * 100, 2), "%\n\n")
+cat("Risk Jump During Crisis: The portfolio volatility increased by", round(risk_increase_pct, 2), "%!\n")
+\end{lstlisting}
+\end{InvestigationBox}
+
+\begin{ReflectionBox}{The Actuarial Mindset}
+Why is it dangerous to say, ``This portfolio is safe because the historical correlation was low''? What could change in the future?
+\end{ReflectionBox}
+
+\section{Real-World 4-Asset Portfolio \& Monte Carlo Simulation}
+
+\begin{MiniMissionBox}{From classroom model to market experiment}
+This optional extension uses real data and random weights to explore many possible 4-asset portfolios.
+\end{MiniMissionBox}
+
+In this session, we transition from theoretical 2-asset models to evaluating a 4-asset portfolio using real market data. We will calculate the portfolio's expected return and volatility without using complex matrix algebra, and then deploy a Monte Carlo simulation to uncover the Efficient Frontier.
+
+\subsection{Task 1: Evaluating a 4-Asset Portfolio Using Real Data}
+
+Using the \texttt{quantmod} package, we can pull historical stock data and calculate daily returns. By blending these individual returns into a single "Portfolio Daily Return" timeline, we completely bypass the need for a complex covariance matrix.
+
+\begin{lstlisting}[language=R, caption=4-Asset Portfolio Evaluation without Matrices]
+# Load the library to fetch financial data
+library(quantmod)
+
+# 1. Download real stock data (AAPL, MSFT, GOOG, AMZN)
+getSymbols(c("AAPL", "MSFT", "GOOG", "AMZN"), from = "2023-01-01", to = "2024-01-01")
+
+# 2. Extract Adjusted Close prices and calculate daily returns
+# ROC stands for Rate of Change
+returns_AAPL <- ROC(Ad(AAPL), type = "discrete", na.pad = FALSE)
+returns_MSFT <- ROC(Ad(MSFT), type = "discrete", na.pad = FALSE)
+returns_GOOG <- ROC(Ad(GOOG), type = "discrete", na.pad = FALSE)
+returns_AMZN <- ROC(Ad(AMZN), type = "discrete", na.pad = FALSE)
+
+# 3. Define equal weights (25% each, must sum to 1.0)
+w_AAPL <- 0.25; w_MSFT <- 0.25; w_GOOG <- 0.25; w_AMZN <- 0.25
+
+# 4. Calculate the DAILY portfolio return timeline
+port_daily_returns <- (w_AAPL * returns_AAPL) + (w_MSFT * returns_MSFT) + 
+                      (w_GOOG * returns_GOOG) + (w_AMZN * returns_AMZN)
+
+# 5. Annualize Expected Return and Volatility (assuming 252 trading days)
+annual_return <- mean(port_daily_returns) * 252
+annual_vol <- sd(port_daily_returns) * sqrt(252)
+
+# Print results
+cat("Expected Annual Return:", round(annual_return * 100, 2), "%\n")
+cat("Annualized Volatility (Risk):", round(annual_vol * 100, 2), "%\n")
+\end{lstlisting}
+
+\subsection{Task 2: Monte Carlo Simulation for the Efficient Frontier}
+
+Calculating every exact weight combination for 4 assets is mathematically overwhelming. Instead, we use a Monte Carlo simulation to generate thousands of random weight combinations. The upper-left boundary of the resulting "cloud" of portfolios will naturally reveal the Efficient Frontier.
+
+\begin{lstlisting}[language=R, caption=Monte Carlo Efficient Frontier Simulation]
+library(ggplot2)
+
+# Define simulation parameters
+num_portfolios <- 2500
+sim_returns <- numeric(num_portfolios)
+sim_volatilities <- numeric(num_portfolios)
+sim_sharpes <- numeric(num_portfolios)
+risk_free_rate <- 0.03
+
+# Run the Monte Carlo Simulation
+for (i in 1:num_portfolios) {
+  
+  # Generate 4 random numbers and normalize them so they sum to 1 (100%)
+  rands <- runif(4, min = 0, max = 1)
+  weights <- rands / sum(rands)
+  
+  # Calculate daily portfolio returns using the timeline approach
+  daily_ret <- (weights[1] * returns_AAPL) + (weights[2] * returns_MSFT) + 
+               (weights[3] * returns_GOOG) + (weights[4] * returns_AMZN)
+  
+  # Annualize and store the risk/return metrics
+  ann_ret <- mean(daily_ret, na.rm = TRUE) * 252
+  ann_vol <- sd(daily_ret, na.rm = TRUE) * sqrt(252)
+  
+  sim_returns[i] <- ann_ret
+  sim_volatilities[i] <- ann_vol
+  sim_sharpes[i] <- (ann_ret - risk_free_rate) / ann_vol
+}
+
+# Combine simulated data into a Data Frame for Plotting
+portfolio_cloud <- data.frame(Volatility = sim_volatilities, 
+                              Expected_Return = sim_returns, 
+                              Sharpe_Ratio = sim_sharpes)
+
+# Plot the Efficient Frontier Cloud
+ggplot(portfolio_cloud, aes(x = Volatility, y = Expected_Return, color = Sharpe_Ratio)) +
+  geom_point(alpha = 0.5, size = 1.5) + 
+  scale_color_viridis_c(option = "plasma") + 
+  labs(title = "4-Asset Efficient Frontier (Monte Carlo Simulation)",
+       subtitle = "Simulating 2,500 random tech portfolios",
+       x = "Annualized Volatility (Risk)",
+       y = "Annualized Expected Return",
+       color = "Sharpe Ratio") +
+  theme_minimal()
+\end{lstlisting}
+
+\section{Consolidation Questions}
+
+\begin{InvestigationBox}{Review Set A: Risk Register and Scoring}{\stars{$\star$ Core}}
+\begin{enumerate}
+\item Write two new risk statements using the structure ``If \dots, then \dots''.
+\item Assign likelihood and impact scores from 1 to 3.
+\item Explain why the risk score is useful but imperfect.
+\item Identify one treatment for each risk.
+\item Explain the difference between inherent risk and residual risk.
+\end{enumerate}
+\end{InvestigationBox}
+
+\begin{InvestigationBox}{Review Set B: Frequency and Severity}{\stars{$\star\star$ Intermediate}}
+\begin{enumerate}
+\item Define frequency and severity in the claim simulation.
+\item Explain why total loss is random.
+\item Interpret the mean, standard deviation and 95th percentile of simulated total losses.
+\item \textbf{Explain why a Uniform distribution might not be realistic for insurance severity (e.g., real claims have no strict upper limit and tend to be skewed). }
+\item Describe one limitation of our Binomial frequency model.
+\end{enumerate}
+\end{InvestigationBox}
+
+\begin{InvestigationBox}{Review Set C: Correlation and Portfolio Risk}{\stars{$\star\star\star$ Advanced}}
+\begin{enumerate}
+\item State the two-asset portfolio variance formula.
+\item Identify the covariance or correlation term in the formula.
+\item Explain why lower correlation can reduce portfolio volatility.
+\item Compare the meaning of minimum variance and maximum Sharpe ratio.
+\item Explain how stress testing correlation helps risk management.
+\end{enumerate}
+\end{InvestigationBox}
+
+\begin{InvestigationBox}{Challenge Questions}{\stars{$\star\star\star$ Challenge}}
+\begin{enumerate}
+\item If two risks have correlation zero, are they necessarily independent? Explain.
+\item Can diversification eliminate all risk in real financial markets? Why or why not?
+\item Why might a low-return asset still appear in a good portfolio?
+\item How could model error affect an efficient frontier?
+\item How would transaction costs, liquidity risk or short-selling constraints change the decision?
+\end{enumerate}
+\end{InvestigationBox}
+
+\vfill
+
+\begin{center}
+\Large \Blue{\textbf{End of Tutorial 6}}
+\end{center}
+
+\end{document}
