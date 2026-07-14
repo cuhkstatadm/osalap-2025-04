@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Presentation Materials Hub</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Poppins & Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- QRious QR Code Generator Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top right, #f8fafc, #f1f5f9);
+            min-height: 100vh;
+        }
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+        .rating-star:hover {
+            transform: scale(1.2);
+            transition: transform 0.15s ease;
+        }
+        /* Custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased overflow-x-hidden">
+
+    <!-- Navigation / Header Bar -->
+    <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 px-4 lg:px-8 py-3">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-indigo-600 text-white p-2.5 rounded-xl shadow-lg shadow-indigo-600/30 flex items-center justify-center">
+                    <i class="fa-solid fa-graduation-cap text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-slate-900 font-poppins tracking-tight">Presentation Hub</h1>
+                    <p class="text-xs text-slate-500 font-medium">Interactive Class Showcase & Peer Reviews</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3 w-full sm:w-auto">
+                <button onclick="toggleView('dashboard')" id="nav-btn-dashboard" class="flex-1 sm:flex-initial px-4 py-2 rounded-lg bg-indigo-50 text-indigo-700 font-semibold text-sm flex items-center justify-center gap-2 transition hover:bg-indigo-100">
+                    <i class="fa-solid fa-cubes"></i> Presentations
+                </button>
+                <button onclick="toggleView('analytics')" id="nav-btn-analytics" class="flex-1 sm:flex-initial px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 font-semibold text-sm flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-chart-pie"></i> Analytics
+                </button>
+                <button onclick="openAddModal()" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-sm shadow-emerald-600/20 transition">
+                    <i class="fa-solid fa-plus"></i> Add Group
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Toast Feedback System -->
+    <div id="toast-container" class="fixed top-20 right-5 z-50 flex flex-col gap-2 max-w-sm"></div>
+
+    <!-- Hero Header -->
+    <header class="relative overflow-hidden bg-slate-950 py-16 px-4 text-center text-white mb-8">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.15),transparent)]"></div>
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>
+        
+        <div class="relative max-w-4xl mx-auto">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 mb-4 animate-pulse">
+                <span class="h-2 w-2 rounded-full bg-indigo-400"></span> Live Interactive Portal
+            </span>
+            <h2 class="text-3xl md:text-5xl font-extrabold font-poppins tracking-tight bg-gradient-to-r from-white via-indigo-200 to-white bg-clip-text text-transparent mb-4">
+                Student Presentation Materials
+            </h2>
+            <p class="text-sm md:text-base text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
+                Explore individual student creations, scan QR codes for quick mobile previews, view GitHub source codes, run interactive games, and track submissions.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-7xl mx-auto px-4 lg:px-8 pb-20">
+
+        <!-- Tab: Dashboard / Directory -->
+        <div id="view-dashboard" class="space-y-6">
+            
+            <!-- Filters Bar -->
+            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col lg:flex-row gap-4 items-center justify-between">
+                <!-- Search -->
+                <div class="relative w-full lg:max-w-md">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input type="text" id="search-input" oninput="filterPresentations()" placeholder="Search group name, topic, app or keywords..." 
+                        class="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                </div>
+
+                <!-- Filters & Sorting Controls -->
+                <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto justify-end">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider hidden sm:inline">Filter By:</span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button onclick="setFilter('all')" id="filter-all" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white transition">All</button>
+                        <button onclick="setFilter('game')" id="filter-game" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition flex items-center gap-1">
+                            <i class="fa-solid fa-gamepad text-emerald-500"></i> Games/Apps
+                        </button>
+                        <button onclick="setFilter('presentation')" id="filter-presentation" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition flex items-center gap-1">
+                            <i class="fa-solid fa-file-powerpoint text-amber-500"></i> Presentations
+                        </button>
+                        <button onclick="setFilter('github')" id="filter-github" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition flex items-center gap-1">
+                            <i class="fa-brands fa-github text-slate-800"></i> GitHub
+                        </button>
+                    </div>
+
+                    <div class="h-6 w-[1px] bg-slate-200 hidden md:block"></div>
+
+                    <!-- Sort -->
+                    <select id="sort-select" onchange="filterPresentations()" class="text-xs font-semibold bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="group-asc">Sort: Group (1 → 9)</option>
+                        <option value="group-desc">Sort: Group (9 → 1)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Cards Container -->
+            <div id="presentation-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically generated through JavaScript -->
+            </div>
+
+            <!-- Empty Search State -->
+            <div id="empty-state" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 border-dashed">
+                <div class="text-slate-300 text-5xl mb-3">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-700">No matching presentations found</h3>
+                <p class="text-slate-500 text-sm mt-1">Try adjusting your filters, search term, or add a new presentation card!</p>
+            </div>
+        </div>
+
+        <!-- Tab: Analytics Dashboard -->
+        <div id="view-analytics" class="hidden space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Groups</span>
+                        <h4 id="stat-total-groups" class="text-3xl font-extrabold font-poppins text-slate-900 mt-1">0</h4>
+                    </div>
+                    <div class="h-12 w-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 text-xl shadow-inner">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Resources</span>
+                        <h4 id="stat-total-resources" class="text-3xl font-extrabold font-poppins text-slate-900 mt-1">0</h4>
+                    </div>
+                    <div class="h-12 w-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 text-xl shadow-inner">
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Resource Analysis & Resource Chart -->
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="text-base font-bold font-poppins text-slate-900 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-bar text-indigo-600"></i> Resource Types Submitted
+                    </h3>
+                    <div class="space-y-4" id="analytics-resource-list">
+                        <!-- Filled dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal: QR Code & Detailed Resource Launchpad -->
+    <div id="qr-modal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end sm:items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Modal Overlay -->
+            <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="closeQrModal()"></div>
+            <!-- Center alignment dummy -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!-- Modal Content -->
+            <div class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full border border-slate-100">
+                <div class="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex items-center justify-between text-white">
+                    <h3 class="text-lg font-bold font-poppins flex items-center gap-2">
+                        <i class="fa-solid fa-qrcode"></i> Scan or Copy Resource
+                    </h3>
+                    <button onclick="closeQrModal()" class="text-white/80 hover:text-white text-xl cursor-pointer">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                
+                <div class="p-6 flex flex-col items-center">
+                    <!-- Title & Details -->
+                    <h4 id="qr-modal-title" class="text-base font-bold text-slate-800 text-center mb-1">Group Resource</h4>
+                    <p id="qr-modal-sub" class="text-xs text-slate-400 text-center mb-6 max-w-xs break-words"></p>
+
+                    <!-- QR Canvas wrapper -->
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 mb-6 flex justify-center items-center shadow-inner">
+                        <canvas id="qr-canvas" class="w-48 h-48"></canvas>
+                    </div>
+
+                    <p class="text-xs text-slate-500 text-center mb-6 max-w-sm">
+                        Scan the code above with your mobile phone camera to instantly load the interactive application or document!
+                    </p>
+
+                    <!-- Interactive Buttons -->
+                    <div class="flex gap-2 w-full">
+                        <button id="qr-copy-btn" onclick="copyModalLink()" class="flex-1 py-2.5 px-4 rounded-xl border border-slate-200 hover:border-slate-300 text-slate-700 text-sm font-semibold flex items-center justify-center gap-2 transition hover:bg-slate-50">
+                            <i class="fa-regular fa-copy"></i> Copy Link
+                        </button>
+                        <a id="qr-launch-btn" href="#" target="_blank" class="flex-1 py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold flex items-center justify-center gap-2 shadow-md shadow-indigo-600/10 transition">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Live <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Add / Edit Presentation Card -->
+    <div id="add-modal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end sm:items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Modal Overlay -->
+            <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="closeAddModal()"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <div class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full border border-slate-100">
+                <div class="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4 flex items-center justify-between text-white">
+                    <h3 id="add-modal-title-text" class="text-lg font-bold font-poppins flex items-center gap-2">
+                        <i class="fa-solid fa-plus"></i> New Presentation Card
+                    </h3>
+                    <button onclick="closeAddModal()" class="text-white/80 hover:text-white text-xl">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <div class="p-6">
+                    <form id="group-form" onsubmit="submitGroupCard(event)" class="space-y-4">
+                        <input type="hidden" id="edit-target-id">
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="group-num" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Group Designation</label>
+                                <input type="text" id="group-num" required placeholder="e.g. Group 9" 
+                                    class="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                            </div>
+
+                            <div>
+                                <label for="group-color" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Color Theme</label>
+                                <select id="group-color" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                                    <option value="indigo">Indigo Glow</option>
+                                    <option value="emerald">Emerald Meadow</option>
+                                    <option value="amber">Amber Fire</option>
+                                    <option value="rose">Rose Quartz</option>
+                                    <option value="blue">Blue Lagoon</option>
+                                    <option value="violet">Violet Cosmos</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="topic-title" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Topic Title & Project Name</label>
+                            <input type="text" id="topic-title" required placeholder="e.g. Topic 9: Virtual Reality Tour" 
+                                class="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                        </div>
+
+                        <!-- Link Inputs Section -->
+                        <div class="space-y-2.5">
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider">Resources Links (At least 1 required)</label>
+                            
+                            <!-- Link 1 (Game / Web App) -->
+                            <div class="flex items-center gap-2">
+                                <span class="w-24 text-xs font-semibold text-slate-500 flex items-center gap-1">
+                                    <i class="fa-solid fa-gamepad text-emerald-500 w-4"></i> Live Game
+                                </span>
+                                <input type="url" id="link-game" placeholder="https://..." 
+                                    class="flex-1 px-3 py-1.5 border border-slate-200 rounded-lg text-xs bg-slate-50 focus:bg-white focus:ring-1 focus:ring-indigo-500 outline-none transition">
+                            </div>
+
+                            <!-- Link 2 (Slides / Canva) -->
+                            <div class="flex items-center gap-2">
+                                <span class="w-24 text-xs font-semibold text-slate-500 flex items-center gap-1">
+                                    <i class="fa-solid fa-file-powerpoint text-amber-500 w-4"></i> Canva / Slides
+                                </span>
+                                <input type="url" id="link-presentation" placeholder="https://..." 
+                                    class="flex-1 px-3 py-1.5 border border-slate-200 rounded-lg text-xs bg-slate-50 focus:bg-white focus:ring-1 focus:ring-indigo-500 outline-none transition">
+                            </div>
+
+                            <!-- Link 3 (GitHub Repo) -->
+                            <div class="flex items-center gap-2">
+                                <span class="w-24 text-xs font-semibold text-slate-500 flex items-center gap-1">
+                                    <i class="fa-brands fa-github text-slate-800 w-4"></i> GitHub Repo
+                                </span>
+                                <input type="url" id="link-github" placeholder="https://..." 
+                                    class="flex-1 px-3 py-1.5 border border-slate-200 rounded-lg text-xs bg-slate-50 focus:bg-white focus:ring-1 focus:ring-indigo-500 outline-none transition">
+                            </div>
+
+                            <!-- Link 4 (Google Drive / Video) -->
+                            <div class="flex items-center gap-2">
+                                <span class="w-24 text-xs font-semibold text-slate-500 flex items-center gap-1">
+                                    <i class="fa-solid fa-folder-open text-blue-500 w-4"></i> Google Drive
+                                </span>
+                                <input type="url" id="link-drive" placeholder="https://..." 
+                                    class="flex-1 px-3 py-1.5 border border-slate-200 rounded-lg text-xs bg-slate-50 focus:bg-white focus:ring-1 focus:ring-indigo-500 outline-none transition">
+                            </div>
+                        </div>
+
+                        <div class="flex gap-2 pt-4">
+                            <button type="button" onclick="closeAddModal()" class="flex-1 py-2.5 px-4 rounded-xl border border-slate-200 hover:border-slate-300 text-slate-700 text-sm font-semibold transition hover:bg-slate-50">
+                                Cancel
+                            </button>
+                            <button type="submit" class="flex-1 py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold shadow-md shadow-emerald-600/10 transition">
+                                Save Card
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Custom Delete Confirmation (Replacing native alert/confirm dialog) -->
+    <div id="delete-modal" class="fixed inset-0 z-50 overflow-y-auto hidden" role="dialog" aria-modal="true">
+        <div class="flex items-end sm:items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Modal Overlay -->
+            <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="closeDeleteModal()"></div>
+            <!-- Center alignment dummy -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!-- Modal Content -->
+            <div class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full border border-slate-100">
+                <div class="bg-red-600 px-6 py-4 flex items-center justify-between text-white">
+                    <h3 class="text-lg font-bold font-poppins flex items-center gap-2">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Delete Presentation Card
+                    </h3>
+                    <button onclick="closeDeleteModal()" class="text-white/80 hover:text-white text-xl cursor-pointer">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                
+                <div class="p-6">
+                    <p class="text-sm text-slate-600 mb-6">
+                        Are you sure you want to permanently remove the presentation card for <strong id="delete-target-name" class="text-slate-800">this group</strong>? This action cannot be undone.
+                    </p>
+
+                    <!-- Confirmation Actions -->
+                    <div class="flex gap-2 w-full">
+                        <button onclick="closeDeleteModal()" class="flex-1 py-2.5 px-4 rounded-xl border border-slate-200 hover:border-slate-300 text-slate-700 text-sm font-semibold transition hover:bg-slate-50">
+                            Cancel
+                        </button>
+                        <button id="confirm-delete-btn" class="flex-1 py-2.5 px-4 rounded-xl bg-red-600 hover:bg-red-700 text-white text-sm font-semibold shadow-md shadow-red-600/10 transition">
+                            Delete Permanently
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Core student directory initial database state (Cleaned obsolete Group 4 extra TBD and reviews arrays)
+        const defaultStudentPresentations = [
+            {
+                id: 1,
+                group: "Group 7",
+                topic: "Topic 7: Ally's Extreme Lucky Coin App",
+                color: "indigo",
+                links: [
+                    { type: "game", url: "https://raincauseflooding.github.io/Game/", label: "Play Extreme Lucky Coin" },
+                    { type: "github", url: "https://github.com/raincauseflooding/Game", label: "GitHub Code Repository" },
+                    { type: "presentation", url: "https://canva.link/tj64d99hl4icj6c", label: "Canva Pitch Presentation" }
+                ]
+            },
+            {
+                id: 2,
+                group: "Group 1",
+                topic: "Topic 3: Anthony’s Recess Coin Duel",
+                color: "emerald",
+                links: [
+                    { type: "presentation", url: "https://canva.link/8bzznu1lks92j1h", label: "Canva Duel Pitch" },
+                    { type: "game", url: "https://reliable-choux-6fe8e2.netlify.app", label: "Play Coin Duel Demo" },
+                    { type: "drive", url: "https://drive.google.com/file/d/1LeCMqVnPPxfO2xKWivNw6Ixs9jGeYYzQ/view?usp=sharing", label: "Gameplay Demo" }
+                ]
+            },
+            {
+                id: 3,
+                group: "Group 3",
+                topic: "Topic 6: Lucky Numbers & Coin Matrix",
+                color: "amber",
+                links: [
+                    { type: "presentation", url: "https://docs.google.com/presentation/d/11S_8pvcGNWQv4UwzsyR7w1nwjjT60waajRpsniTXef0/edit?usp=sharing", label: "Google Slides Pitch" }
+                ]
+            },
+            {
+                id: 4,
+                group: "Group 8",
+                topic: "Topic 8: Space Coin Quest Game",
+                color: "rose",
+                links: [
+                    { type: "presentation", url: "https://docs.google.com/presentation/d/1V9r05wmBLGfSgQYwFmbp6jniPNthy0-Z/edit?usp=sharing&ouid=101253405155686728634&rtpof=true&sd=true", label: "Group Project Slides" }
+                ]
+            },
+            {
+                id: 5,
+                group: "Group 4",
+                topic: "Topic 4: Keith’s Talent Show Audition",
+                color: "blue",
+                links: [
+                    { type: "game", url: "https://andyyim175.github.io/Keith/", label: "Play Keith's Audition App" },
+                    { type: "presentation", url: "https://canva.link/dcivs9mw0s880yf", label: "Talent Show Slides" }
+                ]
+            },
+            {
+                id: 7,
+                group: "Group 5",
+                topic: "Topic 6: Michael vs Ally: Mind-Reading Coin Battle",
+                color: "violet",
+                links: [
+                    { type: "drive", url: "https://drive.google.com/drive/folders/1ok2k2kbtlSwOGV9KdowCixERSQpupH-7", label: "Resource Drive Folder" }
+                ]
+            }
+        ];
+
+        // Global Variables
+        let presentations = [];
+        let currentFilter = 'all';
+        let qrGeneratorInstance = null;
+        let deleteTargetId = null;
+
+        // Initialize Application
+        window.addEventListener('DOMContentLoaded', () => {
+            // Load from LocalStorage if available, otherwise use defaults
+            const savedData = localStorage.getItem('canvas_student_presentations');
+            if (savedData) {
+                try {
+                    presentations = JSON.parse(savedData);
+                    // Filter out any obsolete entries that might still exist in User's LocalStorage from old state
+                    presentations = presentations.filter(p => p.id !== 6);
+                } catch (e) {
+                    presentations = [...defaultStudentPresentations];
+                }
+            } else {
+                presentations = [...defaultStudentPresentations];
+            }
+            
+            // Build the initial display view
+            filterPresentations();
+            updateAnalytics();
+        });
+
+        // Toast Notification Trigger
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const bgClass = type === 'success' ? 'bg-emerald-600' : 'bg-red-600';
+            const iconClass = type === 'success' ? 'fa-circle-check' : 'fa-triangle-exclamation';
+
+            toast.className = `flex items-center gap-3 text-white px-4 py-3 rounded-xl shadow-xl transition-all duration-300 transform translate-x-12 opacity-0 ${bgClass}`;
+            toast.innerHTML = `
+                <i class="fa-solid ${iconClass}"></i>
+                <span class="text-sm font-semibold">${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            // Reflow trigger for transition animation
+            setTimeout(() => {
+                toast.classList.remove('translate-x-12', 'opacity-0');
+            }, 10);
+
+            // Remove toast automatically
+            setTimeout(() => {
+                toast.classList.add('translate-x-12', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Synchronize state with local storage
+        function saveState() {
+            localStorage.setItem('canvas_student_presentations', JSON.stringify(presentations));
+            updateAnalytics();
+        }
+
+        // Navigation toggle between view panes
+        function toggleView(viewName) {
+            const dashboardSection = document.getElementById('view-dashboard');
+            const analyticsSection = document.getElementById('view-analytics');
+            const dashboardBtn = document.getElementById('nav-btn-dashboard');
+            const analyticsBtn = document.getElementById('nav-btn-analytics');
+
+            if (viewName === 'dashboard') {
+                dashboardSection.classList.remove('hidden');
+                analyticsSection.classList.add('hidden');
+                
+                dashboardBtn.className = "flex-1 sm:flex-initial px-4 py-2 rounded-lg bg-indigo-50 text-indigo-700 font-semibold text-sm flex items-center justify-center gap-2 transition hover:bg-indigo-100";
+                analyticsBtn.className = "flex-1 sm:flex-initial px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 font-semibold text-sm flex items-center justify-center gap-2 transition";
+            } else {
+                dashboardSection.classList.add('hidden');
+                analyticsSection.classList.remove('hidden');
+                
+                dashboardBtn.className = "flex-1 sm:flex-initial px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 font-semibold text-sm flex items-center justify-center gap-2 transition";
+                analyticsBtn.className = "flex-1 sm:flex-initial px-4 py-2 rounded-lg bg-indigo-50 text-indigo-700 font-semibold text-sm flex items-center justify-center gap-2 transition hover:bg-indigo-100";
+                
+                updateAnalytics();
+            }
+        }
+
+        // Dynamic styling generator for different group colors
+        function getColorThemeClasses(color) {
+            const schemes = {
+                indigo: {
+                    badge: "bg-indigo-50 text-indigo-700 border-indigo-200/50",
+                    accent: "indigo-600",
+                    glow: "shadow-indigo-600/5"
+                },
+                emerald: {
+                    badge: "bg-emerald-50 text-emerald-700 border-emerald-200/50",
+                    accent: "emerald-600",
+                    glow: "shadow-emerald-600/5"
+                },
+                amber: {
+                    badge: "bg-amber-50 text-amber-700 border-amber-200/50",
+                    accent: "amber-500",
+                    glow: "shadow-amber-500/5"
+                },
+                rose: {
+                    badge: "bg-rose-50 text-rose-700 border-rose-200/50",
+                    accent: "rose-600",
+                    glow: "shadow-rose-600/5"
+                },
+                blue: {
+                    badge: "bg-blue-50 text-blue-700 border-blue-200/50",
+                    accent: "blue-600",
+                    glow: "shadow-blue-600/5"
+                },
+                violet: {
+                    badge: "bg-violet-50 text-violet-700 border-violet-200/50",
+                    accent: "violet-600",
+                    glow: "shadow-violet-600/5"
+                }
+            };
+            return schemes[color] || schemes.indigo;
+        }
+
+        // Translate resource types into icons & badge design elements
+        function getLinkIconAndColor(type) {
+            switch(type) {
+                case 'game':
+                    return { icon: 'fa-solid fa-gamepad', bg: 'bg-emerald-50 text-emerald-700 border-emerald-200/50 hover:bg-emerald-100' };
+                case 'presentation':
+                    return { icon: 'fa-solid fa-file-powerpoint', bg: 'bg-amber-50 text-amber-700 border-amber-200/50 hover:bg-amber-100' };
+                case 'github':
+                    return { icon: 'fa-brands fa-github', bg: 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800' };
+                case 'drive':
+                    return { icon: 'fa-solid fa-folder-open', bg: 'bg-blue-50 text-blue-700 border-blue-200/50 hover:bg-blue-100' };
+                default:
+                    return { icon: 'fa-solid fa-link', bg: 'bg-slate-50 text-slate-700 border-slate-200/50 hover:bg-slate-100' };
+            }
+        }
+
+        // Filter, sort, and render presentations cards
+        function filterPresentations() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const sortVal = document.getElementById('sort-select').value;
+            const grid = document.getElementById('presentation-grid');
+            const emptyState = document.getElementById('empty-state');
+
+            let filtered = presentations.filter(p => {
+                // Match search query
+                const matchesSearch = p.group.toLowerCase().includes(searchTerm) || 
+                                      p.topic.toLowerCase().includes(searchTerm) || 
+                                      p.links.some(l => l.label.toLowerCase().includes(searchTerm) || l.url.toLowerCase().includes(searchTerm));
+                
+                // Match quick filters
+                if (currentFilter === 'all') return matchesSearch;
+                return matchesSearch && p.links.some(l => l.type === currentFilter);
+            });
+
+            // Handle Sorting
+            filtered.sort((a, b) => {
+                if (sortVal === 'group-asc') {
+                    return a.group.localeCompare(b.group, undefined, { numeric: true });
+                } else if (sortVal === 'group-desc') {
+                    return b.group.localeCompare(a.group, undefined, { numeric: true });
+                }
+                return 0;
+            });
+
+            // Display or Hide Empty State illustration
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            emptyState.classList.add('hidden');
+
+            // Render Cards inside DOM
+            grid.innerHTML = filtered.map(item => {
+                const colors = getColorThemeClasses(item.color);
+
+                // Build Resource Links UI HTML
+                const linksHtml = item.links.map(link => {
+                    const styling = getLinkIconAndColor(link.type);
+                    return `
+                        <div class="group/link flex items-center justify-between gap-2 p-2 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:border-slate-200 transition">
+                            <a href="${link.url}" target="_blank" class="flex items-center gap-2 text-xs font-semibold text-slate-700 truncate hover:text-indigo-600 transition flex-1">
+                                <span class="h-7 w-7 rounded-lg flex items-center justify-center ${styling.bg} border shrink-0 transition">
+                                    <i class="${styling.icon}"></i>
+                                </span>
+                                <span class="truncate">${link.label}</span>
+                            </a>
+                            <div class="flex items-center gap-1">
+                                <button onclick="openQrModal('${link.url}', '${item.group}', '${link.label}')" title="Generate QR Code" 
+                                    class="h-7 w-7 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-indigo-600 hover:border-indigo-100 flex items-center justify-center text-xs transition cursor-pointer">
+                                    <i class="fa-solid fa-qrcode"></i>
+                                </button>
+                                <button onclick="copyToClipboard('${link.url}')" title="Copy Address"
+                                    class="h-7 w-7 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-indigo-600 hover:border-indigo-100 flex items-center justify-center text-xs transition cursor-pointer">
+                                    <i class="fa-regular fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                return `
+                    <div class="glass-card flex flex-col justify-between p-6 rounded-2xl shadow-sm relative overflow-hidden">
+                        <!-- Top Gradient Accent Strip -->
+                        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-${colors.accent} via-indigo-400 to-${colors.accent}/60"></div>
+                        
+                        <div>
+                            <!-- Header & Delete trigger -->
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 text-xs font-bold rounded-lg border ${colors.badge}">
+                                    ${escapeHtml(item.group)}
+                                </span>
+                                
+                                <div class="flex items-center gap-1">
+                                    <button onclick="openEditModal(${item.id})" class="h-6 w-6 text-slate-400 hover:text-indigo-600 transition text-xs flex items-center justify-center hover:bg-slate-100 rounded-md">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                    <button onclick="openDeleteModal(${item.id})" class="h-6 w-6 text-slate-400 hover:text-red-600 transition text-xs flex items-center justify-center hover:bg-red-50 rounded-md">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Topic Title -->
+                            <h3 class="text-base font-bold text-slate-900 font-poppins tracking-tight line-clamp-2 hover:line-clamp-none transition duration-200 mb-4">
+                                ${escapeHtml(item.topic)}
+                            </h3>
+
+                            <!-- Render Resource Links Section -->
+                            <div class="space-y-2 mb-2">
+                                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Presentation Materials</span>
+                                ${linksHtml}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Apply Filters via Buttons
+        function setFilter(type) {
+            currentFilter = type;
+            
+            // Set active states dynamically on buttons
+            ['all', 'game', 'presentation', 'github'].forEach(item => {
+                const btn = document.getElementById(`filter-${item}`);
+                if (item === type) {
+                    btn.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white transition";
+                } else {
+                    let typeIconColor = "";
+                    if (item === 'game') typeIconColor = "text-emerald-500";
+                    if (item === 'presentation') typeIconColor = "text-amber-500";
+                    if (item === 'github') typeIconColor = "text-slate-800";
+                    
+                    btn.className = `px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition flex items-center gap-1`;
+                }
+            });
+
+            filterPresentations();
+        }
+
+        // Copy link to Clipboard Helper
+        function copyToClipboard(url) {
+            const inputTemp = document.createElement('input');
+            inputTemp.value = url;
+            document.body.appendChild(inputTemp);
+            inputTemp.select();
+            
+            try {
+                const success = document.execCommand('copy');
+                if (success) {
+                    showToast('Link copied to clipboard!', 'success');
+                } else {
+                    showToast('Failed to copy link', 'error');
+                }
+            } catch (err) {
+                showToast('Clipboard access denied', 'error');
+            }
+            
+            document.body.removeChild(inputTemp);
+        }
+
+        // Open QR Modal Screen with fully initialized QR Canvas
+        function openQrModal(url, group, label) {
+            document.getElementById('qr-modal-title').innerText = `${group} Link`;
+            document.getElementById('qr-modal-sub').innerText = label;
+            
+            const launchBtn = document.getElementById('qr-launch-btn');
+            if(url === '#') {
+                launchBtn.removeAttribute('href');
+                launchBtn.classList.add('opacity-50', 'pointer-events-none');
+            } else {
+                launchBtn.setAttribute('href', url);
+                launchBtn.classList.remove('opacity-50', 'pointer-events-none');
+            }
+
+            document.getElementById('qr-modal').classList.remove('hidden');
+
+            // Render QR Code inside HTML5 Canvas element via qrious
+            const canvasElement = document.getElementById('qr-canvas');
+            if (qrGeneratorInstance) {
+                qrGeneratorInstance.set({ value: url });
+            } else {
+                qrGeneratorInstance = new QRious({
+                    element: canvasElement,
+                    value: url,
+                    size: 250,
+                    background: '#f8fafc',
+                    foreground: '#1e1b4b',
+                    level: 'H'
+                });
+            }
+        }
+
+        function closeQrModal() {
+            document.getElementById('qr-modal').classList.add('hidden');
+        }
+
+        function copyModalLink() {
+            const launchBtn = document.getElementById('qr-launch-btn');
+            const url = launchBtn.getAttribute('href');
+            if(url && url !== '#') {
+                copyToClipboard(url);
+            } else {
+                showToast('No active link to copy', 'error');
+            }
+        }
+
+        // Form & Modal operations to add/edit cards
+        function openAddModal() {
+            document.getElementById('group-form').reset();
+            document.getElementById('edit-target-id').value = '';
+            document.getElementById('add-modal-title-text').innerHTML = `<i class="fa-solid fa-plus"></i> New Presentation Card`;
+            document.getElementById('add-modal').classList.remove('hidden');
+        }
+
+        function openEditModal(id) {
+            const item = presentations.find(p => p.id === id);
+            if (!item) return;
+
+            document.getElementById('edit-target-id').value = id;
+            document.getElementById('group-num').value = item.group;
+            document.getElementById('group-color').value = item.color;
+            document.getElementById('topic-title').value = item.topic;
+
+            // Clear links pre-inputs
+            document.getElementById('link-game').value = '';
+            document.getElementById('link-presentation').value = '';
+            document.getElementById('link-github').value = '';
+            document.getElementById('link-drive').value = '';
+
+            // Map existing links inside the edit form
+            item.links.forEach(l => {
+                const input = document.getElementById(`link-${l.type}`);
+                if (input) input.value = l.url;
+            });
+
+            document.getElementById('add-modal-title-text').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Edit Group Card`;
+            document.getElementById('add-modal').classList.remove('hidden');
+        }
+
+        function closeAddModal() {
+            document.getElementById('add-modal').classList.add('hidden');
+        }
+
+        // Submit group creations/edits
+        function submitGroupCard(e) {
+            e.preventDefault();
+            
+            const editId = document.getElementById('edit-target-id').value;
+            const groupVal = document.getElementById('group-num').value.trim();
+            const colorVal = document.getElementById('group-color').value;
+            const topicVal = document.getElementById('topic-title').value.trim();
+
+            // Extract values and construct links list
+            const links = [];
+            const gameVal = document.getElementById('link-game').value.trim();
+            const presentationVal = document.getElementById('link-presentation').value.trim();
+            const githubVal = document.getElementById('link-github').value.trim();
+            const driveVal = document.getElementById('link-drive').value.trim();
+
+            if (gameVal) links.push({ type: 'game', url: gameVal, label: 'Play Game/App' });
+            if (presentationVal) links.push({ type: 'presentation', url: presentationVal, label: 'Pitch Presentation Slides' });
+            if (githubVal) links.push({ type: 'github', url: githubVal, label: 'GitHub Repository Code' });
+            if (driveVal) links.push({ type: 'drive', url: driveVal, label: 'Resource Drive Video/Files' });
+
+            if (links.length === 0) {
+                showToast('You must add at least one resource link!', 'error');
+                return;
+            }
+
+            if (editId) {
+                // Update target card
+                const item = presentations.find(p => p.id === parseInt(editId));
+                if (item) {
+                    item.group = groupVal;
+                    item.color = colorVal;
+                    item.topic = topicVal;
+                    item.links = links;
+                }
+                showToast('Presentation details updated!', 'success');
+            } else {
+                // Generate a brand new unique card object
+                const newId = presentations.length > 0 ? Math.max(...presentations.map(p => p.id)) + 1 : 1;
+                presentations.push({
+                    id: newId,
+                    group: groupVal,
+                    topic: topicVal,
+                    color: colorVal,
+                    links: links
+                });
+                showToast('New presentation card created!', 'success');
+            }
+
+            saveState();
+            filterPresentations();
+            closeAddModal();
+        }
+
+        // Open Custom Delete Confirmation Modal (Replacing standard system confirm dialog)
+        function openDeleteModal(id) {
+            const item = presentations.find(p => p.id === id);
+            if (!item) return;
+
+            deleteTargetId = id;
+            document.getElementById('delete-target-name').innerText = item.group;
+            
+            // Set up active trigger link on confirm button
+            const confirmBtn = document.getElementById('confirm-delete-btn');
+            confirmBtn.onclick = () => {
+                executeDeletePresentation(deleteTargetId);
+                closeDeleteModal();
+            };
+
+            document.getElementById('delete-modal').classList.remove('hidden');
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('delete-modal').classList.add('hidden');
+            deleteTargetId = null;
+        }
+
+        // Delete action execution
+        function executeDeletePresentation(id) {
+            presentations = presentations.filter(p => p.id !== id);
+            saveState();
+            filterPresentations();
+            showToast('Card deleted successfully.', 'success');
+        }
+
+        // Run and load data analytics charts & statistics
+        function updateAnalytics() {
+            // Stats boxes
+            document.getElementById('stat-total-groups').innerText = presentations.length;
+            
+            const totalResources = presentations.reduce((acc, p) => acc + p.links.length, 0);
+            document.getElementById('stat-total-resources').innerText = totalResources;
+
+            // Compute resource distribution
+            const resourceDistribution = { game: 0, presentation: 0, github: 0, drive: 0 };
+            presentations.forEach(p => {
+                p.links.forEach(l => {
+                    if (resourceDistribution[l.type] !== undefined) {
+                        resourceDistribution[l.type]++;
+                    }
+                });
+            });
+
+            const maxResourcesCount = Math.max(...Object.values(resourceDistribution), 1);
+            
+            // Render beautiful charts/bars for analytics
+            const mappingList = [
+                { type: 'game', title: 'Interactive Games / Web Apps', icon: 'fa-gamepad', color: 'emerald', count: resourceDistribution.game },
+                { type: 'presentation', title: 'Canva / Presentation Slides', icon: 'fa-file-powerpoint', color: 'amber', count: resourceDistribution.presentation },
+                { type: 'github', title: 'GitHub repositories', icon: 'fa-brands fa-github', color: 'indigo', count: resourceDistribution.github },
+                { type: 'drive', title: 'Google Drive Files / Videos', icon: 'fa-folder-open', color: 'blue', count: resourceDistribution.drive }
+            ];
+
+            const containerResource = document.getElementById('analytics-resource-list');
+            containerResource.innerHTML = mappingList.map(item => {
+                const widthPercent = (item.count / maxResourcesCount) * 100;
+                return `
+                    <div>
+                        <div class="flex justify-between items-center text-xs font-semibold text-slate-600 mb-1.5">
+                            <span class="flex items-center gap-1.5">
+                                <i class="fa-solid ${item.icon} text-${item.color}-500"></i> ${item.title}
+                            </span>
+                            <span class="font-bold text-slate-800">${item.count} items</span>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-3.5 overflow-hidden">
+                            <div class="bg-${item.color}-500 h-full rounded-full transition-all duration-500" style="width: ${widthPercent}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Helper string HTML encoder for injection safety
+        function escapeHtml(string) {
+            return String(string).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+    </script>
+</body>
+</html>
