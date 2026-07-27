@@ -1,0 +1,1515 @@
+<!-- Final MathJax fix: content preserved; formulas normalized; telescoping decomposition converted to AMS aligned; tab typesetting stabilized. --><!-- Revised by Microsoft Copilot: MathJax configuration hardened; existing content preserved; additional keyword highlighting added without trimming. -->
+<!DOCTYPE html>
+<html lang="zh-Hant">
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<title>
+			AI, Statistics, and Risk Management | Bilingual Full Revised Transcript
+		</title>
+		<script>
+		window.MathJax = {
+		loader: { load: ['[tex]/ams', '[tex]/noerrors', '[tex]/noundefined'] },
+		tex: {
+		packages: { '[+]': ['ams', 'noerrors', 'noundefined'] },
+		inlineMath: [['\\(', '\\)']],
+		displayMath: [['\\[', '\\]']],
+		processEscapes: true,
+		processEnvironments: true,
+		tags: 'none',
+		macros: {
+		PnL: '\\mathrm{PnL}',
+		E: '\\mathbb{E}',
+		Var: '\\mathrm{Var}'
+		}
+		},
+		svg: { fontCache: 'global' },
+		options: {
+		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+		ignoreHtmlClass: 'tex2jax_ignore'
+		},
+		startup: { typeset: false }
+		};
+		</script>
+		<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+		<style>
+		:root {
+		--bg: #f6f8ff;
+		--card: rgba(255,255,255,0.92);
+		--ink: #14213d;
+		--muted: #61708a;
+		--blue: #2454ff;
+		--cyan: #00a6d6;
+		--purple: #7b2ff7;
+		--teal: #00a884;
+		--orange: #ff8a00;
+		--red: #e63946;
+		--line: #d7def5;
+		}
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+		margin: 0;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+		color: var(--ink);
+		background:
+		radial-gradient(circle at 10% 5%, rgba(36,84,255,.18), transparent 28%),
+		radial-gradient(circle at 95% 5%, rgba(123,47,247,.16), transparent 24%),
+		linear-gradient(135deg, #f6f8ff 0%, #eef7ff 48%, #fff8ef 100%);
+		line-height: 1.72;
+		}
+		header.hero {
+		padding: 48px 22px 36px;
+		text-align: center;
+		color: white;
+		background: linear-gradient(135deg, #14213d 0%, #2454ff 48%, #7b2ff7 100%);
+		position: relative;
+		overflow: hidden;
+		}
+		header.hero::before {
+		content: "";
+		position: absolute;
+		inset: -80px;
+		background-image: radial-gradient(circle, rgba(255,255,255,.14) 1px, transparent 1px);
+		background-size: 24px 24px;
+		transform: rotate(-6deg);
+		}
+		.hero-inner { position: relative; max-width: 1120px; margin: 0 auto; }
+		.eyebrow {
+		display: inline-block;
+		background: rgba(255,255,255,.18);
+		border: 1px solid rgba(255,255,255,.32);
+		padding: 6px 12px;
+		border-radius: 999px;
+		font-size: 0.92rem;
+		letter-spacing: .02em;
+		}
+		h1 {
+		margin: 18px 0 10px;
+		font-size: clamp(2rem, 4vw, 4rem);
+		line-height: 1.1;
+		}
+		.subtitle { max-width: 900px; margin: 0 auto; font-size: 1.14rem; color: rgba(255,255,255,.9); }
+		.meta-row {
+		margin-top: 24px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 10px;
+		}
+		.meta-pill {
+		background: rgba(255,255,255,.16);
+		border: 1px solid rgba(255,255,255,.28);
+		padding: 8px 12px;
+		border-radius: 14px;
+		font-weight: 600;
+		}
+		.wrapper { max-width: 1180px; margin: 0 auto; padding: 28px 18px 60px; }
+		.controls {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+		padding: 12px;
+		margin: 0 auto 24px;
+		max-width: 1050px;
+		background: rgba(246,248,255,.88);
+		backdrop-filter: blur(12px);
+		border: 1px solid var(--line);
+		border-radius: 18px;
+		box-shadow: 0 12px 30px rgba(20,33,61,.08);
+		}
+		.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+		.tab-btn {
+		border: none;
+		cursor: pointer;
+		padding: 14px 16px;
+		border-radius: 14px;
+		font-size: 1rem;
+		font-weight: 800;
+		color: var(--ink);
+		background: white;
+		box-shadow: inset 0 0 0 1px var(--line);
+		transition: .2s ease;
+		}
+		.tab-btn.active {
+		color: white;
+		background: linear-gradient(135deg, var(--blue), var(--purple));
+		box-shadow: 0 10px 22px rgba(36,84,255,.22);
+		}
+		.tip { margin: 10px 4px 0; color: var(--muted); font-size: .95rem; text-align: center; }
+		.panel { display: none; animation: fade .25s ease; }
+		.panel.active { display: block; }
+		@keyframes fade { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+		.content-grid { display: grid; grid-template-columns: 260px minmax(0,1fr); gap: 22px; align-items: start; }
+		.toc {
+		position: sticky;
+		top: 108px;
+		background: var(--card);
+		border: 1px solid var(--line);
+		border-radius: 20px;
+		padding: 18px;
+		box-shadow: 0 14px 34px rgba(20,33,61,.08);
+		max-height: calc(100vh - 130px);
+		overflow: auto;
+		}
+		.toc h3 { margin: 0 0 10px; font-size: 1rem; color: var(--blue); }
+		.toc a {
+		display: block;
+		padding: 7px 10px;
+		margin: 4px 0;
+		border-radius: 10px;
+		text-decoration: none;
+		color: #273653;
+		font-size: .92rem;
+		}
+		.toc a:hover { background: #eef3ff; color: var(--blue); }
+		.speech-section {
+		background: var(--card);
+		border: 1px solid var(--line);
+		border-radius: 24px;
+		padding: clamp(20px, 3vw, 34px);
+		margin-bottom: 22px;
+		box-shadow: 0 16px 40px rgba(20,33,61,.08);
+		}
+		.speech-section h2 {
+		margin: 0 0 18px;
+		line-height: 1.24;
+		color: #14213d;
+		font-size: clamp(1.35rem, 2.2vw, 2rem);
+		}
+		.num {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 44px;
+		height: 36px;
+		margin-right: 8px;
+		border-radius: 12px;
+		color: white;
+		background: linear-gradient(135deg, var(--orange), var(--red));
+		font-size: .95rem;
+		}
+		p { margin: 0 0 1em; }
+		.kw {
+		font-weight: 900;
+		color: #082b9f;
+		background: linear-gradient(120deg, rgba(255,229,102,.92), rgba(134,239,172,.62), rgba(191,219,254,.66));
+		border-radius: 9px;
+		padding: .08em .38em;
+		white-space: nowrap;
+		box-decoration-break: clone;
+		-webkit-box-decoration-break: clone;
+		box-shadow: inset 0 -0.18em 0 rgba(255,138,0,.22);
+		}
+		.formula {
+		margin: 18px 0;
+		padding: 16px 18px;
+		overflow-x: auto;
+		border-left: 6px solid var(--teal);
+		border-radius: 16px;
+		background: linear-gradient(135deg, #f3fffb, #f1f5ff);
+		}
+		pre {
+		background: #101828;
+		color: #e9f2ff;
+		border-radius: 16px;
+		padding: 16px;
+		overflow-x: auto;
+		box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+		}
+		code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: .92rem; }
+		.notice {
+		background: linear-gradient(135deg, #fff7e6, #fff0f0);
+		border: 1px solid #ffd7aa;
+		border-radius: 18px;
+		padding: 18px;
+		margin-bottom: 24px;
+		}
+		footer { text-align:center; color: var(--muted); padding: 24px; }
+		@media (max-width: 900px) {
+		.content-grid { grid-template-columns: 1fr; }
+		.toc { position: relative; top: auto; max-height: none; }
+		.controls { top: 0; border-radius: 0 0 18px 18px; }
+		}
+		@media print {
+		body { background: white; }
+		.controls, .toc { display: none !important; }
+		.panel { display: block !important; }
+		.speech-section { page-break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+		header.hero { color: #000; background: white; border-bottom: 2px solid #ddd; }
+		}
+
+		.kw:hover { filter: brightness(1.04); }
+		mark.kw, span.kw { line-height: 1.9; }
+		.formula mjx-container { font-size: 112% !important; }
+		.formula { scroll-margin-top: 110px; }
+
+		/* MathJax stability patch */
+		.formula { font-size: 1.03rem; line-height: 1.65; }
+		.formula mjx-container { font-size: 112% !important; outline: none; }
+		.formula mjx-container[display="true"] { margin: .2em 0 !important; }
+		.formula .kw, mjx-container .kw { background: none !important; box-shadow: none !important; padding: 0 !important; }
+		.mathjax-process { white-space: normal; }
+		</style>
+	</head>
+	<body>
+		<header class="hero">
+			<div class="hero-inner">
+				<span class="eyebrow">OSALP Phase 2 Guest Lecture</span>
+				<h1>
+					AI, <span class="kw">Statistics</span>, and <span class="kw">Risk Management</span>
+				</h1>
+				<p class="subtitle">
+					A bilingual full revised transcript in third person, designed for students and parents. Use the tabs below to switch between Chinese and English.
+				</p>
+				<div class="meta-row">
+					<span class="meta-pill">Speaker: Dominic Leung</span> <span class="meta-pill">Programme: Nurturing Future Risk Managers and Actuaries</span> <span class="meta-pill">Date: 25 July 2026</span>
+				</div>
+			</div>
+		</header>
+		<main class="wrapper">
+			<div class="controls">
+				<div aria-label="Language selector" class="tabs" role="tablist">
+					<button aria-controls="zhPanel" aria-selected="true" class="tab-btn active" id="zhTab" onclick="showPanel('zh')" role="tab">中文版本</button> <button aria-controls="enPanel" aria-selected="false" class="tab-btn" id="enTab" onclick="showPanel('en')" role="tab">English Version</button>
+				</div>
+				<div class="tip">
+					Tip: Math formulas are rendered with MathJax. Use your browser's Print / Save as PDF function if you want a PDF copy.
+				</div>
+			</div>
+			<article aria-labelledby="zhTab" class="panel active" id="zhPanel" role="tabpanel">
+				<div class="notice">
+					<strong>中文版本｜第三人稱整理稿：</strong>全文以「Dominic 表示／解釋／示範」作為敘述主軸，適合家長及學生閱讀。重點術語以彩色標示，<span class="kw">數學</span>式以 MathJax 呈現。
+				</div>
+				<div class="content-grid">
+					<aside class="toc">
+						<h3>
+							中文目錄
+						</h3><a href="#zh01">Opening and Speaker Introduction</a> <a href="#zh02"><span class="kw">Risk Management</span>: Quantity, Price, PnL, and Market Examples</a> <a href="#zh03"><span class="kw">PnL Decomposition</span>: <span class="kw">Trading PnL</span> and <span class="kw">Market PnL</span></a> <a href="#zh04"><span class="kw">Market PnL</span>, <span class="kw">Model Price</span>, and <span class="kw">Model Risk</span></a> <a href="#zh05">Decomposing Modelled <span class="kw">Market PnL</span> into <span class="kw">Risk Drivers</span></a> <a href="#zh06">Why <span class="kw">Models</span> Fail and Why AI Becomes Relevant</a> <a href="#zh07">Why <span class="kw">Statistics</span> Still Matters in the Age of AI</a> <a href="#zh08"><span class="kw">Large Language Models</span>, Distillation, and the Current AI Landscape</a> <a href="#zh09"><span class="kw">Chatbot</span> versus <span class="kw">AI Agent</span></a> <a href="#zh10">Embeddings, <span class="kw">Vector Data</span>, <span class="kw">Qdrant</span>, and AI <span class="kw">Memory</span></a> <a href="#zh11">Database, SQL, <span class="kw">DuckDB</span>, <span class="kw">Postgres</span>, and <span class="kw">S3</span></a> <a href="#zh12"><span class="kw">Assistant UI</span> Demo: Building a <span class="kw">Chatbot</span> Interface</a> <a href="#zh13">Connecting the <span class="kw">Chatbot</span> to an <span class="kw">LLM Provider</span></a> <a href="#zh14">Adding <span class="kw">Web Search Tool</span>: From <span class="kw">LLM</span> to Agent</a> <a href="#zh15"><span class="kw">Coding Agent</span> and <span class="kw">Pair Coding</span></a> <a href="#zh16">Building a Company Sales Database with <span class="kw">Postgres</span> and <span class="kw">Docker</span></a> <a href="#zh17">Giving the Agent <span class="kw">Database Schema</span> as Context</a> <a href="#zh18">Querying Sales <span class="kw">Data</span> and Generating Charts</a> <a href="#zh19"><span class="kw">System Prompt</span>, <span class="kw">Tool Calling</span>, <span class="kw">Guardrails</span>, and <span class="kw">Evaluation</span></a> <a href="#zh20"><span class="kw">GitHub Copilot</span> and Coding IDEs</a> <a href="#zh21">Mac, Windows, Linux, and WSL</a> <a href="#zh22">AI in Education: Easier or Harder?</a> <a href="#zh23">Coding <span class="kw">Fundamentals</span> in the AI Era</a> <a href="#zh24">AI Bubble, Chips, <span class="kw">Leverage</span>, and Market Risk</a> <a href="#zh25"><span class="kw">SaaS</span>, Enterprise Software, and AI Disruption</a> <a href="#zh26">The Real Future: <span class="kw">LLM</span> + <span class="kw">Tools</span> + Context + <span class="kw">Workflow</span></a> <a href="#zh27">Closing Remarks to Students</a> <a href="#zh28">Post-talk Exchange and Extended Discussion</a> <a href="#zh29">Parent-friendly Closing Note</a>
+					</aside>
+					<div>
+						<section class="speech-section" id="zh01">
+							<h2>
+								<span class="num">01</span> Opening and Speaker Introduction
+							</h2>
+							<p>
+								講座開始時，Dominic 先向同學打招呼，並調整螢幕顯示模式，確保在場同學能清楚看到投影片和示範畫面。隨後，他作自我介紹，說明自己大約畢業三、四年，曾在香港中文大學完成本科及哲學碩士課程，並在大學期間接觸過多位中大的老師和教授。Dominic 提到，這些老師和前輩在他的學習歷程中一直給予重要指導，對他後來的工作方向亦有深遠影響。
+							</p>
+							<p>
+								Dominic 接着介紹自己的職業背景。他畢業後加入<span class="kw">投資銀行</span>工作，曾在 <span class="kw">Goldman Sachs</span>，即高盛，擔任 <span class="kw">quantitative analyst</span>，亦即<span class="kw">量化分析師</span>。Dominic 解釋，quant 的工作範圍非常廣泛，可以包括<span class="kw">金融建模</span>、<span class="kw">交易策略</span>、<span class="kw">風險管理</span>、<span class="kw">數據分析</span>、程式設計、<span class="kw">衍生工具定價</span>等不同範疇。
+							</p>
+							<p>
+								他進一步向同學區分<span class="kw">金融市場</span>中的 <span class="kw">sell-side</span> 和 <span class="kw">buy-side</span>。Dominic 說明，<span class="kw">sell-side</span> 即「<span class="kw">賣方</span>」，例如<span class="kw">投資銀行</span>，主要向市場提供金融服務，包括交易執行、流動性提供、報價及其他金融服務；<span class="kw">buy-side</span> 即「<span class="kw">買方</span>」，則是真正管理資金和作出<span class="kw">投資決策</span>的一方，例如<span class="kw">對沖基金</span>、資產管理公司和其他投資機構。Dominic 後來轉到<span class="kw">對沖基金</span>工作，參與量化分析、策略設計、投資研究和<span class="kw">風險管理</span>相關工作。
+							</p>
+							<p>
+								Dominic 表示，當天講座主要有兩條主線。第一條主線是 <span class="kw">risk management</span>，即<span class="kw">風險管理</span>。他希望透過<span class="kw">金融市場</span>中的簡單例子，讓學生理解什麼是<span class="kw">盈虧</span>、如何拆解<span class="kw">風險</span>，以及<span class="kw">統計模型</span>在金融工作中的重要性。第二條主線是 <span class="kw">artificial intelligence</span>，即<span class="kw">人工智能</span>，尤其是<span class="kw">大型語言模型</span>、<span class="kw">AI agent</span>、<span class="kw">tool calling</span>、embedding、database、<span class="kw">coding agent</span> 等近年非常重要的概念。
+							</p>
+							<p>
+								Dominic 亦指出，不少同學可能已經使用過 <span class="kw">ChatGPT</span>、<span class="kw">Gemini</span>、<span class="kw">Kimi</span>、<span class="kw">DeepSeek</span> 或其他 AI <span class="kw">工具</span>來寫程式、整理資料、解釋概念或協助學習。不過，他希望學生不只停留在「AI 可以回答問題」的層面，而是開始理解 <span class="kw">AI system</span> 背後的結構，包括模型、<span class="kw">工具</span>、數據、<span class="kw">回饋</span>、<span class="kw">資料庫</span>、<span class="kw">記憶</span>，以及人類如何與 AI 協作。
+							</p>
+						</section>
+						<section class="speech-section" id="zh02">
+							<h2>
+								<span class="num">02</span> <span class="kw">Risk Management</span>: Quantity, Price, PnL, and Market Examples
+							</h2>
+							<p>
+								Dominic 隨後進入<span class="kw">風險管理</span>的主題。他指出，雖然 AI 的內容聽起來比較新奇，但由於課程本身與<span class="kw">風險管理</span>和精算有關，因此有必要先從<span class="kw">金融市場</span>中最基本的概念說起。
+							</p>
+							<p>
+								Dominic 解釋，在<span class="kw">金融市場</span>中，不論是在 <span class="kw">buy-side</span> 的<span class="kw">對沖基金</span>，還是在 <span class="kw">sell-side</span> 的<span class="kw">投資銀行</span>，從業員經常關心的核心問題都是：投資組合到底賺了多少、蝕了多少，以及為什麼賺錢或蝕錢。對<span class="kw">風險管理</span>而言，只看最後的總數是不足夠的，必須把<span class="kw">盈虧</span>來源拆解清楚。
+							</p>
+							<div class="formula">
+								\[\text{Value}=Q\times P]
+							</div>
+							<p>
+								其中 \(Q\) 是 quantity，即<span class="kw">持倉數量</span>；\(P\) 是 price，即<span class="kw">價格</span>。Dominic 以股票作例子說明，如果投資者買入 100 股騰訊，股數乘以每股<span class="kw">價格</span>，就是該持倉的<span class="kw">總市值</span>。
+							</p>
+							<p>
+								Dominic 接着以 <span class="kw">SK Hynix</span>，即 SK 海力士，作為近期<span class="kw">市場例子</span>。他說明，<span class="kw">SK Hynix</span> 是韓國大型<span class="kw">記憶體晶片</span>製造商，近期因 AI <span class="kw">data</span> center、<span class="kw">GPU</span> 和 <span class="kw">memory</span> chip 的需求上升而備受市場關注。由於 AI <span class="kw">data</span> center 和高效能運算需要大量<span class="kw">記憶體晶片</span>，<span class="kw">SK Hynix</span> 因而成為市場焦點之一。
+							</p>
+							<p>
+								Dominic 亦提到，<span class="kw">Samsung Electronics</span> 和 <span class="kw">SK Hynix</span> 在韓國 <span class="kw">KOSPI</span> 指數中佔有相當重要的比重，因此投資這些公司某程度上亦代表投資者承擔了相當大的韓國股票市場 exposure。他進一步指出，有些市場參與者認為這些股票已經<span class="kw">過熱</span>，也有人認為其基本面，即 <span class="kw">fundamentals</span>，可以支持股價升幅，因為 <span class="kw">AI infrastructure spending</span> 帶來的需求是真實存在的。
+							</p>
+							<p>
+								在這個例子之後，Dominic 介紹 <span class="kw">leverage</span>，即<span class="kw">槓桿</span>。他解釋，如果投資者原本有 100 元，股票上升 10%，便賺取 10 元；但如果投資者借入額外 100 元，總共用 200 元買入股票，當股票上升 10% 時，便可賺取 20 元。這樣看起來回報被放大，但同時虧損亦會被放大。
+							</p>
+							<p>
+								Dominic 指出，<span class="kw">金融市場</span>中的<span class="kw">槓桿</span>不一定只來自直接借錢，亦可以透過<span class="kw">衍生工具</span>、<span class="kw">槓桿 ETF</span>、<span class="kw">期權</span>或其他金融產品形成。他提醒學生，<span class="kw">槓桿</span>在市場上升時可以放大收益，但在市場下跌時同樣會放大<span class="kw">風險</span>，因此它是<span class="kw">風險管理</span>中必須仔細處理的問題。
+							</p>
+						</section>
+						<section class="speech-section" id="zh03">
+							<h2>
+								<span class="num">03</span> <span class="kw">PnL Decomposition</span>: <span class="kw">Trading PnL</span> and <span class="kw">Market PnL</span>
+							</h2>
+							<p>
+								Dominic 接着由 \(Q\times P\) 公式進一步介紹 <span class="kw">PnL</span>，即 <span class="kw">profit and loss</span>，中文可理解為<span class="kw">損益</span>。他假設昨天的持倉是 \(Q_t\)，<span class="kw">價格</span>是 \(P_t\)；今天的持倉是 \(Q_{t+1}\)，<span class="kw">價格</span>是 \(P_{t+1}\)。因此，總 PnL 可以寫成：
+							</p>
+							<div class="formula">
+								\[\text{PnL}=Q_{t+1}P_{t+1}-Q_tP_t]
+							</div>
+							<p>
+								Dominic 強調，雖然這條式子看似直接，但對<span class="kw">風險管理</span>來說仍然不夠清楚。因為持倉價值的變化可能來自兩件不同的事：第一，市場<span class="kw">價格</span>發生變化；第二，投資者自己增加或減少了持倉。因此，必須把這兩部分拆開。
+							</p>
+							<p>
+								他介紹 <span class="kw">telescoping</span>，即<span class="kw">伸縮</span>或<span class="kw">套疊分解</span>技巧。透過加減一項相同的項目，可以把 PnL 拆解為：
+							</p>
+							<div class="formula">
+								\[Q_{t+1}P_{t+1}-Q_tP_t=(Q_{t+1}P_{t+1}-Q_tP_{t+1})+(Q_tP_{t+1}-Q_tP_t)]
+							</div>
+							<div class="formula">
+								\[\text{PnL}=(Q_{t+1}-Q_t)P_{t+1}+Q_t(P_{t+1}-P_t)]
+							</div>
+							<p>
+								Dominic 解釋，第一部分 \((Q_{t+1}-Q_t)P_{t+1}\) 可以理解為 <span class="kw">trading PnL</span>，即因<span class="kw">持倉數量</span>改變而產生的部分；第二部分 \(Q_t(P_{t+1}-P_t)\) 則是 <span class="kw">market PnL</span>，即原有持倉因市場<span class="kw">價格</span>變動而產生的<span class="kw">盈虧</span>。
+							</p>
+							<p>
+								Dominic 用直觀例子說明，如果報表顯示投資組合價值上升，這未必代表投資策略真正賺了錢。它可能只是因為投資者買入了更多股票，令 portfolio size 變大。從公司整體角度來看，交易部門買入股票時，資金部 treasury 可能要撥出相應現金，因此交易部看到的持倉增加，不等於公司整體多賺了錢。
+							</p>
+							<p>
+								因此，Dominic 強調，<span class="kw">PnL decomposition</span> 是金融機構中非常基本但非常重要的<span class="kw">工具</span>。它使<span class="kw">風險管理</span>人員能夠把表面上的<span class="kw">盈虧</span>數字拆解成市場變動、交易行為和資金調配等不同來源，從而真正理解<span class="kw">風險</span>。
+							</p>
+						</section>
+						<section class="speech-section" id="zh04">
+							<h2>
+								<span class="num">04</span> <span class="kw">Market PnL</span>, <span class="kw">Model Price</span>, and <span class="kw">Model Risk</span>
+							</h2>
+							<p>
+								Dominic 隨後進一步討論 <span class="kw">market PnL</span>。他指出，<span class="kw">market PnL</span> 可以表示為：
+							</p>
+							<div class="formula">
+								\[\text{Market PnL}=Q_t\Delta P]
+							</div>
+							<p>
+								其中 \(\Delta P=P_{t+1}-P_t\)，即市場<span class="kw">價格</span>變動。
+							</p>
+							<p>
+								Dominic 解釋，在<span class="kw">金融建模</span>中，<span class="kw">風險管理</span>人員不會只依賴市場觀察到的<span class="kw">價格</span>，而會建立一個<span class="kw">模型價格</span>：
+							</p>
+							<div class="formula">
+								\[\hat{P}_t=f(r_t,S_t,\sigma_t)]
+							</div>
+							<p>
+								其中 \(f\) 是 <span class="kw">pricing model</span>，即<span class="kw">定價模型</span>；\(r_t\) 可以代表 <span class="kw">interest rate</span>，即利率；\(S_t\) 可以代表 <span class="kw">stock price</span> 或 <span class="kw">underlying price</span>，即相關資產<span class="kw">價格</span>；\(\sigma_t\) 則可以代表 <span class="kw">volatility</span>，即波動率。
+							</p>
+							<p>
+								Dominic 指出，市場給出的是 observed price，即<span class="kw">實際價格</span> \(P_t\)，而模型給出的是 <span class="kw">model price</span>，即 \(\hat{P}_t\)。兩者未必完全相同。當<span class="kw">價格</span>變動時，可以把<span class="kw">實際價格</span>變動拆成<span class="kw">模型解釋</span>到的部分和<span class="kw">模型解釋</span>不到的部分：
+							</p>
+							<div class="formula">
+								\[\Delta P=\Delta\hat{P}+(\Delta P-\Delta\hat{P})]
+							</div>
+							<p>
+								其中 \(\Delta\hat{P}\) 是 <span class="kw">modelled move</span>，即<span class="kw">模型解釋</span>到的<span class="kw">價格</span>變動；而 \(\Delta P-\Delta\hat{P}\) 則是 <span class="kw">residual</span> 或 <span class="kw">model risk</span>，即<span class="kw">模型風險</span>。
+							</p>
+							<p>
+								Dominic 強調，好的模型應該盡量令 <span class="kw">model risk</span> 接近零。如果 <span class="kw">model risk</span> 很大，代表市場<span class="kw">價格</span>變動和模型預測之間存在明顯差距。這時候就要檢查模型是否失效、是否有市場事件未被模型捕捉、是否有<span class="kw">新聞</span>、流動性變化、投資者行為或其他結構性因素影響<span class="kw">價格</span>。
+							</p>
+							<p>
+								他指出，在<span class="kw">風險管理</span>中，當投資組合蝕錢時，不能只說「市場跌了」。<span class="kw">風險管理</span>人員需要問：虧損是否來自<span class="kw">利率變動</span>？是否來自股票下跌？是否來自波動率上升？是否來自模型 <span class="kw">calibration</span> 不準？是否來自交易行為？還是來自 <span class="kw">residual</span> 或 <span class="kw">model risk</span>？這正是<span class="kw">風險管理</span>的核心精神。
+							</p>
+						</section>
+						<section class="speech-section" id="zh05">
+							<h2>
+								<span class="num">05</span> Decomposing Modelled <span class="kw">Market PnL</span> into <span class="kw">Risk Drivers</span>
+							</h2>
+							<p>
+								Dominic 接着示範如何把<span class="kw">模型價格</span>變動進一步拆解成不同 <span class="kw">risk drivers</span> 的貢獻。假設<span class="kw">模型價格</span>是：
+							</p>
+							<div class="formula">
+								\[\hat{P}_t=f(r_t,S_t,\sigma_t)]
+							</div>
+							<p>
+								由 \(t\) 到 \(t+1\) 的<span class="kw">模型價格</span>變動可以寫成：
+							</p>
+							<div class="formula">
+								\[\Delta\hat{P}=f(r_{t+1},S_{t+1},\sigma_{t+1}) - f(r_t,S_t,\sigma_t)]
+							</div>
+							<p>
+								Dominic 說明，可以再次使用 telescoping 的想法，逐步改變模型中的 input。首先只改變利率，再改變股價，最後改變波動率：
+							</p>
+							<div class="formula">
+								\[ \begin{aligned} \Delta\hat{P} =&amp;\;\left[f(r_{t+1},S_t,\sigma_t)-f(r_t,S_t,\sigma_t)\right]\\ &amp;+\left[f(r_{t+1},S_{t+1},\sigma_t)-f(r_{t+1},S_t,\sigma_t)\right]\\ &amp;+\left[f(r_{t+1},S_{t+1},\sigma_{t+1})-f(r_{t+1},S_{t+1},\sigma_t)\right] \end{aligned} \]
+							</div>
+							<p>
+								第一項可以理解為 <span class="kw">rate effect</span>，即<span class="kw">利率變動</span>的影響；第二項是 <span class="kw">stock effect</span>，即<span class="kw">股價變動</span>的影響；第三項是 <span class="kw">volatility effect</span>，即<span class="kw">波動率變動</span>的影響。
+							</p>
+							<p>
+								Dominic 強調，這種分解方法的價值在於讓投資者知道 PnL 來自哪裏。如果今天投資組合蝕錢，而分解結果顯示主要來自<span class="kw">利率變動</span>，那就要考慮是否需要利率<span class="kw">對沖</span>；如果主要來自波動率變化，就要檢查 <span class="kw">volatility</span> exposure；如果主要來自 <span class="kw">residual</span>，就可能代表模型本身需要重新檢查。
+							</p>
+							<p>
+								Dominic 提醒同學，<span class="kw">風險管理</span>的重點不是永遠不輸錢，而是知道自己在什麼<span class="kw">風險</span>上輸錢，知道這些<span class="kw">風險</span>是否原本預期會承擔，以及知道是否需要 hedge。
+							</p>
+						</section>
+						<section class="speech-section" id="zh06">
+							<h2>
+								<span class="num">06</span> Why <span class="kw">Models</span> Fail and Why AI Becomes Relevant
+							</h2>
+							<p>
+								Dominic 進一步指出，過去二十多年，傳統金融模型在正常市場環境下大多能有效運作。當市場因素相對穩定時，<span class="kw">價格</span>變化主要由利率、股價、波動率等變數驅動，模型便能夠捕捉主要<span class="kw">風險</span>。
+							</p>
+							<p>
+								不過，Dominic 指出，現代市場比以往更複雜。<span class="kw">價格</span>可能受到<span class="kw">新聞</span>、<span class="kw">政策</span>、<span class="kw">投資者情緒</span>、<span class="kw">社交媒體</span>、總統選舉、<span class="kw">地緣政治</span>、季節性、<span class="kw">供應鏈</span>消息等大量因素影響。很多資訊並不是結構化數字，而是文字、<span class="kw">新聞</span>、報告和市場敘事。
+							</p>
+							<p>
+								以 AI <span class="kw">晶片</span>股為例，Dominic 指出，它們的升幅不只是由過去<span class="kw">價格</span>數據解釋，而是與市場對未來 <span class="kw">AI data center spending</span> 的預期、公司財報、<span class="kw">供應鏈</span>、技術突破、宏觀利率環境等因素有關。這些因素往往藏在大量<span class="kw">文字資料</span>之中。
+							</p>
+							<p>
+								因此，Dominic 認為，現代金融分析越來越需要能夠讀取大量文字資訊的模型，例如<span class="kw">新聞</span>、研究報告、公告、財報、分析師評論和<span class="kw">社交媒體</span>資料。<span class="kw">大型語言模型</span>能夠處理<span class="kw">文字資料</span>、摘要資訊、找出主題和建立<span class="kw">語義關聯</span>，因此在<span class="kw">風險管理</span>和金融分析中具有潛力。
+							</p>
+						</section>
+						<section class="speech-section" id="zh07">
+							<h2>
+								<span class="num">07</span> Why <span class="kw">Statistics</span> Still Matters in the Age of AI
+							</h2>
+							<p>
+								Dominic 接着回應一個重要問題：既然 AI 已經如此強大，<span class="kw">統計學</span>是否仍然重要？他的觀點是，<span class="kw">統計學</span>不但仍然重要，而且在 AI 時代可能更加重要。
+							</p>
+							<p>
+								Dominic 用傳統<span class="kw">統計學</span>的 <span class="kw">workflow</span> 說明：
+							</p>
+							<div class="formula">
+								\[\text{Data}\rightarrow\text{Statistical Model}\rightarrow\text{Metrics}\rightarrow\text{Data}]
+							</div>
+							<p>
+								統計工作通常先有數據，然後建立模型，再用 <span class="kw">metrics</span> <span class="kw">評估模型</span>表現，例如 <span class="kw">forecast error</span>、accuracy、<span class="kw">RMSE</span>、<span class="kw">backtesting PnL</span> 等。<span class="kw">評估</span>之後，再根據結果修正模型或收集更多數據，形成一個循環。
+							</p>
+							<p>
+								Dominic 指出，<span class="kw">AI system</span> 其實也有類似循環：
+							</p>
+							<div class="formula">
+								\[\text{Data}\rightarrow\text{Agent}\rightarrow\text{Feedback}\rightarrow\text{Data}]
+							</div>
+							<p>
+								當資料輸入 agent 後，agent 透過<span class="kw">大型語言模型</span>和 <span class="kw">tools</span> 產生回應或執行任務，之後產生 feedback，而這些 feedback 又可以成為下一輪改進的資料。
+							</p>
+							<p>
+								因此，Dominic 強調，真正厲害的 AI 系統不只是單次 prompt 和 response，而是能建立一個有效 loop。它可以不斷讀取資料、執行任務、接收<span class="kw">評估</span>、修正輸出，甚至改善<span class="kw">工作流程</span>。
+							</p>
+							<p>
+								Dominic 以金融中的 backtesting 作類比。投資策略不能只因一次成功就被認為<span class="kw">可靠</span>，而要看它在歷史資料和不同情境中是否穩定。AI 亦一樣，不能只看一次回答是否漂亮，而要透過 <span class="kw">evaluation</span> loop 檢查其穩定性、<span class="kw">可靠</span>性、錯誤率和是否會 hallucinate。
+							</p>
+						</section>
+						<section class="speech-section" id="zh08">
+							<h2>
+								<span class="num">08</span> <span class="kw">Large Language Models</span>, Distillation, and the Current AI Landscape
+							</h2>
+							<p>
+								Dominic 隨後介紹<span class="kw">大型語言模型</span>的現況。他提到同學可能聽過 <span class="kw">ChatGPT</span>、<span class="kw">Claude</span>、<span class="kw">Gemini</span>、<span class="kw">Kimi</span>、<span class="kw">DeepSeek</span>、<span class="kw">Zhipu GLM</span> 等模型。不同模型各有特點，有些 reasoning 能力較強，有些 coding 較好，有些<span class="kw">價格</span>較低，有些 latency 較小，也有些在中文或香港使用環境中比較方便。
+							</p>
+							<p>
+								Dominic 解釋，<span class="kw">大型語言模型</span>可以簡化理解為：模型根據大量文本訓練，學習在某個上下文中下一個 <span class="kw">token</span> 最可能是什麼。它逐步生成文字，每一個 <span class="kw">token</span> 都根據上下文和模型參數計算而來。
+							</p>
+							<p>
+								他亦說明，模型可以大致分成 <span class="kw">foundation model</span> 和 <span class="kw">distilled model</span>。Foundation model 是由大量資料和 compute 從頭訓練而成的<span class="kw">基礎模型</span>；distilled model 則是透過<span class="kw">知識蒸餾</span>，把大型模型產生的答案用來訓練較小、成本較低的模型。
+							</p>
+							<p>
+								Dominic 提醒同學，benchmark 分數高不代表實際使用時一定最好。很多模型在標準題目上表現相近，但在長文組織、多步推理、<span class="kw">工具調用</span>、<span class="kw">資料庫查詢</span>、代碼修復和<span class="kw">企業知識管理</span>等複雜任務中，差異就會顯現。
+							</p>
+							<p>
+								因此，Dominic 認為，與其只問「哪個模型最強」，更重要的是看整個 <span class="kw">AI system</span> 是否設計得好，包括 <span class="kw">tools</span> 是否清楚、context 是否足夠、<span class="kw">evaluation</span> 是否<span class="kw">可靠</span>、cost 是否可控，以及 <span class="kw">security</span> 是否合格。
+							</p>
+						</section>
+						<section class="speech-section" id="zh09">
+							<h2>
+								<span class="num">09</span> <span class="kw">Chatbot</span> versus <span class="kw">AI Agent</span>
+							</h2>
+							<p>
+								Dominic 接着說明 <span class="kw">chatbot</span> 和 <span class="kw">AI agent</span> 的分別。他指出，很多人會把兩者混為一談，但兩者其實有重要差異。
+							</p>
+							<p>
+								普通 <span class="kw">chatbot</span> 主要根據使用者輸入生成文字回答，可以解釋概念、改寫文章、回答問題或整理資料。但如果它沒有<span class="kw">外部工具</span>，通常不能真正執行任務，例如不能查<span class="kw">公司資料庫</span>、不能搜尋<span class="kw">最新網頁</span>、不能發電郵、不能<span class="kw">生成圖表</span>，也不能<span class="kw">執行程式</span>。
+							</p>
+							<p>
+								Dominic 用一條簡單公式概括 <span class="kw">AI agent</span>：
+							</p>
+							<div class="formula">
+								\[\text{Agent}=\text{LLM}+\text{Tools}]
+							</div>
+							<p>
+								<span class="kw">LLM</span> 是大腦，而 <span class="kw">tools</span> 是它的<span class="kw">手腳和感官</span>。Dominic 指出，如果給 agent <span class="kw">web search tool</span>，它可以查最新資料；如果給它 database query tool，它可以查 <span class="kw">SQL database</span>；如果給它 code execution tool，它可以寫程式和讀<span class="kw">錯誤訊息</span>；如果給它 <span class="kw">charting tool</span>，它可以<span class="kw">生成圖表</span>；如果給它 <span class="kw">memory</span> tool，它可以找回過去對話或文件。
+							</p>
+							<p>
+								Dominic 強調，一個 agent 的能力不只取決於模型本身，而是取決於 <span class="kw">tools</span> 的設計。<span class="kw">Tools</span> 太少，它做不到事；<span class="kw">tools</span> 太多而沒有清楚指引，它會混亂。因此，好的 agent system 需要恰當<span class="kw">工具</span>、清楚 context、合理 <span class="kw">system prompt</span>、<span class="kw">可靠</span> <span class="kw">guardrails</span>，以及可檢查 <span class="kw">evaluation</span>。
+							</p>
+						</section>
+						<section class="speech-section" id="zh10">
+							<h2>
+								<span class="num">10</span> Embeddings, <span class="kw">Vector Data</span>, <span class="kw">Qdrant</span>, and AI <span class="kw">Memory</span>
+							</h2>
+							<p>
+								Dominic 進一步介紹 AI 時代另一類重要資料：<span class="kw">vector data</span>。他首先解釋 <span class="kw">embedding</span>，即把文字轉換成一串數字向量。講義中使用 <span class="kw">SentenceTransformer</span> 的 <span class="kw">all-MiniLM-L6-v2</span> 作例子，可把文字轉成 384 維向量。
+							</p>
+							<p>
+								Dominic 說明，這些數字不是隨機產生，而是代表文字語義的位置。意思相近的文字，轉成 vector 後在<span class="kw">高維空間</span>中會比較接近。例如 “<span class="kw">risk management</span>” 和 “managing risk” 語義相似，因此它們的 vector 會較接近。
+							</p>
+							<p>
+								為了量度兩個 vector 是否相似，Dominic 介紹 <span class="kw">cosine similarity</span>：
+							</p>
+							<div class="formula">
+								\[\cos(v,w)=\frac{v\cdot w}{\lVert v\rVert\lVert w\rVert}]
+							</div>
+							<p>
+								當 <span class="kw">cosine similarity</span> 接近 1，代表兩者<span class="kw">語義相似度</span>高。Dominic 指出，這比傳統 keyword search 更強，因為 <span class="kw">embedding search</span> 可以找語義相近的內容，而不只找完全相同的字。
+							</p>
+							<p>
+								Dominic 解釋，如果公司有大量<span class="kw">新聞</span>、報告、研究筆記、交易記錄或會議摘要，可以先把文字切成 chunks，再轉成 embeddings，存入 <span class="kw">vector database</span>，例如 <span class="kw">Qdrant</span>。當使用者提出新問題時，系統可以把問題也轉成 vector，再找出最相似的內容，放入 agent 的 context。
+							</p>
+							<p>
+								講義中的 OpenClaw <span class="kw">memory</span>: vector path 也可以用這種方式理解：<span class="kw">memory</span> notes 先經過 chunk 和 embed，放入 vector index；新問題再經過 <span class="kw">query embedding</span>，找出 <span class="kw">nearest chunks</span>，最後放入 <span class="kw">agent context</span>。
+							</p>
+						</section>
+						<section class="speech-section" id="zh11">
+							<h2>
+								<span class="num">11</span> Database, SQL, <span class="kw">DuckDB</span>, <span class="kw">Postgres</span>, and <span class="kw">S3</span>
+							</h2>
+							<p>
+								Dominic 接着從<span class="kw">文字資料</span>轉到 <span class="kw">structured data</span>。他指出，很多學生平日常用 Excel，但在企業和金融機構，資料通常不會只放在 Excel，而會放在 database，例如 <span class="kw">PostgreSQL</span>、<span class="kw">DuckDB</span> 或其他 <span class="kw">SQL database</span>。
+							</p>
+							<p>
+								Dominic 解釋，SQL 是 Structured Query Language，用來<span class="kw">查詢</span>和操作<span class="kw">資料庫</span>。例如可以用：
+							</p>
+							<pre><code>SELECT * FROM trades LIMIT 10;</code></pre>
+							<p>
+								查看 trades table 的前十行。講義亦提到，<span class="kw">DuckDB</span> 可以<span class="kw">查詢</span><span class="kw">本地資料</span>、<span class="kw">Postgres</span> <span class="kw">connection string</span>，以及 <span class="kw">S3</span> 上的 <span class="kw">parquet files</span>。
+							</p>
+							<p>
+								Dominic 指出，<span class="kw">AI agent</span> 如果能夠連接 database，就不只是回答文字問題，而是能真正查資料。例如使用者可以問「今年每月銷售趨勢如何」、「哪個產品<span class="kw">收入</span>最高」、「請比較不同地區銷售表現」或「請畫一張 revenue line chart」。如果 agent 知道 <span class="kw">database schema</span>，又有 <span class="kw">SQL query tool</span>，就可以自動生成 SQL、<span class="kw">查詢</span>資料、整理結果，甚至調用 <span class="kw">charting tool</span> 畫圖。
+							</p>
+						</section>
+						<section class="speech-section" id="zh12">
+							<h2>
+								<span class="num">12</span> <span class="kw">Assistant UI</span> Demo: Building a <span class="kw">Chatbot</span> Interface
+							</h2>
+							<p>
+								Dominic 之後示範如何建立一個基本 <span class="kw">chatbot</span> interface。他使用 <span class="kw">Assistant UI</span> 作為例子。<span class="kw">Assistant UI</span> 是一個<span class="kw">開源</span><span class="kw">前端工具</span>，可以快速 scaffold 一個 <span class="kw">React</span> / <span class="kw">Next.js</span> chat app。講義中列出相關指令，例如：
+							</p>
+							<pre><code>npx assistant-ui@latest create my-app
+cd my-app</code></pre>
+							<p>
+								亦可選擇 minimal template 或 with-ai-sdk-v7 example。
+							</p>
+							<p>
+								Dominic 解釋，這個示範的目的，是讓學生看到現代 AI app 的 user interface 很多時已經有 open source template 可以使用。以前要做一個類似 <span class="kw">ChatGPT</span>、有 sidebar、conversation history、message bubbles 和 streaming response 的介面，可能需要花很多時間；現在透過<span class="kw">開源</span>框架，可以很快建立 prototype。
+							</p>
+							<p>
+								Dominic 亦介紹 <span class="kw">GitHub</span>。他指出，<span class="kw">GitHub</span> 是開發者常用的平台，很多 open source project 都可以在上面找到。學生可以學習如何閱讀 documentation、查看 stars、觀察 community activity、理解 issues，以及判斷一個 library 是否成熟。
+							</p>
+						</section>
+						<section class="speech-section" id="zh13">
+							<h2>
+								<span class="num">13</span> Connecting the <span class="kw">Chatbot</span> to an <span class="kw">LLM Provider</span>
+							</h2>
+							<p>
+								在建立 <span class="kw">Assistant UI</span> 的介面後，Dominic 示範如何接駁 <span class="kw">LLM provider</span>。他指出，很多模板預設使用 <span class="kw">OpenAI API</span>，但在不同地區或使用環境中，可能會選擇其他 provider。示範中，他嘗試把原本使用 <span class="kw">OpenAI</span> 的部分改成 <span class="kw">Kimi API</span>。
+							</p>
+							<p>
+								Dominic 解釋，這裏涉及 <span class="kw">API key</span> 和 <span class="kw">endpoint</span>。<span class="kw">API key</span> 可以理解為使用服務的鑰匙，而 <span class="kw">endpoint</span> 則是<span class="kw">模型服務</span>的<span class="kw">接口</span>。App 會把使用者訊息、<span class="kw">system prompt</span>、<span class="kw">tools</span> definition 等傳送到 <span class="kw">LLM provider</span>，再由模型回傳回答。
+							</p>
+							<p>
+								在 live demo 中，Dominic 讓 <span class="kw">coding agent</span> 協助修改 codebase，把原本使用 <span class="kw">OpenAI</span> 的部分改成 <span class="kw">Kimi</span>。這展示了現代 coding <span class="kw">workflow</span> 的轉變：以前遇到問題可能要查 documentation、Google 或 Stack Overflow；現在則可以讓 <span class="kw">coding agent</span> <span class="kw">讀取 codebase</span>、修改檔案、安裝 package 和處理 error。
+							</p>
+							<p>
+								不過，Dominic 亦提醒學生，這不是 magic。<span class="kw">API key</span> 可能設定錯，<span class="kw">environment variable</span> 可能缺失，<span class="kw">endpoint</span> 可能不正確，package 可能未安裝。因此，即使有 AI 幫助，開發者仍然需要理解基本 debugging 思路。
+							</p>
+						</section>
+						<section class="speech-section" id="zh14">
+							<h2>
+								<span class="num">14</span> Adding <span class="kw">Web Search Tool</span>: From <span class="kw">LLM</span> to Agent
+							</h2>
+							<p>
+								Dominic 接着示範如何把 <span class="kw">chatbot</span> 變成更接近 agent 的系統。一開始建立的 <span class="kw">chatbot</span> 只是 <span class="kw">LLM</span>，可以回答一些常識性問題；但如果問它「<span class="kw">SK Hynix</span> 最新股價是多少」，模型本身未必知道，因為它沒有即時市場資料。
+							</p>
+							<p>
+								因此，Dominic 示範加入 <span class="kw">web search tool</span>。當 agent 需要最新資訊時，就可以 trigger tool call，搜尋網頁，再根據搜尋結果回答。
+							</p>
+							<p>
+								Dominic 強調，如果 AI 答不到，不一定是模型不聰明，可能只是因為它沒有<span class="kw">工具</span>。就像人類如果不能上網、不能查<span class="kw">資料庫</span>、不能用 calculator，即使思考能力很強，也未必能回答最新<span class="kw">價格</span>或做精確計算。
+							</p>
+							<p>
+								在示範中，加入 <span class="kw">web search tool</span> 後，agent 開始懂得進行 tool call。不過，tool call 也會出錯，例如搜尋結果為空、API 回傳格式不符合要求，或<span class="kw">工具</span>本身設定不完整。Dominic 指出，這些都是真實開發 <span class="kw">AI agent</span> 時會遇到的問題。
+							</p>
+						</section>
+						<section class="speech-section" id="zh15">
+							<h2>
+								<span class="num">15</span> <span class="kw">Coding Agent</span> and <span class="kw">Pair Coding</span>
+							</h2>
+							<p>
+								Dominic 亦示範了 <span class="kw">coding agent</span> 的使用。他指出，<span class="kw">coding agent</span> 和普通 <span class="kw">chatbot</span> 的最大分別，是 <span class="kw">coding agent</span> 可以使用開發<span class="kw">工具</span>，例如<span class="kw">讀取 codebase</span>、搜尋檔案、<span class="kw">修改程式碼</span>、執行 terminal command、安裝 npm package、讀取 compiler error，並根據錯誤再修正。
+							</p>
+							<p>
+								Dominic 把這種工作方式比喻為 <span class="kw">pair coding</span>。傳統 <span class="kw">pair programming</span> 是兩個人一起寫程式，一個人寫，一個人看，互相檢查。<span class="kw">Coding agent</span> 某程度上可以成為開發者的 <span class="kw">pair programmer</span>，協助嘗試、修改、檢查和 debug。
+							</p>
+							<p>
+								他同時提醒學生，coding <span class="kw">fundamentals</span> 仍然重要。開發者仍然需要理解 <span class="kw">project structure</span>、<span class="kw">frontend</span> 和 <span class="kw">backend</span> 的<span class="kw">溝通</span>方式、<span class="kw">API route</span>、<span class="kw">package.json</span>、<span class="kw">TypeScript error</span>、<span class="kw">localhost</span>、<span class="kw">environment variable</span>，以及 database connection 為什麼會 fail。AI 可以加快速度，但理解系統仍然是人類的責任。
+							</p>
+						</section>
+						<section class="speech-section" id="zh16">
+							<h2>
+								<span class="num">16</span> Building a Company Sales Database with <span class="kw">Postgres</span> and <span class="kw">Docker</span>
+							</h2>
+							<p>
+								Dominic 之後示範一個更接近<span class="kw">企業應用</span>的例子：建立一個<span class="kw">公司銷售資料庫</span>，讓 agent 可以<span class="kw">查詢</span>。示範中假設公司有幾個 tables，例如 products、sales 和 sale_items。
+							</p>
+							<p>
+								Dominic 說明，這些資料可以放在 <span class="kw">PostgreSQL</span> database 中。為了在本機快速建立<span class="kw">資料庫</span>環境，他使用 <span class="kw">Docker</span>。<span class="kw">Docker</span> 可以把 database 和運行環境放在 <span class="kw">container</span> 中，方便在不同電腦上重現。
+							</p>
+							<p>
+								Dominic 解釋，<span class="kw">Docker image</span> 包含了執行某個服務需要的環境；當開發者 run 這個 image，就會產生一個 <span class="kw">container</span>。這個 <span class="kw">container</span> 就像一個獨立的小環境，可以運行 <span class="kw">Postgres</span>、web server 或其他服務。
+							</p>
+							<p>
+								示範中，Dominic 讓 <span class="kw">Postgres</span> 在本機某個 port 上運行，例如 5433，然後 app 或 agent 可以透過 <span class="kw">connection string</span> 連接 database。Dominic 強調，真正有用的 <span class="kw">AI agent</span> 通常要連接真實資料來源，例如公司 database、internal documents、<span class="kw">workflow</span> systems 或 financial <span class="kw">models</span>，而不只是回答百科式問題。
+							</p>
+						</section>
+						<section class="speech-section" id="zh17">
+							<h2>
+								<span class="num">17</span> Giving the Agent <span class="kw">Database Schema</span> as Context
+							</h2>
+							<p>
+								Dominic 接着指出，如果 agent 要查 database，它不只是需要 SQL tool，還需要知道 schema。Schema 是<span class="kw">資料庫</span>的結構，例如有哪些 tables、每個 table 有哪些 columns，以及 tables 之間如何關聯。
+							</p>
+							<p>
+								例如 products table 可能有 product_id、name、sku、category；sales table 可能有 sale_id、sold_at、customer_id；sale_items table 則可能有 sale_id、product_id、quantity、unit_price。
+							</p>
+							<p>
+								Dominic 解釋，如果 agent 不知道 schema，即使有 database tool，也可能查錯 table 或 column。因此，在示範中，他把 schema 加入 <span class="kw">system prompt</span> 或 <span class="kw">agent context</span>，讓 agent 每次回答問題時都知道可用的資料結構。
+							</p>
+							<p>
+								Dominic 指出，這就是 <span class="kw">context engineering</span>。相比單純寫一句 prompt，<span class="kw">AI agent</span> 更需要完整、結構化和準確的 context，包括背景資料、<span class="kw">工具</span>說明、<span class="kw">資料庫結構</span>、使用限制和回答規則。
+							</p>
+						</section>
+						<section class="speech-section" id="zh18">
+							<h2>
+								<span class="num">18</span> Querying Sales <span class="kw">Data</span> and Generating Charts
+							</h2>
+							<p>
+								當 agent 有 database tool 和 schema context 後，Dominic 示範它如何回答銷售資料相關問題。例如使用者可以要求 agent 總結 sales <span class="kw">data</span>、找出銷售額最高的產品、計算總<span class="kw">收入</span>，或畫出每月銷售趨勢。
+							</p>
+							<p>
+								Dominic 解釋，agent 可以先生成 SQL，<span class="kw">查詢</span> <span class="kw">Postgres</span>，再把結果整理成人類可讀的文字。如果進一步加入 <span class="kw">charting tool</span>，例如前端<span class="kw">圖表</span> library，agent 就可以把結果視覺化，生成 line chart 或 bar chart。
+							</p>
+							<p>
+								Dominic 用這個示範說明一個完整 AI <span class="kw">workflow</span>：使用者提出<span class="kw">自然語言問題</span>；agent 判斷需要查 database；agent 根據 schema 生成 SQL；SQL tool <span class="kw">查詢</span> <span class="kw">Postgres</span>；agent 接收結果；agent 用文字解釋；如有需要，再調用 <span class="kw">charting tool</span> 顯示<span class="kw">圖表</span>。
+							</p>
+							<p>
+								這展示了 AI 在<span class="kw">企業環境</span>中的實際價值。Dominic 強調，AI 不只是「聊天」，而是能把自然語言、<span class="kw">資料庫</span>、分析<span class="kw">工具</span>和視覺化整合成一個可執行的 <span class="kw">workflow</span>。
+							</p>
+						</section>
+						<section class="speech-section" id="zh19">
+							<h2>
+								<span class="num">19</span> <span class="kw">System Prompt</span>, <span class="kw">Tool Calling</span>, <span class="kw">Guardrails</span>, and <span class="kw">Evaluation</span>
+							</h2>
+							<p>
+								Dominic 透過整個示範說明 <span class="kw">system prompt</span> 的重要性。當使用者在畫面輸入一句話時，真正送到 <span class="kw">LLM</span> 的不只是該句話，系統背後通常還會附加 agent 的角色、可用 <span class="kw">tools</span>、tool 輸入格式、<span class="kw">database schema</span>、回答規則、失敗處理方式和<span class="kw">安全</span>限制。
+							</p>
+							<p>
+								Dominic 指出，這些設計是 <span class="kw">AI system</span> 的核心。沒有清楚 <span class="kw">system prompt</span> 和 <span class="kw">tool instructions</span>，agent 即使有<span class="kw">工具</span>也可能用錯。
+							</p>
+							<p>
+								Dominic 亦介紹 <span class="kw">guardrails</span> 的概念。<span class="kw">Guardrails</span> 可以理解為<span class="kw">安全欄杆</span>或<span class="kw">控制機制</span>，用來避免 AI 做出不合理行為，例如 tool call 回傳空結果時不應亂作答案、<span class="kw">資料庫</span>沒有某個 table 時不應假裝查到、<span class="kw">API key</span> 不存在時應該指出設定問題、不確定時應該說明限制。
+							</p>
+							<p>
+								另一個重要概念是 <span class="kw">evaluation</span>。Dominic 指出，<span class="kw">AI system</span> 必須可測試，例如 SQL 是否正確、<span class="kw">圖表</span>是否反映資料、答案是否有根據、tool call 是否合理、成本是否過高、latency 是否可接受。
+							</p>
+						</section>
+						<section class="speech-section" id="zh20">
+							<h2>
+								<span class="num">20</span> <span class="kw">GitHub Copilot</span> and Coding IDEs
+							</h2>
+							<p>
+								Dominic 其後提到 <span class="kw">GitHub Copilot</span> 和 coding IDE。他指出，如 <span class="kw">Visual Studio Code</span> 這類編輯器現在已可接入 <span class="kw">coding agent</span>，而 <span class="kw">GitHub Copilot</span> 是常見例子之一。
+							</p>
+							<p>
+								這些 <span class="kw">coding agent</span> 可以幫助開發者補全程式碼、生成 function、解釋 error、重構程式、寫 test、根據 project context 修改檔案、接駁 API 和修改 <span class="kw">frontend</span> component。
+							</p>
+							<p>
+								Dominic 強調，使用者仍然要懂得指揮 AI，也要能判斷 AI 生成的 code 是否合理。AI 可能做錯、使用過時 library、忽略<span class="kw">安全</span>問題或漏掉 edge cases。因此，未來學 coding 不只是學 syntax，而是要理解整個 software system。
+							</p>
+						</section>
+						<section class="speech-section" id="zh21">
+							<h2>
+								<span class="num">21</span> Mac, Windows, Linux, and WSL
+							</h2>
+							<p>
+								Dominic 亦與同學討論不同電腦環境。他指出，很多 AI、database、<span class="kw">backend</span> 和 distributed computing <span class="kw">工具</span>，在 Linux 或類 Unix 環境上支援最好。Mac 和 Linux 在 terminal、file system、command line 和 development <span class="kw">workflow</span> 上比較接近。
+							</p>
+							<p>
+								Dominic 說明，Windows 當然也可以做開發，但某些<span class="kw">工具</span>在 Windows 上會較麻煩，特別是涉及 multiprocessing、forking、asynchronous programming、server-side libraries 或 Linux-native <span class="kw">tools</span> 時。
+							</p>
+							<p>
+								因此，Dominic 建議使用 Windows 的學生可以學習 WSL，即 Windows Subsystem for Linux。WSL 可讓使用者在 Windows 中運行 Linux 環境，對學習 modern development <span class="kw">workflow</span> 很有幫助。
+							</p>
+						</section>
+						<section class="speech-section" id="zh22">
+							<h2>
+								<span class="num">22</span> AI in Education: Easier or Harder?
+							</h2>
+							<p>
+								在問答環節中，有同學問 AI 會令學習變容易還是變困難。Dominic 回應，AI 會令表面上的完成任務變容易，但也可能令真正的學習差距變大。
+							</p>
+							<p>
+								Dominic 指出，如果學生只是把功課交給 AI 完成，短期內可能很快交出漂亮答案，但如果沒有真正理解，到了考試、面試、專題答辯或實際工作時，就會發現自己其實不懂。
+							</p>
+							<p>
+								Dominic 提到，在大學課程中亦出現類似情況。有些功課可以使用 AI，或者很難完全禁止使用 AI，因此很多同學功課分數很高，但到 closed-book examination 時，才發現自己沒有真正掌握。
+							</p>
+							<p>
+								相反，Dominic 認為，如果學生把 AI 當作<span class="kw">學習夥伴</span>，用它來問問題、追問原因、比較方法、生成練習、檢查錯誤和解釋概念，AI 就可以令學習更快、更深。
+							</p>
+						</section>
+						<section class="speech-section" id="zh23">
+							<h2>
+								<span class="num">23</span> Coding <span class="kw">Fundamentals</span> in the AI Era
+							</h2>
+							<p>
+								Dominic 亦回應了「既然 AI 可以寫程式，是否仍然需要學 coding」這個問題。他的看法是，coding <span class="kw">fundamentals</span> 仍然重要，但學習重點會改變。
+							</p>
+							<p>
+								Dominic 指出，以前學 coding 可能很注重逐行 syntax；現在 AI 可以生成很多 boilerplate code，也可以協助修改錯誤。不過，學生仍然需要理解程式如何運行、server 如何啟動、<span class="kw">frontend</span> 如何連接 <span class="kw">backend</span>、API <span class="kw">endpoint</span> 是什麼、database 如何<span class="kw">查詢</span>、authentication 如何處理、package dependency 如何管理、deployment 如何進行，以及 error message 如何閱讀。
+							</p>
+							<p>
+								Dominic 認為，未來 coding 更像 <span class="kw">system thinking</span>。開發者不只是寫一個 function，而是設計一個 <span class="kw">workflow</span>。AI 可以幫忙完成很多細節，但人仍然要知道整體方向和檢查標準。
+							</p>
+						</section>
+						<section class="speech-section" id="zh24">
+							<h2>
+								<span class="num">24</span> AI Bubble, Chips, <span class="kw">Leverage</span>, and Market Risk
+							</h2>
+							<p>
+								在最後的問答中，有同學問 AI bubble 是否會爆破。Dominic 認為，這是一個很好的問題，應把 AI market 拆成幾個部分來看。
+							</p>
+							<p>
+								第一部分是 chips，即<span class="kw">晶片</span>。Dominic 指出，AI 需要大量計算資源，因此市場高度關注 <span class="kw">NVIDIA</span>、<span class="kw">TSMC</span>、<span class="kw">SK Hynix</span>、<span class="kw">Samsung Electronics</span> 等與 <span class="kw">GPU</span>、<span class="kw">memory</span> 和 <span class="kw">semiconductor supply chain</span> 相關的公司。只要 <span class="kw">AI data center spending</span> 持續，<span class="kw">晶片</span>和 <span class="kw">memory</span> 的需求就有一定基本面支持。
+							</p>
+							<p>
+								不過，Dominic 亦提醒同學，市場可能有<span class="kw">過熱</span>和<span class="kw">槓桿</span>問題。當很多投資者使用 <span class="kw">leverage</span>，一旦股票下跌，就可能出現 <span class="kw">forced selling</span> 或 <span class="kw">margin call</span>，令市場波動加劇。
+							</p>
+							<p>
+								他用<span class="kw">槓桿</span>作例子說明，如果投資者使用三倍<span class="kw">槓桿</span>，標的資產下跌約三分之一時，投資者的本金可能幾乎全數損失；若<span class="kw">槓桿</span>更高，較小跌幅亦可能造成嚴重損失。
+							</p>
+						</section>
+						<section class="speech-section" id="zh25">
+							<h2>
+								<span class="num">25</span> <span class="kw">SaaS</span>, Enterprise Software, and AI Disruption
+							</h2>
+							<p>
+								Dominic 接着討論 <span class="kw">SaaS</span>，即 <span class="kw">software as a service</span>。他指出，過去很多公司靠軟件<span class="kw">訂閱收費</span>，例如 <span class="kw">CRM</span>、analytics platform、presentation <span class="kw">tools</span>、design software 和 office <span class="kw">tools</span>。
+							</p>
+							<p>
+								AI 出現後，有些人認為部分 <span class="kw">SaaS</span> 會受到挑戰。Dominic 舉例，如果 <span class="kw">AI agent</span> 可以直接生成 slides、分析 sales <span class="kw">data</span>、寫報告、整理 email 和處理 <span class="kw">workflow</span>，使用者是否仍然需要那麼多獨立 software，便成為值得思考的問題。
+							</p>
+							<p>
+								不過，Dominic 亦指出，這不代表所有 <span class="kw">SaaS</span> 都會消失。企業仍然需要<span class="kw">權限管理</span>、<span class="kw">compliance</span>、<span class="kw">security</span>、<span class="kw">audit trail</span>、<span class="kw">data</span> integration、<span class="kw">workflow management</span>、<span class="kw">deployment support</span>、<span class="kw">user management</span>、<span class="kw">reliability</span> 和 <span class="kw">enterprise governance</span>。
+							</p>
+							<p>
+								Dominic 認為，未來的競爭不是單純「有沒有 AI」，而是誰能把 AI 做成<span class="kw">可靠</span>、<span class="kw">安全</span>、可控、可<span class="kw">部署</span>的 <span class="kw">enterprise system</span>。
+							</p>
+						</section>
+						<section class="speech-section" id="zh26">
+							<h2>
+								<span class="num">26</span> The Real Future: <span class="kw">LLM</span> + <span class="kw">Tools</span> + Context + <span class="kw">Workflow</span>
+							</h2>
+							<p>
+								Dominic 在總結中指出，未來 AI 的核心不是單一模型，而是：
+							</p>
+							<div class="formula">
+								\[\text{LLM}+\text{Tools}+\text{Context}+\text{Workflow}+\text{Evaluation}]
+							</div>
+							<p>
+								如果只有 <span class="kw">LLM</span>，它只是一個會說話的模型；如果加上 <span class="kw">tools</span>，它可以做事；如果加上 context，它知道在什麼環境下做事；如果加上 <span class="kw">workflow</span>，它可以持續完成任務；如果加上 <span class="kw">evaluation</span>，它才有機會<span class="kw">可靠</span>。
+							</p>
+							<p>
+								Dominic 認為，對學生而言，最重要的不是追逐每一個最新<span class="kw">工具</span>，而是建立<span class="kw">基本能力</span>，包括<span class="kw">數學</span>、統計、<span class="kw">金融常識</span>、<span class="kw">編程思維</span>、<span class="kw">AI literacy</span>、<span class="kw">data literacy</span>、<span class="kw">problem formulation</span>、<span class="kw">critical thinking</span> 和 <span class="kw">communication</span>。
+							</p>
+						</section>
+						<section class="speech-section" id="zh27">
+							<h2>
+								<span class="num">27</span> Closing Remarks to Students
+							</h2>
+							<p>
+								講座尾聲，Dominic 向學生總結當天內容。他指出，講座涵蓋了從 <span class="kw">PnL decomposition</span>、<span class="kw">model risk</span>，到 <span class="kw">AI agent</span>、embedding、database、<span class="kw">Assistant UI</span>、<span class="kw">Postgres</span>、<span class="kw">Docker</span>、<span class="kw">coding agent</span>、<span class="kw">web search tool</span> 和 <span class="kw">charting tool</span> 等主題。Dominic 表示，同學未必能即時完全掌握所有細節，這是正常的；更重要的是理解背後的大圖像。
+							</p>
+							<p>
+								Dominic 希望學生明白，AI 並不是遙不可及的東西，很多<span class="kw">工具</span>已經可以親手嘗試。即使學生目前仍是中學生，只要願意保持好奇心，逐步學習統計、<span class="kw">數學</span>、程式、金融和 AI <span class="kw">工具</span>，將來便能做出有意義的 project。
+							</p>
+							<p>
+								Dominic 亦鼓勵學生不要害怕<span class="kw">數學</span>或 coding。他認為，很多看似複雜的系統，其實都可以拆解成基本概念。<span class="kw">PnL decomposition</span> 看似是金融公式，但本質上是數量、<span class="kw">價格</span>和 telescoping；<span class="kw">AI agent</span> 看似神奇，但本質上也是 model、<span class="kw">tools</span>、context 和 <span class="kw">feedback loop</span>。
+							</p>
+							<p>
+								最後，Dominic 感謝同學參與，並希望當天的分享能讓學生對 AI、<span class="kw">統計學</span>和<span class="kw">風險管理</span>有更深入的理解，也鼓勵他們在日後 project 和學習中主動探索這些<span class="kw">工具</span>。
+							</p>
+						</section>
+						<section class="speech-section" id="zh28">
+							<h2>
+								<span class="num">28</span> Post-talk Exchange and Extended Discussion
+							</h2>
+							<p>
+								講座完結後，Dominic 繼續與同學和老師交流，討論如何把 AI 應用於教育、如何讓 agent 有足夠 context、如何安排 daily <span class="kw">workflow</span>，以及如何讓 AI 協助檢查<span class="kw">新聞</span>、市場變化或公司資料。
+							</p>
+							<p>
+								Dominic 進一步指出，真正有用的 agent 不只是有一個模型，而是要有清楚 context。如果 agent 要分析銷售資料，它需要知道公司 <span class="kw">database schema</span>；如果要分析市場<span class="kw">新聞</span>，它需要 web search 或 internal research tool；如果要做 <span class="kw">financial modelling</span>，它需要相應的模型<span class="kw">工具</span>。
+							</p>
+							<p>
+								Dominic 再次強調 <span class="kw">context engineering</span> 的重要性。他指出，使用者不能只給 AI 一個簡單問題，便期望它在所有情況下都做對。使用者需要提供足夠背景、清楚任務、合適<span class="kw">工具</span>，以及錯誤處理機制。
+							</p>
+							<p>
+								Dominic 亦提到 <span class="kw">guardrails</span> 和 <span class="kw">evaluation</span>。在 agent 使用<span class="kw">工具</span>時，它要知道什麼時候結果為空、什麼時候應該停止、什麼時候應承認找不到答案，而不是盲目重試。這一點在企業系統中特別重要，因為錯誤答案可能導致錯誤決策。
+							</p>
+							<p>
+								最後，Dominic 回應了同學對不同 AI <span class="kw">工具</span>和平台的興趣。他指出，不同平台各有優點，有些較適合 coding，有些較適合中文，有些較適合企業<span class="kw">部署</span>，有些較適合個人學習。對學生而言，最重要的是理解背後原理，而不是只記住<span class="kw">工具</span>名稱。
+							</p>
+						</section>
+						<section class="speech-section" id="zh29">
+							<h2>
+								<span class="num">29</span> Parent-friendly Closing Note
+							</h2>
+							<p>
+								本次講座中，Dominic 透過<span class="kw">金融市場</span>、<span class="kw">風險管理</span>和<span class="kw">人工智能</span>的結合，向學生展示現代<span class="kw">統計學</span>及 AI 技術的實際應用。學生接觸到 <span class="kw">PnL decomposition</span>、<span class="kw">model risk</span>、backtesting、embedding、database、<span class="kw">AI agent</span>、<span class="kw">tool calling</span> 等概念，也透過即場示範看到如何由一個簡單 <span class="kw">chatbot</span> 逐步加入 web search、database query 和 charting <span class="kw">tools</span>，讓 AI 從單純回答問題變成可以執行分析任務的系統。
+							</p>
+							<p>
+								講座的核心訊息是：AI 時代並不代表學生可以跳過基礎學習。相反，<span class="kw">數學</span>、統計、編程、<span class="kw">金融常識</span>和<span class="kw">批判思維</span>會變得更加重要。懂得善用 AI 的學生，可以把 AI 當成學習和創作的夥伴；但如果只是依賴 AI 產生答案，而沒有真正理解，就難以在考試、專題、面試和未來工作中持續成長。
+							</p>
+						</section>
+					</div>
+				</div>
+			</article>
+			<article aria-labelledby="enTab" class="panel" id="enPanel" role="tabpanel">
+				<div class="notice">
+					<strong>English Version | Third-Person Transcript:</strong> This version is written for students and parents, preserving the full lecture flow while presenting technical ideas in clear and accessible English.
+				</div>
+				<div class="content-grid">
+					<aside class="toc">
+						<h3>
+							English Contents
+						</h3><a href="#en01">Opening and Speaker Introduction</a> <a href="#en02"><span class="kw">Risk Management</span>: Quantity, Price, PnL, and Market Examples</a> <a href="#en03"><span class="kw">PnL Decomposition</span>: <span class="kw">Trading PnL</span> and <span class="kw">Market PnL</span></a> <a href="#en04"><span class="kw">Market PnL</span>, <span class="kw">Model Price</span>, and <span class="kw">Model Risk</span></a> <a href="#en05">Decomposing Modelled <span class="kw">Market PnL</span> into <span class="kw">Risk Drivers</span></a> <a href="#en06">Why <span class="kw">Models</span> Fail and Why AI Becomes Relevant</a> <a href="#en07">Why <span class="kw">Statistics</span> Still Matters in the Age of AI</a> <a href="#en08"><span class="kw">Large Language Models</span>, Distillation, and the Current AI Landscape</a> <a href="#en09"><span class="kw">Chatbot</span> versus <span class="kw">AI Agent</span></a> <a href="#en10">Embeddings, <span class="kw">Vector Data</span>, <span class="kw">Qdrant</span>, and AI <span class="kw">Memory</span></a> <a href="#en11">Database, SQL, <span class="kw">DuckDB</span>, <span class="kw">Postgres</span>, and <span class="kw">S3</span></a> <a href="#en12"><span class="kw">Assistant UI</span> Demo: Building a <span class="kw">Chatbot</span> Interface</a> <a href="#en13">Connecting the <span class="kw">Chatbot</span> to an <span class="kw">LLM Provider</span></a> <a href="#en14">Adding a <span class="kw">Web Search Tool</span>: From <span class="kw">LLM</span> to Agent</a> <a href="#en15"><span class="kw">Coding Agent</span> and <span class="kw">Pair Coding</span></a> <a href="#en16">Building a Company Sales Database with <span class="kw">Postgres</span> and <span class="kw">Docker</span></a> <a href="#en17">Giving the Agent <span class="kw">Database Schema</span> as Context</a> <a href="#en18">Querying Sales <span class="kw">Data</span> and Generating Charts</a> <a href="#en19"><span class="kw">System Prompt</span>, <span class="kw">Tool Calling</span>, <span class="kw">Guardrails</span>, and <span class="kw">Evaluation</span></a> <a href="#en20"><span class="kw">GitHub Copilot</span> and Coding IDEs</a> <a href="#en21">Mac, Windows, Linux, and WSL</a> <a href="#en22">AI in Education: Easier or Harder?</a> <a href="#en23">Coding <span class="kw">Fundamentals</span> in the AI Era</a> <a href="#en24">AI Bubble, Chips, <span class="kw">Leverage</span>, and Market Risk</a> <a href="#en25"><span class="kw">SaaS</span>, Enterprise Software, and AI Disruption</a> <a href="#en26">The Real Future: <span class="kw">LLM</span> + <span class="kw">Tools</span> + Context + <span class="kw">Workflow</span></a> <a href="#en27">Closing Remarks to Students</a> <a href="#en28">Post-talk Exchange and Extended Discussion</a> <a href="#en29">Parent-friendly Closing Note</a>
+					</aside>
+					<div>
+						<section class="speech-section" id="en01">
+							<h2>
+								<span class="num">01</span> Opening and Speaker Introduction
+							</h2>
+							<p>
+								At the beginning of the lecture, Dominic greeted the students and adjusted the screen display so that everyone could clearly see the slides and the live demonstration. He then introduced himself to the class. Dominic explained that he had graduated about three to four years ago and had completed a undergraduate and MPhil degree at The Chinese University of Hong Kong. During his time at CUHK, he had learned from and worked with a number of professors and teachers, some of whom the students might already have met during the programme. He mentioned that these teachers and mentors had played an important role in shaping his academic development and later career direction.
+							</p>
+							<p>
+								Dominic then introduced his professional background. After graduation, he joined the <span class="kw">investment banking</span> industry and worked at <span class="kw">Goldman Sachs</span> as a <span class="kw">quantitative analyst</span>, often referred to as a “quant.” He explained that the field of quantitative analysis is very broad. It can involve <span class="kw">financial modelling</span>, <span class="kw">trading strategies</span>, <span class="kw">risk management</span>, <span class="kw">data analysis</span>, programming, and <span class="kw">derivatives pricing</span>.
+							</p>
+							<p>
+								He also explained the distinction between the <span class="kw">sell-side</span> and the <span class="kw">buy-side</span> in financial markets. The <span class="kw">sell-side</span> generally refers to institutions such as investment banks, which provide financial services to the market. These services may include <span class="kw">trade execution</span>, <span class="kw">liquidity provision</span>, pricing, research, and other forms of market support. The <span class="kw">buy-side</span>, on the other hand, refers to investors and institutions that actually manage capital and make investment decisions, such as hedge funds, <span class="kw">asset managers</span>, and other investment firms. Dominic later moved to the <span class="kw">buy-side</span> and worked at a <span class="kw">hedge fund</span>, where his work involved quantitative analysis, strategy design, investment research, and <span class="kw">risk management</span>.
+							</p>
+							<p>
+								Dominic explained that the lecture would follow two main themes. The first theme was <span class="kw">risk management</span>. He hoped to use simple examples from financial markets to help students understand what <span class="kw">profit and loss</span> mean, how financial risks can be decomposed, and why statistical <span class="kw">models</span> remain important in finance. The second theme was <span class="kw">artificial intelligence</span>, particularly modern concepts such as <span class="kw">large language models</span>, <span class="kw">AI agents</span>, <span class="kw">tool calling</span>, embeddings, databases, and <span class="kw">coding agents</span>.
+							</p>
+							<p>
+								He noted that many students might already have used AI <span class="kw">tools</span> such as <span class="kw">ChatGPT</span>, <span class="kw">Gemini</span>, <span class="kw">Kimi</span>, <span class="kw">DeepSeek</span>, or other similar systems to write code, explain concepts, organize information, or support their learning. However, Dominic emphasized that he did not want students to stop at the idea that “AI can answer questions.” Instead, he hoped they would begin to understand the structure behind <span class="kw">AI systems</span>, including <span class="kw">models</span>, <span class="kw">tools</span>, <span class="kw">data</span>, feedback, databases, <span class="kw">memory</span>, and how humans can collaborate with AI.
+							</p>
+						</section>
+						<section class="speech-section" id="en02">
+							<h2>
+								<span class="num">02</span> <span class="kw">Risk Management</span>: Quantity, Price, PnL, and Market Examples
+							</h2>
+							<p>
+								Dominic then moved into the topic of <span class="kw">risk management</span>. He pointed out that although AI might sound more exciting and fashionable, the programme itself was closely related to <span class="kw">risk management</span> and actuarial science. Therefore, it was important to begin with some fundamental ideas from financial markets.
+							</p>
+							<p>
+								He explained that in financial markets, whether one works on the <span class="kw">buy-side</span> at a <span class="kw">hedge fund</span> or on the <span class="kw">sell-side</span> at an <span class="kw">investment bank</span>, a central question is always: How much money did the portfolio make or lose, and why? From a <span class="kw">risk management</span> perspective, it is not enough to look only at the final number. One must understand where the profit or loss came from.
+							</p>
+							<div class="formula">
+								\[\text{Value}=Q\times P]
+							</div>
+							<p>
+								Here, \(Q\) stands for quantity, meaning the number of units or shares held, while \(P\) stands for price. For example, if an investor holds 100 shares of <span class="kw">Tencent</span>, then the number of shares multiplied by the share price gives the total market value of that holding.
+							</p>
+							<p>
+								Dominic then used <span class="kw">SK Hynix</span> as a current market example. <span class="kw">SK Hynix</span> is a major South Korean <span class="kw">memory</span> chip manufacturer. He explained that the company had recently attracted significant market attention because of the increasing demand for <span class="kw">AI data centers</span>, GPUs, and <span class="kw">memory chips</span>. Since <span class="kw">AI data centers</span> and <span class="kw">high-performance computing</span> systems require large amounts of <span class="kw">memory chips</span>, <span class="kw">SK Hynix</span> has become one of the companies closely watched by investors.
+							</p>
+							<p>
+								He also mentioned that <span class="kw">SK Hynix</span> and <span class="kw">Samsung Electronics</span> account for an important portion of South Korea’s <span class="kw">KOSPI</span> index. Therefore, investing in these companies may also mean taking on a large amount of exposure to the South Korean equity market. Dominic noted that some market participants believe these stocks have become overheated, while others argue that their <span class="kw">fundamentals</span> may justify the price increases because the demand created by <span class="kw">AI infrastructure spending</span> is real.
+							</p>
+							<p>
+								After this example, Dominic introduced the concept of <span class="kw">leverage</span>. He explained that if an investor originally has 100 dollars and a stock rises by 10%, the investor earns 10 dollars. However, if the investor borrows another 100 dollars and invests a total of 200 dollars, then a 10% increase in the <span class="kw">stock price</span> produces a 20-dollar gain. In this case, the return on the original 100 dollars of capital appears to be magnified.
+							</p>
+							<p>
+								Dominic emphasized that <span class="kw">leverage</span> in financial markets does not only come from directly borrowing money. It can also be created through <span class="kw">derivatives</span>, <span class="kw">leveraged ETFs</span>, <span class="kw">options</span>, or other financial products. He reminded students that <span class="kw">leverage</span> can magnify gains when markets rise, but it can also magnify losses when markets fall. For this reason, <span class="kw">leverage</span> is one of the key issues that <span class="kw">risk management</span> must handle carefully.
+							</p>
+						</section>
+						<section class="speech-section" id="en03">
+							<h2>
+								<span class="num">03</span> <span class="kw">PnL Decomposition</span>: <span class="kw">Trading PnL</span> and <span class="kw">Market PnL</span>
+							</h2>
+							<p>
+								Dominic then moved from the formula \(Q\times P\) to the concept of <span class="kw">PnL</span>, which stands for <span class="kw">profit and loss</span>. He considered a simple situation: suppose yesterday’s position was \(Q_t\) and yesterday’s price was \(P_t\), while today’s position is \(Q_{t+1}\) and today’s price is \(P_{t+1}\). The total PnL can be written as:
+							</p>
+							<div class="formula">
+								\[\text{PnL}=Q_{t+1}P_{t+1}-Q_tP_t]
+							</div>
+							<p>
+								This represents today’s position value minus yesterday’s position value.
+							</p>
+							<p>
+								Dominic stressed that while this formula looks straightforward, it is still not detailed enough for <span class="kw">risk management</span>. The change in value may come from two different sources. First, the market price may have changed. Second, the investor may have increased or reduced the position size. These two effects should be separated.
+							</p>
+							<p>
+								He introduced a mathematical technique called <span class="kw">telescoping decomposition</span>. By adding and subtracting the same term, the PnL can be decomposed as follows:
+							</p>
+							<div class="formula">
+								\[Q_{t+1}P_{t+1}-Q_tP_t=(Q_{t+1}P_{t+1}-Q_tP_{t+1})+(Q_tP_{t+1}-Q_tP_t)]
+							</div>
+							<div class="formula">
+								\[\text{PnL}=(Q_{t+1}-Q_t)P_{t+1}+Q_t(P_{t+1}-P_t)]
+							</div>
+							<p>
+								Dominic explained that the first part, \((Q_{t+1}-Q_t)P_{t+1}\), can be understood as <span class="kw">trading PnL</span>. It reflects the part of the change caused by changes in the quantity held. The second part, \(Q_t(P_{t+1}-P_t)\), is <span class="kw">market PnL</span>. It reflects the profit or loss caused by market price movements on the original position.
+							</p>
+							<p>
+								Dominic used an intuitive example to explain the importance of this decomposition. If a report shows that the value of a portfolio has increased, this does not necessarily mean that the investment strategy has made money. It may simply mean that the investor bought more shares and increased the size of the portfolio. From the perspective of the whole company, when the trading desk buys more shares, the treasury department may have to provide the corresponding cash. Therefore, an increase in the trading book does not automatically mean that the whole company has made more money.
+							</p>
+							<p>
+								Dominic emphasized that <span class="kw">PnL decomposition</span> is a basic but extremely important tool in financial institutions. It allows risk managers to separate the overall <span class="kw">profit and loss</span> figure into different sources, such as market movement, trading activity, and funding effects. Only then can one properly understand the risks being taken.
+							</p>
+						</section>
+						<section class="speech-section" id="en04">
+							<h2>
+								<span class="num">04</span> <span class="kw">Market PnL</span>, <span class="kw">Model Price</span>, and <span class="kw">Model Risk</span>
+							</h2>
+							<p>
+								Dominic then discussed <span class="kw">market PnL</span> in greater detail. <span class="kw">Market PnL</span> can be expressed as:
+							</p>
+							<div class="formula">
+								\[\text{Market PnL}=Q_t\Delta P]
+							</div>
+							<p>
+								where \(\Delta P=P_{t+1}-P_t\), representing the change in market price.
+							</p>
+							<p>
+								Dominic explained that in <span class="kw">financial modelling</span>, risk managers do not rely only on observed market prices. They often build a <span class="kw">model price</span>:
+							</p>
+							<div class="formula">
+								\[\hat{P}_t=f(r_t,S_t,\sigma_t)]
+							</div>
+							<p>
+								Here, \(f\) represents a <span class="kw">pricing model</span>. The variable \(r_t\) may represent the <span class="kw">interest rate</span>, \(S_t\) may represent the <span class="kw">stock price</span> or <span class="kw">underlying price</span>, and \(\sigma_t\) may represent <span class="kw">volatility</span>.
+							</p>
+							<p>
+								Dominic pointed out that the market gives the observed price \(P_t\), while the model gives the <span class="kw">model price</span> \(\hat{P}_t\). These two prices may not be exactly the same. When the price changes, the actual price change can be separated into the part that the model explains and the part that the model does not explain:
+							</p>
+							<div class="formula">
+								\[\Delta P=\Delta\hat{P}+(\Delta P-\Delta\hat{P})]
+							</div>
+							<p>
+								Here, \(\Delta\hat{P}\) is the <span class="kw">modelled move</span>, meaning the price change explained by the model. The remaining part, \(\Delta P-\Delta\hat{P}\), is the <span class="kw">residual</span> or <span class="kw">model risk</span>.
+							</p>
+							<p>
+								Dominic emphasized that a good model should keep <span class="kw">model risk</span> as close to zero as possible. If <span class="kw">model risk</span> is large, it means that the actual market price movement is very different from what the model predicts. In that case, one must examine whether the model has failed, whether a market event has not been captured, or whether <span class="kw">news</span>, liquidity changes, investor behavior, or other structural factors have affected the price.
+							</p>
+							<p>
+								He explained that in <span class="kw">risk management</span>, when a portfolio loses money, it is not enough to say, “The market went down.” Risk managers need to ask whether the loss came from <span class="kw">interest rate</span> changes, <span class="kw">stock price</span> movements, <span class="kw">volatility</span> increases, poor model <span class="kw">calibration</span>, trading activity, or <span class="kw">residual</span> <span class="kw">model risk</span>. This is the core spirit of <span class="kw">risk management</span>.
+							</p>
+						</section>
+						<section class="speech-section" id="en05">
+							<h2>
+								<span class="num">05</span> Decomposing Modelled <span class="kw">Market PnL</span> into <span class="kw">Risk Drivers</span>
+							</h2>
+							<p>
+								Dominic then showed how the modelled price change can be further decomposed into different <span class="kw">risk drivers</span>. Suppose the <span class="kw">model price</span> is:
+							</p>
+							<div class="formula">
+								\[\hat{P}_t=f(r_t,S_t,\sigma_t)]
+							</div>
+							<p>
+								The <span class="kw">model price</span> change from time \(t\) to time \(t+1\) can be written as:
+							</p>
+							<div class="formula">
+								\[\Delta\hat{P}=f(r_{t+1},S_{t+1},\sigma_{t+1}) - f(r_t,S_t,\sigma_t)]
+							</div>
+							<p>
+								Dominic explained that the same telescoping idea can be used again. The inputs can be changed step by step: first the <span class="kw">interest rate</span>, then the <span class="kw">stock price</span>, and finally <span class="kw">volatility</span>.
+							</p>
+							<div class="formula">
+								\[ \begin{aligned} \Delta\hat{P} =&amp;\;\left[f(r_{t+1},S_t,\sigma_t)-f(r_t,S_t,\sigma_t)\right]\\ &amp;+\left[f(r_{t+1},S_{t+1},\sigma_t)-f(r_{t+1},S_t,\sigma_t)\right]\\ &amp;+\left[f(r_{t+1},S_{t+1},\sigma_{t+1})-f(r_{t+1},S_{t+1},\sigma_t)\right] \end{aligned} \]
+							</div>
+							<p>
+								The first term can be interpreted as the <span class="kw">rate effect</span>, the impact of changes in interest rates. The second term is the <span class="kw">stock effect</span>, the impact of changes in the stock or <span class="kw">underlying price</span>. The third term is the <span class="kw">volatility effect</span>, the impact of changes in <span class="kw">volatility</span>.
+							</p>
+							<p>
+								Dominic stressed that the value of this decomposition is that it helps investors understand where PnL comes from. If a portfolio loses money and the decomposition shows that most of the loss came from <span class="kw">interest rate</span> movement, then the team may consider <span class="kw">interest rate</span> hedging. If the loss came mainly from <span class="kw">volatility</span> changes, then the <span class="kw">volatility</span> exposure should be examined. If the loss came mainly from <span class="kw">residual</span> risk, then the model itself may need to be reviewed.
+							</p>
+							<p>
+								Dominic reminded students that <span class="kw">risk management</span> is not about never losing money. It is about knowing which risks one is losing money on, whether those risks were intended, and whether hedging is needed.
+							</p>
+						</section>
+						<section class="speech-section" id="en06">
+							<h2>
+								<span class="num">06</span> Why <span class="kw">Models</span> Fail and Why AI Becomes Relevant
+							</h2>
+							<p>
+								Dominic then explained that over the past twenty years or so, many traditional financial <span class="kw">models</span> have worked reasonably well under normal market conditions. When market factors are relatively stable, price changes are often driven mainly by variables such as interest rates, stock prices, and <span class="kw">volatility</span>. In those situations, <span class="kw">models</span> can capture the major risks.
+							</p>
+							<p>
+								However, Dominic pointed out that modern markets are more complex than before. Prices may be affected by <span class="kw">news</span>, <span class="kw">policies</span>, <span class="kw">investor sentiment</span>, <span class="kw">social media</span>, presidential elections, <span class="kw">geopolitics</span>, seasonality, and <span class="kw">supply chain</span> developments. Much of this information is not structured numerical <span class="kw">data</span>. It appears instead in text, <span class="kw">news</span> reports, research notes, company announcements, and market narratives.
+							</p>
+							<p>
+								Using AI chip stocks as an example, Dominic explained that their price movements cannot be understood only through past price <span class="kw">data</span>. They are also linked to the market’s expectations about future <span class="kw">AI data center spending</span>, company earnings, supply chains, technological breakthroughs, and the macro <span class="kw">interest rate</span> environment. These factors are often embedded in large amounts of text <span class="kw">data</span>.
+							</p>
+							<p>
+								Therefore, Dominic argued that modern financial analysis increasingly requires <span class="kw">models</span> that can process large volumes of textual information, such as <span class="kw">news</span> articles, <span class="kw">research reports</span>, announcements, <span class="kw">earnings reports</span>, <span class="kw">analyst comments</span>, and <span class="kw">social media</span> <span class="kw">data</span>. <span class="kw">Large language models</span> are powerful in processing text, summarizing information, identifying themes, and building semantic connections. For this reason, they may be useful in <span class="kw">risk management</span> and financial analysis.
+							</p>
+						</section>
+						<section class="speech-section" id="en07">
+							<h2>
+								<span class="num">07</span> Why <span class="kw">Statistics</span> Still Matters in the Age of AI
+							</h2>
+							<p>
+								Dominic then addressed an important question: If AI has become so powerful, does <span class="kw">statistics</span> still matter? His view was that <span class="kw">statistics</span> not only remains important, but may become even more important in the AI era.
+							</p>
+							<p>
+								He described the traditional statistical <span class="kw">workflow</span> as:
+							</p>
+							<div class="formula">
+								\[\text{Data}\rightarrow\text{Statistical Model}\rightarrow\text{Metrics}\rightarrow\text{Data}]
+							</div>
+							<p>
+								In statistical work, one begins with <span class="kw">data</span>, builds a model, evaluates the model using <span class="kw">metrics</span> such as <span class="kw">forecast error</span>, accuracy, <span class="kw">RMSE</span>, or <span class="kw">backtesting PnL</span>, and then uses the results to improve the model or collect more <span class="kw">data</span>. This forms a loop.
+							</p>
+							<p>
+								Dominic explained that <span class="kw">AI systems</span> follow a similar loop:
+							</p>
+							<div class="formula">
+								\[\text{Data}\rightarrow\text{Agent}\rightarrow\text{Feedback}\rightarrow\text{Data}]
+							</div>
+							<p>
+								<span class="kw">Data</span> is given to an agent. The agent uses a <span class="kw">large language model</span> and <span class="kw">tools</span> to produce responses or perform tasks. The feedback then becomes <span class="kw">data</span> for the next round of improvement.
+							</p>
+							<p>
+								Dominic emphasized that a truly powerful <span class="kw">AI system</span> is not just a single prompt and a single response. It is a loop that can continuously read information, perform tasks, receive <span class="kw">evaluation</span>, improve its outputs, and sometimes refine its <span class="kw">workflow</span>.
+							</p>
+							<p>
+								He compared this with backtesting in finance. An investment strategy should not be considered reliable simply because it worked once. It has to be tested across historical <span class="kw">data</span> and different scenarios. <span class="kw">AI systems</span> should be evaluated in a similar way. One should not judge an <span class="kw">AI system</span> only by whether one answer looks impressive. One must test whether it is stable, reliable, error-aware, and resistant to hallucination.
+							</p>
+						</section>
+						<section class="speech-section" id="en08">
+							<h2>
+								<span class="num">08</span> <span class="kw">Large Language Models</span>, Distillation, and the Current AI Landscape
+							</h2>
+							<p>
+								Dominic then introduced the current landscape of <span class="kw">large language models</span>. He mentioned that students might have heard of <span class="kw">ChatGPT</span>, <span class="kw">Claude</span>, <span class="kw">Gemini</span>, <span class="kw">Kimi</span>, <span class="kw">DeepSeek</span>, <span class="kw">Zhipu GLM</span>, and other <span class="kw">models</span>. Different <span class="kw">models</span> have different strengths. Some are stronger in reasoning, some are better at coding, some are cheaper, some have lower latency, and some are more convenient in Chinese-language or Hong Kong usage environments.
+							</p>
+							<p>
+								Dominic explained that a <span class="kw">large language model</span> can be loosely understood as a model trained on large amounts of text to predict the most likely next <span class="kw">token</span> in a given context. It generates text step by step, with each <span class="kw">token</span> determined by the previous context and the model parameters.
+							</p>
+							<p>
+								He also explained two broad categories of <span class="kw">models</span>: <span class="kw">foundation models</span> and <span class="kw">distilled models</span>. <span class="kw">Foundation models</span> are trained from the ground up using large amounts of <span class="kw">data</span> and compute. <span class="kw">Distilled models</span>, on the other hand, are trained by using the answers produced by larger <span class="kw">models</span> to train a smaller and cheaper model.
+							</p>
+							<p>
+								Dominic reminded students that a high <span class="kw">benchmark score</span> does not necessarily mean that a model will perform best in real-world use. Many <span class="kw">models</span> may perform similarly on standard tests, but differences become clear when they are used for complex tasks such as <span class="kw">long-form organization</span>, <span class="kw">multi-step reasoning</span>, <span class="kw">tool calling</span>, <span class="kw">database querying</span>, <span class="kw">code repair</span>, and <span class="kw">enterprise knowledge management</span>.
+							</p>
+							<p>
+								Therefore, Dominic argued that instead of only asking “Which model is the strongest?”, it is more important to ask whether the whole <span class="kw">AI system</span> is well designed. Are the <span class="kw">tools</span> clear? Is the context sufficient? Is the <span class="kw">evaluation</span> reliable? Is the cost controllable? Is the system secure?
+							</p>
+						</section>
+						<section class="speech-section" id="en09">
+							<h2>
+								<span class="num">09</span> <span class="kw">Chatbot</span> versus <span class="kw">AI Agent</span>
+							</h2>
+							<p>
+								Dominic then explained the distinction between a <span class="kw">chatbot</span> and an <span class="kw">AI agent</span>. He pointed out that many people use the two terms interchangeably, but they are not the same.
+							</p>
+							<p>
+								A normal <span class="kw">chatbot</span> mainly generates text responses based on user input. It can explain concepts, rewrite text, answer questions, or organize information. However, without external <span class="kw">tools</span>, it usually cannot truly perform actions. It cannot query a company database, search the latest web information, send emails, generate charts, or execute code.
+							</p>
+							<p>
+								Dominic summarized the idea of an <span class="kw">AI agent</span> with a simple formula:
+							</p>
+							<div class="formula">
+								\[\text{Agent}=\text{LLM}+\text{Tools}]
+							</div>
+							<p>
+								The <span class="kw">LLM</span> is the brain, while <span class="kw">tools</span> act as the hands, legs, and senses. If an agent is given a <span class="kw">web search tool</span>, it can look up updated information. If it is given a database query tool, it can query an <span class="kw">SQL database</span>. If it is given a code execution tool, it can write code and read error messages. If it is given a <span class="kw">charting tool</span>, it can generate charts. If it is given a <span class="kw">memory</span> tool, it can retrieve previous conversations or documents.
+							</p>
+							<p>
+								Dominic emphasized that the power of an agent depends not only on the model itself, but also on the design of its <span class="kw">tools</span>. If there are too few <span class="kw">tools</span>, it cannot do much. If there are too many <span class="kw">tools</span> without clear instructions, it may become confused. A good agent system needs suitable <span class="kw">tools</span>, clear context, a well-designed <span class="kw">system prompt</span>, reliable <span class="kw">guardrails</span>, and <span class="kw">evaluation mechanisms</span>.
+							</p>
+						</section>
+						<section class="speech-section" id="en10">
+							<h2>
+								<span class="num">10</span> Embeddings, <span class="kw">Vector Data</span>, <span class="kw">Qdrant</span>, and AI <span class="kw">Memory</span>
+							</h2>
+							<p>
+								Dominic then introduced another important type of <span class="kw">data</span> in the AI era: <span class="kw">vector data</span>. He first explained embeddings, which convert text into numerical vectors. The handout used <span class="kw">SentenceTransformer</span>’s <span class="kw">all-MiniLM-L6-v2</span> as an example, which can convert text into a 384-dimensional vector.
+							</p>
+							<p>
+								Dominic explained that these numbers are not random. They represent the semantic position of the text. Texts with similar meanings will be close to each other in the high-dimensional vector space. For example, “<span class="kw">risk management</span>” and “managing risk” have similar meanings, so their vectors should be close.
+							</p>
+							<p>
+								To measure the similarity between two vectors, Dominic introduced <span class="kw">cosine similarity</span>:
+							</p>
+							<div class="formula">
+								\[\cos(v,w)=\frac{v\cdot w}{\lVert v\rVert\lVert w\rVert}]
+							</div>
+							<p>
+								When <span class="kw">cosine similarity</span> is close to 1, the two pieces of text are semantically similar. Dominic pointed out that this is more powerful than traditional keyword search because <span class="kw">embedding search</span> can find content with similar meanings, not only content that uses exactly the same words.
+							</p>
+							<p>
+								Dominic explained that if a company has many <span class="kw">news</span> articles, reports, research notes, trading records, or meeting summaries, these texts can first be divided into chunks, converted into embeddings, and stored in a <span class="kw">vector database</span> such as <span class="kw">Qdrant</span>. When a user asks a new question, the system converts the question into a vector and retrieves the most similar content to place into the agent’s context.
+							</p>
+							<p>
+								The “OpenClaw <span class="kw">memory</span>: vector path” described in the handout can be understood in this way. <span class="kw">Memory</span> notes are chunked and embedded, then stored in a vector index. A new question is converted into a <span class="kw">query embedding</span>, <span class="kw">nearest chunks</span> are retrieved, and those chunks are placed into the <span class="kw">agent context</span>.
+							</p>
+						</section>
+						<section class="speech-section" id="en11">
+							<h2>
+								<span class="num">11</span> Database, SQL, <span class="kw">DuckDB</span>, <span class="kw">Postgres</span>, and <span class="kw">S3</span>
+							</h2>
+							<p>
+								Dominic then moved from text <span class="kw">data</span> to <span class="kw">structured data</span>. He noted that students may often use Excel in school, but in companies and financial institutions, <span class="kw">data</span> is usually not stored only in Excel. It is often stored in databases such as <span class="kw">PostgreSQL</span>, <span class="kw">DuckDB</span>, or other SQL databases.
+							</p>
+							<p>
+								Dominic explained that SQL stands for Structured Query Language, which is used to query and manipulate databases. For example:
+							</p>
+							<pre><code>SELECT * FROM trades LIMIT 10;</code></pre>
+							<p>
+								This command can be used to view the first ten rows of a trades table. The handout also mentioned that <span class="kw">DuckDB</span> can query local <span class="kw">data</span>, connect to <span class="kw">Postgres</span> through a <span class="kw">connection string</span>, and read <span class="kw">parquet files</span> stored on <span class="kw">S3</span>.
+							</p>
+							<p>
+								Dominic pointed out that if an <span class="kw">AI agent</span> can connect to a database, it can do much more than answer text-based questions. For example, a user could ask, “What is the monthly sales trend this year?”, “Which product has the highest revenue?”, “Please compare sales performance across regions,” or “Please draw a revenue line chart.” If the agent knows the <span class="kw">database schema</span> and has an <span class="kw">SQL query tool</span>, it can generate SQL, query the <span class="kw">data</span>, summarize the results, and even call a <span class="kw">charting tool</span> to produce graphs.
+							</p>
+						</section>
+						<section class="speech-section" id="en12">
+							<h2>
+								<span class="num">12</span> <span class="kw">Assistant UI</span> Demo: Building a <span class="kw">Chatbot</span> Interface
+							</h2>
+							<p>
+								Dominic then demonstrated how to build a basic <span class="kw">chatbot</span> interface. He used <span class="kw">Assistant UI</span> as an example. <span class="kw">Assistant UI</span> is an open-source <span class="kw">frontend</span> tool that can quickly scaffold a <span class="kw">React</span> / <span class="kw">Next.js</span> chat app. The handout listed commands such as:
+							</p>
+							<pre><code>npx assistant-ui@latest create my-app
+cd my-app</code></pre>
+							<p>
+								Different templates can also be selected, such as a minimal template or an example using AI SDK v7.
+							</p>
+							<p>
+								Dominic explained that the purpose of this demonstration was to show students that many modern AI app interfaces can already be created using open-source templates. In the past, building an interface similar to <span class="kw">ChatGPT</span>, with a sidebar, conversation history, message bubbles, and streaming responses, might have taken a long time. Today, open-source frameworks allow developers to create prototypes very quickly.
+							</p>
+							<p>
+								Dominic also introduced <span class="kw">GitHub</span>. He explained that <span class="kw">GitHub</span> is a platform widely used by developers and that many open-source projects can be found there. Students can learn how to read documentation, check stars, observe community activity, understand issues, and judge whether a library is mature.
+							</p>
+						</section>
+						<section class="speech-section" id="en13">
+							<h2>
+								<span class="num">13</span> Connecting the <span class="kw">Chatbot</span> to an <span class="kw">LLM Provider</span>
+							</h2>
+							<p>
+								After building the <span class="kw">Assistant UI</span> interface, Dominic demonstrated how to connect it to an <span class="kw">LLM provider</span>. He explained that many templates use the <span class="kw">OpenAI API</span> by default, but in different regions or usage environments, developers may choose other providers. In the demonstration, he attempted to replace the <span class="kw">OpenAI</span> connection with <span class="kw">Kimi API</span>.
+							</p>
+							<p>
+								Dominic explained that this involves an <span class="kw">API key</span> and an <span class="kw">endpoint</span>. An <span class="kw">API key</span> can be understood as the key to using the service, while an <span class="kw">endpoint</span> is the interface through which the app communicates with the model service. The app sends user messages, system prompts, tool definitions, and other information to the <span class="kw">LLM provider</span>, and the model returns a response.
+							</p>
+							<p>
+								In the live demonstration, Dominic asked a <span class="kw">coding agent</span> to help modify the codebase so that the app would use <span class="kw">Kimi</span> instead of <span class="kw">OpenAI</span>. This showed how modern coding workflows are changing. In the past, developers might have searched documentation, Google, or Stack Overflow. Now, a <span class="kw">coding agent</span> can read the codebase, modify files, install packages, and handle errors.
+							</p>
+							<p>
+								However, Dominic reminded students that this is not magic. API keys may be configured incorrectly, <span class="kw">environment variables</span> may be missing, endpoints may be wrong, and packages may not be installed. Even with AI assistance, developers still need to understand the basic logic of debugging.
+							</p>
+						</section>
+						<section class="speech-section" id="en14">
+							<h2>
+								<span class="num">14</span> Adding a <span class="kw">Web Search Tool</span>: From <span class="kw">LLM</span> to Agent
+							</h2>
+							<p>
+								Dominic then demonstrated how to turn a <span class="kw">chatbot</span> into something closer to an agent. At first, the <span class="kw">chatbot</span> is only an <span class="kw">LLM</span>. It can answer general questions based on its training <span class="kw">data</span>. However, if a user asks for the latest <span class="kw">stock price</span> of <span class="kw">SK Hynix</span>, the model may not know because it does not have live market <span class="kw">data</span>.
+							</p>
+							<p>
+								Therefore, Dominic showed how to add a <span class="kw">web search tool</span>. When the agent needs updated information, it can trigger a tool call, search the web, and answer based on the results.
+							</p>
+							<p>
+								Dominic emphasized that if AI cannot answer a question, it does not necessarily mean that the model is not intelligent. It may simply lack the right tool. Similarly, a person who cannot access the internet, use a database, or use a calculator may not be able to answer a question about the latest price or perform precise calculations, even if they are very capable.
+							</p>
+							<p>
+								In the demonstration, after the <span class="kw">web search tool</span> was added, the agent began to perform tool calls. However, tool calls can also fail. The search result may be empty, the API response format may not match expectations, or the tool may not be properly configured. Dominic explained that these are real problems developers encounter when building <span class="kw">AI agents</span>.
+							</p>
+						</section>
+						<section class="speech-section" id="en15">
+							<h2>
+								<span class="num">15</span> <span class="kw">Coding Agent</span> and <span class="kw">Pair Coding</span>
+							</h2>
+							<p>
+								Dominic also demonstrated the use of a <span class="kw">coding agent</span>. He explained that the main difference between a <span class="kw">coding agent</span> and a normal <span class="kw">chatbot</span> is that the <span class="kw">coding agent</span> can use development <span class="kw">tools</span>. It can read the codebase, search files, edit code, run terminal commands, install npm packages, read compiler errors, and then make further corrections based on those errors.
+							</p>
+							<p>
+								Dominic compared this <span class="kw">workflow</span> to <span class="kw">pair coding</span>. Traditional <span class="kw">pair programming</span> involves two people working together: one writes code while the other observes and checks. A <span class="kw">coding agent</span> can, in some sense, serve as a developer’s <span class="kw">pair programmer</span> by helping to try, modify, check, and debug code.
+							</p>
+							<p>
+								At the same time, Dominic reminded students that coding <span class="kw">fundamentals</span> remain important. Developers still need to understand <span class="kw">project structure</span>, how the <span class="kw">frontend</span> and <span class="kw">backend</span> communicate, what <span class="kw">API routes</span> are, how <span class="kw">package.json</span> works, how to read TypeScript errors, what <span class="kw">localhost</span> means, how <span class="kw">environment variables</span> are set, and why a database connection might fail. AI can speed up the process, but humans still need to understand the system.
+							</p>
+						</section>
+						<section class="speech-section" id="en16">
+							<h2>
+								<span class="num">16</span> Building a Company Sales Database with <span class="kw">Postgres</span> and <span class="kw">Docker</span>
+							</h2>
+							<p>
+								Dominic then demonstrated an example closer to a real business application: building a company sales database that an agent could query. In the demonstration, the company database included tables such as products, sales, and sale_items.
+							</p>
+							<p>
+								Dominic explained that such <span class="kw">data</span> can be stored in a <span class="kw">PostgreSQL</span> database. To quickly create a database environment on a local machine, he used <span class="kw">Docker</span>. <span class="kw">Docker</span> can place the database and its runtime environment inside a <span class="kw">container</span>, making it easier to reproduce the same environment on different computers.
+							</p>
+							<p>
+								Dominic explained that a <span class="kw">Docker image</span> contains the environment needed to run a service. When a developer runs the image, it creates a <span class="kw">container</span>. The <span class="kw">container</span> can be thought of as an isolated mini-environment that can run <span class="kw">Postgres</span>, a web server, or another service.
+							</p>
+							<p>
+								In the demonstration, Dominic ran <span class="kw">Postgres</span> locally on a port such as 5433, allowing the app or agent to connect through a <span class="kw">connection string</span>. He emphasized that useful <span class="kw">AI agents</span> often need to connect to real <span class="kw">data</span> sources, such as company databases, internal documents, <span class="kw">workflow</span> systems, or financial <span class="kw">models</span>, instead of merely answering general knowledge questions.
+							</p>
+						</section>
+						<section class="speech-section" id="en17">
+							<h2>
+								<span class="num">17</span> Giving the Agent <span class="kw">Database Schema</span> as Context
+							</h2>
+							<p>
+								Dominic then pointed out that if an agent is to query a database, it needs more than an SQL tool. It also needs to know the schema. A schema describes the structure of a database, including what tables exist, what columns they contain, and how those tables are related.
+							</p>
+							<p>
+								For example, a products table may contain product_id, name, sku, and category. A sales table may contain sale_id, sold_at, and customer_id. A sale_items table may contain sale_id, product_id, quantity, and unit_price.
+							</p>
+							<p>
+								Dominic explained that if the agent does not know the schema, it may query the wrong table or column even if it has a database tool. Therefore, in the demonstration, he added the schema to the <span class="kw">system prompt</span> or <span class="kw">agent context</span> so that the agent would know the available <span class="kw">data</span> structure whenever it answered a question.
+							</p>
+							<p>
+								Dominic described this as <span class="kw">context engineering</span>. Compared with simply writing one prompt, <span class="kw">AI agents</span> need complete, structured, and accurate context, including background information, tool descriptions, database structure, usage limitations, and answer rules.
+							</p>
+						</section>
+						<section class="speech-section" id="en18">
+							<h2>
+								<span class="num">18</span> Querying Sales <span class="kw">Data</span> and Generating Charts
+							</h2>
+							<p>
+								Once the agent had both a database tool and schema context, Dominic demonstrated how it could answer questions about sales <span class="kw">data</span>. For example, a user could ask the agent to summarize sales <span class="kw">data</span>, identify the highest-revenue product, calculate total revenue, or draw a monthly sales trend.
+							</p>
+							<p>
+								Dominic explained that the agent can first generate SQL, query <span class="kw">Postgres</span>, and then organize the results in a human-readable way. If a <span class="kw">charting tool</span> is added, such as a <span class="kw">frontend</span> charting library, the agent can also visualize the results as a line chart or bar chart.
+							</p>
+							<p>
+								Dominic used this example to illustrate a complete AI <span class="kw">workflow</span>. The user asks a natural-language question. The agent decides that it needs to query the database. It generates SQL based on the schema. The SQL tool queries <span class="kw">Postgres</span>. The agent receives the result. It explains the result in words. If necessary, it then calls a <span class="kw">charting tool</span> to display the result visually.
+							</p>
+							<p>
+								This demonstrated the practical value of AI in business settings. Dominic emphasized that AI is not only about “chatting.” It can integrate natural language, databases, analytical <span class="kw">tools</span>, and <span class="kw">data visualization</span> into an executable <span class="kw">workflow</span>.
+							</p>
+						</section>
+						<section class="speech-section" id="en19">
+							<h2>
+								<span class="num">19</span> <span class="kw">System Prompt</span>, <span class="kw">Tool Calling</span>, <span class="kw">Guardrails</span>, and <span class="kw">Evaluation</span>
+							</h2>
+							<p>
+								Through the demonstration, Dominic explained the importance of the <span class="kw">system prompt</span>. When a user types a message into the interface, the <span class="kw">LLM</span> does not receive only that one message. The system usually also includes the agent’s role, available <span class="kw">tools</span>, tool input formats, <span class="kw">database schema</span>, answer rules, failure-handling instructions, and safety restrictions.
+							</p>
+							<p>
+								Dominic explained that these design elements are central to an <span class="kw">AI system</span>. Without a clear <span class="kw">system prompt</span> and <span class="kw">tool instructions</span>, even an agent with <span class="kw">tools</span> may use them incorrectly.
+							</p>
+							<p>
+								He also introduced the concept of <span class="kw">guardrails</span>. <span class="kw">Guardrails</span> are control mechanisms that prevent AI from behaving in unreasonable ways. For example, if a tool call returns an empty result, the AI should not invent an answer. If the database does not contain a certain table, it should not pretend that it found one. If the <span class="kw">API key</span> is missing, it should point out the configuration issue. If the answer is uncertain, it should explain the limitation.
+							</p>
+							<p>
+								Another important concept is <span class="kw">evaluation</span>. Dominic explained that <span class="kw">AI systems</span> must be testable. Developers need to check whether the SQL is correct, whether the chart reflects the <span class="kw">data</span>, whether the answer is grounded, whether the tool call is reasonable, whether the cost is too high, and whether the latency is acceptable.
+							</p>
+						</section>
+						<section class="speech-section" id="en20">
+							<h2>
+								<span class="num">20</span> <span class="kw">GitHub Copilot</span> and Coding IDEs
+							</h2>
+							<p>
+								Dominic then discussed <span class="kw">GitHub Copilot</span> and coding IDEs. He pointed out that editors such as <span class="kw">Visual Studio Code</span> can now connect to <span class="kw">coding agents</span>, and <span class="kw">GitHub Copilot</span> is one common example.
+							</p>
+							<p>
+								These <span class="kw">coding agents</span> can help developers complete code, generate functions, explain errors, refactor code, write tests, modify files based on project context, connect APIs, and edit <span class="kw">frontend</span> components.
+							</p>
+							<p>
+								Dominic emphasized that users still need to know how to direct the AI and judge whether the generated code is reasonable. AI may make mistakes, use outdated libraries, ignore <span class="kw">security</span> issues, or miss edge cases. Therefore, learning coding in the future is not only about learning syntax, but also about understanding the whole software system.
+							</p>
+						</section>
+						<section class="speech-section" id="en21">
+							<h2>
+								<span class="num">21</span> Mac, Windows, Linux, and WSL
+							</h2>
+							<p>
+								Dominic also discussed different computing environments with the students. He pointed out that many AI, database, <span class="kw">backend</span>, and distributed computing <span class="kw">tools</span> are best supported on Linux or Unix-like environments. Mac and Linux are similar in terms of terminal usage, file systems, command-line <span class="kw">tools</span>, and development workflows.
+							</p>
+							<p>
+								Dominic explained that Windows can also be used for development, but some <span class="kw">tools</span> may be more difficult to run on Windows, especially those involving multiprocessing, forking, asynchronous programming, server-side libraries, or Linux-native <span class="kw">tools</span>.
+							</p>
+							<p>
+								Therefore, Dominic suggested that students using Windows could learn about WSL, or Windows Subsystem for Linux. WSL allows users to run a Linux environment inside Windows, which is very useful for learning modern development workflows.
+							</p>
+						</section>
+						<section class="speech-section" id="en22">
+							<h2>
+								<span class="num">22</span> AI in Education: Easier or Harder?
+							</h2>
+							<p>
+								During the Q&amp;A session, a student asked whether AI would make learning easier or harder. Dominic responded that AI makes it easier to complete tasks on the surface, but it may also widen the gap in genuine learning.
+							</p>
+							<p>
+								Dominic explained that if students simply ask AI to complete their homework, they may be able to submit polished answers quickly in the short term. However, if they do not truly understand the material, they may struggle in examinations, interviews, project presentations, or real work situations.
+							</p>
+							<p>
+								He mentioned that similar issues already appear in university courses. Some assignments allow AI use, or it is difficult to completely prevent students from using AI. As a result, many students may score well on assignments, but when they face <span class="kw">closed-book examinations</span>, they realize that they have not truly mastered the concepts.
+							</p>
+							<p>
+								By contrast, Dominic argued that if students use AI as a <span class="kw">learning partner</span>—to ask questions, explore reasons, compare methods, generate practice problems, check mistakes, and explain concepts—then AI can help them learn faster and more deeply.
+							</p>
+						</section>
+						<section class="speech-section" id="en23">
+							<h2>
+								<span class="num">23</span> Coding <span class="kw">Fundamentals</span> in the AI Era
+							</h2>
+							<p>
+								Dominic also answered the question of whether students still need to learn coding if AI can write code. His view was that coding <span class="kw">fundamentals</span> remain important, but the focus of learning will change.
+							</p>
+							<p>
+								He explained that in the past, learning coding often meant paying close attention to line-by-line syntax. Today, AI can generate a lot of boilerplate code and help fix errors. However, students still need to understand how programs run, how servers start, how the <span class="kw">frontend</span> connects to the <span class="kw">backend</span>, what API endpoints are, how databases are queried, how authentication works, how package dependencies are managed, how deployment is done, and how error messages should be read.
+							</p>
+							<p>
+								Dominic argued that coding in the future will be more like <span class="kw">system thinking</span>. Developers will not only write individual functions; they will design workflows. AI can help with many details, but humans still need to know the overall direction and the standards for checking the output.
+							</p>
+						</section>
+						<section class="speech-section" id="en24">
+							<h2>
+								<span class="num">24</span> AI Bubble, Chips, <span class="kw">Leverage</span>, and Market Risk
+							</h2>
+							<p>
+								Toward the end of the Q&amp;A session, a student asked whether the AI bubble would burst. Dominic described this as a very good question and said that the AI market should be considered in several parts.
+							</p>
+							<p>
+								The first part is chips. Dominic explained that AI requires enormous computing resources, so the market pays close attention to companies related to GPUs, <span class="kw">memory</span>, and the <span class="kw">semiconductor supply chain</span>, such as <span class="kw">NVIDIA</span>, <span class="kw">TSMC</span>, <span class="kw">SK Hynix</span>, and <span class="kw">Samsung Electronics</span>. As long as <span class="kw">AI data center spending</span> continues, demand for chips and <span class="kw">memory</span> has some fundamental support.
+							</p>
+							<p>
+								However, Dominic also warned students about overheating and <span class="kw">leverage</span>. When many investors use <span class="kw">leverage</span>, a fall in stock prices can trigger <span class="kw">forced selling</span> or margin calls, which may intensify <span class="kw">market volatility</span>.
+							</p>
+							<p>
+								He used <span class="kw">leverage</span> as an example. If an investor uses three times <span class="kw">leverage</span>, a decline of roughly one-third in the underlying asset may nearly wipe out the investor’s capital. With even higher <span class="kw">leverage</span>, a smaller fall can still cause severe losses.
+							</p>
+						</section>
+						<section class="speech-section" id="en25">
+							<h2>
+								<span class="num">25</span> <span class="kw">SaaS</span>, Enterprise Software, and AI Disruption
+							</h2>
+							<p>
+								Dominic then discussed <span class="kw">SaaS</span>, or <span class="kw">software as a service</span>. He explained that many companies have traditionally earned subscription revenue from software such as <span class="kw">CRM</span> systems, analytics platforms, presentation <span class="kw">tools</span>, design software, and office <span class="kw">tools</span>.
+							</p>
+							<p>
+								With the rise of AI, some people believe that parts of the <span class="kw">SaaS</span> industry may be challenged. Dominic gave examples: if an <span class="kw">AI agent</span> can directly generate slides, analyze sales <span class="kw">data</span>, write reports, organize emails, and handle workflows, then users may question whether they still need so many separate software <span class="kw">tools</span>.
+							</p>
+							<p>
+								However, Dominic also pointed out that this does not mean all <span class="kw">SaaS</span> products will disappear. Companies still need <span class="kw">permission management</span>, <span class="kw">compliance</span>, <span class="kw">security</span>, audit trails, <span class="kw">data</span> integration, <span class="kw">workflow management</span>, <span class="kw">deployment support</span>, <span class="kw">user management</span>, <span class="kw">reliability</span>, and <span class="kw">enterprise governance</span>.
+							</p>
+							<p>
+								Dominic argued that future competition will not simply be about whether a company has AI. Instead, the key question will be who can build AI into a reliable, secure, controllable, and deployable <span class="kw">enterprise system</span>.
+							</p>
+						</section>
+						<section class="speech-section" id="en26">
+							<h2>
+								<span class="num">26</span> The Real Future: <span class="kw">LLM</span> + <span class="kw">Tools</span> + Context + <span class="kw">Workflow</span>
+							</h2>
+							<p>
+								In his summary, Dominic explained that the future of AI is not about a single model alone. Instead, it is about:
+							</p>
+							<div class="formula">
+								\[\text{LLM}+\text{Tools}+\text{Context}+\text{Workflow}+\text{Evaluation}]
+							</div>
+							<p>
+								If there is only an <span class="kw">LLM</span>, it is simply a model that can speak. If <span class="kw">tools</span> are added, it can perform actions. If context is added, it understands the environment in which it is acting. If <span class="kw">workflow</span> is added, it can complete tasks continuously. If <span class="kw">evaluation</span> is added, it has a chance of becoming reliable.
+							</p>
+							<p>
+								Dominic believed that for students, the most important thing is not to chase every new tool, but to build fundamental capabilities. These include <span class="kw">mathematics</span>, <span class="kw">statistics</span>, <span class="kw">financial knowledge</span>, <span class="kw">computational thinking</span>, <span class="kw">AI literacy</span>, <span class="kw">data literacy</span>, <span class="kw">problem formulation</span>, <span class="kw">critical thinking</span>, and <span class="kw">communication</span>.
+							</p>
+						</section>
+						<section class="speech-section" id="en27">
+							<h2>
+								<span class="num">27</span> Closing Remarks to Students
+							</h2>
+							<p>
+								At the end of the lecture, Dominic summarized the main ideas for the students. He noted that the lecture had covered topics ranging from <span class="kw">PnL decomposition</span> and <span class="kw">model risk</span> to <span class="kw">AI agents</span>, embeddings, databases, <span class="kw">Assistant UI</span>, <span class="kw">Postgres</span>, <span class="kw">Docker</span>, <span class="kw">coding agents</span>, web search <span class="kw">tools</span>, and charting <span class="kw">tools</span>. He acknowledged that students might not immediately understand every technical detail, and that this was completely normal. What mattered more was understanding the bigger picture.
+							</p>
+							<p>
+								Dominic hoped that students would understand that AI is not something unreachable. Many <span class="kw">tools</span> can already be tried directly. Even though the students are still in secondary school, if they remain curious and gradually build knowledge in <span class="kw">statistics</span>, <span class="kw">mathematics</span>, programming, finance, and AI <span class="kw">tools</span>, they can create meaningful projects in the future.
+							</p>
+							<p>
+								He also encouraged students not to be afraid of <span class="kw">mathematics</span> or coding. In his view, many systems that look complicated can be broken down into basic ideas. <span class="kw">PnL decomposition</span> may look like a financial formula, but at its heart, it is about quantity, price, and telescoping. <span class="kw">AI agents</span> may look magical, but at their core, they are about <span class="kw">models</span>, <span class="kw">tools</span>, context, and feedback loops.
+							</p>
+							<p>
+								Finally, Dominic thanked the students for participating and expressed his hope that the lecture had given them a deeper understanding of AI, <span class="kw">statistics</span>, and <span class="kw">risk management</span>. He also encouraged them to explore these <span class="kw">tools</span> actively in their future projects and learning.
+							</p>
+						</section>
+						<section class="speech-section" id="en28">
+							<h2>
+								<span class="num">28</span> Post-talk Exchange and Extended Discussion
+							</h2>
+							<p>
+								After the lecture, Dominic continued to exchange ideas with students and teachers. They discussed how AI could be applied in education, how an agent could be given enough context, how daily workflows might be arranged, and how AI could help check <span class="kw">news</span>, market changes, or company information.
+							</p>
+							<p>
+								Dominic further explained that a truly useful agent needs more than a model. It needs clear context. If an agent has to analyze sales <span class="kw">data</span>, it needs to know the company’s <span class="kw">database schema</span>. If it has to analyze market <span class="kw">news</span>, it needs a <span class="kw">web search tool</span> or internal research tool. If it has to perform <span class="kw">financial modelling</span>, it needs the appropriate modelling <span class="kw">tools</span>.
+							</p>
+							<p>
+								Dominic again emphasized the importance of <span class="kw">context engineering</span>. He explained that users cannot simply give AI a short question and expect it to perform correctly in every situation. Users need to provide sufficient background, a clear task, appropriate <span class="kw">tools</span>, and error-handling mechanisms.
+							</p>
+							<p>
+								Dominic also mentioned <span class="kw">guardrails</span> and <span class="kw">evaluation</span>. When an agent uses <span class="kw">tools</span>, it needs to know when a result is empty, when it should stop, and when it should admit that it cannot find an answer, rather than blindly retrying. This is especially important in enterprise systems, because incorrect answers may lead to incorrect decisions.
+							</p>
+							<p>
+								Finally, Dominic responded to students’ interest in different AI <span class="kw">tools</span> and platforms. He explained that different platforms have different strengths. Some are better for coding, some are better for Chinese-language use, some are more suitable for enterprise deployment, and some are better for personal learning. For students, the most important point is to understand the principles behind the <span class="kw">tools</span>, not merely to memorize tool names.
+							</p>
+						</section>
+						<section class="speech-section" id="en29">
+							<h2>
+								<span class="num">29</span> Parent-friendly Closing Note
+							</h2>
+							<p>
+								In this lecture, Dominic connected financial markets, <span class="kw">risk management</span>, and <span class="kw">artificial intelligence</span> to show students how modern <span class="kw">statistics</span> and AI technologies can be applied in real-world contexts. Students were introduced to concepts such as <span class="kw">PnL decomposition</span>, <span class="kw">model risk</span>, backtesting, embeddings, databases, <span class="kw">AI agents</span>, and <span class="kw">tool calling</span>. Through the live demonstration, they also saw how a simple <span class="kw">chatbot</span> could gradually be extended with web search, <span class="kw">database querying</span>, and charting <span class="kw">tools</span>, turning AI from a system that only answers questions into a system that can perform analytical tasks.
+							</p>
+							<p>
+								The central message of the lecture was that the AI era does not mean students can skip foundational learning. On the contrary, <span class="kw">mathematics</span>, <span class="kw">statistics</span>, programming, <span class="kw">financial knowledge</span>, and <span class="kw">critical thinking</span> will become even more important. Students who use AI wisely can treat it as a partner for learning and creation. However, if they only rely on AI to generate answers without genuine understanding, they may find it difficult to grow sustainably in examinations, projects, interviews, and future work.
+							</p>
+						</section>
+					</div>
+				</div>
+			</article>
+		</main>
+		<footer>
+			Prepared as a bilingual HTML transcript for OSALP learning and parent <span class="kw">communication</span>.
+		</footer>
+		<script>
+		function typesetActivePanel() {
+		if (!window.MathJax || !window.MathJax.typesetPromise) return;
+		const activePanel = document.querySelector('.panel.active');
+		if (!activePanel) return;
+		requestAnimationFrame(function () {
+		if (window.MathJax.typesetClear) window.MathJax.typesetClear([activePanel]);
+		window.MathJax.typesetPromise([activePanel]).catch(function (err) {
+		console.warn('MathJax typesetting issue:', err.message || err);
+		});
+		});
+		}
+
+		function showPanel(lang) {
+		const zh = document.getElementById('zhPanel');
+		const en = document.getElementById('enPanel');
+		const zhTab = document.getElementById('zhTab');
+		const enTab = document.getElementById('enTab');
+		if (lang === 'zh') {
+		zh.classList.add('active'); en.classList.remove('active');
+		zhTab.classList.add('active'); enTab.classList.remove('active');
+		zhTab.setAttribute('aria-selected', 'true'); enTab.setAttribute('aria-selected', 'false');
+		document.documentElement.lang = 'zh-Hant';
+		} else {
+		en.classList.add('active'); zh.classList.remove('active');
+		enTab.classList.add('active'); zhTab.classList.remove('active');
+		enTab.setAttribute('aria-selected', 'true'); zhTab.setAttribute('aria-selected', 'false');
+		document.documentElement.lang = 'en';
+		}
+		typesetActivePanel();
+		}
+
+		document.addEventListener('DOMContentLoaded', function () {
+		if (window.MathJax && window.MathJax.startup && window.MathJax.startup.promise) {
+		window.MathJax.startup.promise.then(typesetActivePanel);
+		} else {
+		typesetActivePanel();
+		}
+		});
+		</script>
+	</body>
+</html>
