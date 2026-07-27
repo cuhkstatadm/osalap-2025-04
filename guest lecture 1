@@ -318,7 +318,7 @@
 								Dominic 解釋，在<span class="kw">金融市場</span>中，不論是在 <span class="kw">buy-side</span> 的<span class="kw">對沖基金</span>，還是在 <span class="kw">sell-side</span> 的<span class="kw">投資銀行</span>，從業員經常關心的核心問題都是：投資組合到底賺了多少、蝕了多少，以及為什麼賺錢或蝕錢。對<span class="kw">風險管理</span>而言，只看最後的總數是不足夠的，必須把<span class="kw">盈虧</span>來源拆解清楚。
 							</p>
 							<div class="formula">
-								\[\text{Value}=Q\times P]
+								\[\text{Value}=Q\times P\]
 							</div>
 							<p>
 								其中 \(Q\) 是 quantity，即<span class="kw">持倉數量</span>；\(P\) 是 price，即<span class="kw">價格</span>。Dominic 以股票作例子說明，如果投資者買入 100 股騰訊，股數乘以每股<span class="kw">價格</span>，就是該持倉的<span class="kw">總市值</span>。
@@ -344,7 +344,7 @@
 								Dominic 接着由 \(Q\times P\) 公式進一步介紹 <span class="kw">PnL</span>，即 <span class="kw">profit and loss</span>，中文可理解為<span class="kw">損益</span>。他假設昨天的持倉是 \(Q_t\)，<span class="kw">價格</span>是 \(P_t\)；今天的持倉是 \(Q_{t+1}\)，<span class="kw">價格</span>是 \(P_{t+1}\)。因此，總 PnL 可以寫成：
 							</p>
 							<div class="formula">
-								\[\text{PnL}=Q_{t+1}P_{t+1}-Q_tP_t]
+								\[\text{PnL}=Q_{t+1}P_{t+1}-Q_tP_t\]
 							</div>
 							<p>
 								Dominic 強調，雖然這條式子看似直接，但對<span class="kw">風險管理</span>來說仍然不夠清楚。因為持倉價值的變化可能來自兩件不同的事：第一，市場<span class="kw">價格</span>發生變化；第二，投資者自己增加或減少了持倉。因此，必須把這兩部分拆開。
@@ -353,10 +353,10 @@
 								他介紹 <span class="kw">telescoping</span>，即<span class="kw">伸縮</span>或<span class="kw">套疊分解</span>技巧。透過加減一項相同的項目，可以把 PnL 拆解為：
 							</p>
 							<div class="formula">
-								\[Q_{t+1}P_{t+1}-Q_tP_t=(Q_{t+1}P_{t+1}-Q_tP_{t+1})+(Q_tP_{t+1}-Q_tP_t)]
+								\[Q_{t+1}P_{t+1}-Q_tP_t=(Q_{t+1}P_{t+1}-Q_tP_{t+1})+(Q_tP_{t+1}-Q_tP_t)\]
 							</div>
 							<div class="formula">
-								\[\text{PnL}=(Q_{t+1}-Q_t)P_{t+1}+Q_t(P_{t+1}-P_t)]
+								\[\text{PnL}=(Q_{t+1}-Q_t)P_{t+1}+Q_t(P_{t+1}-P_t)\]
 							</div>
 							<p>
 								Dominic 解釋，第一部分 \((Q_{t+1}-Q_t)P_{t+1}\) 可以理解為 <span class="kw">trading PnL</span>，即因<span class="kw">持倉數量</span>改變而產生的部分；第二部分 \(Q_t(P_{t+1}-P_t)\) 則是 <span class="kw">market PnL</span>，即原有持倉因市場<span class="kw">價格</span>變動而產生的<span class="kw">盈虧</span>。
@@ -376,7 +376,7 @@
 								Dominic 隨後進一步討論 <span class="kw">market PnL</span>。他指出，<span class="kw">market PnL</span> 可以表示為：
 							</p>
 							<div class="formula">
-								\[\text{Market PnL}=Q_t\Delta P]
+								\[\text{Market PnL}=Q_t\Delta P\]
 							</div>
 							<p>
 								其中 \(\Delta P=P_{t+1}-P_t\)，即市場<span class="kw">價格</span>變動。
@@ -385,7 +385,7 @@
 								Dominic 解釋，在<span class="kw">金融建模</span>中，<span class="kw">風險管理</span>人員不會只依賴市場觀察到的<span class="kw">價格</span>，而會建立一個<span class="kw">模型價格</span>：
 							</p>
 							<div class="formula">
-								\[\hat{P}_t=f(r_t,S_t,\sigma_t)]
+								\[\hat{P}_t=f(r_t,S_t,\sigma_t)\]
 							</div>
 							<p>
 								其中 \(f\) 是 <span class="kw">pricing model</span>，即<span class="kw">定價模型</span>；\(r_t\) 可以代表 <span class="kw">interest rate</span>，即利率；\(S_t\) 可以代表 <span class="kw">stock price</span> 或 <span class="kw">underlying price</span>，即相關資產<span class="kw">價格</span>；\(\sigma_t\) 則可以代表 <span class="kw">volatility</span>，即波動率。
@@ -394,7 +394,7 @@
 								Dominic 指出，市場給出的是 observed price，即<span class="kw">實際價格</span> \(P_t\)，而模型給出的是 <span class="kw">model price</span>，即 \(\hat{P}_t\)。兩者未必完全相同。當<span class="kw">價格</span>變動時，可以把<span class="kw">實際價格</span>變動拆成<span class="kw">模型解釋</span>到的部分和<span class="kw">模型解釋</span>不到的部分：
 							</p>
 							<div class="formula">
-								\[\Delta P=\Delta\hat{P}+(\Delta P-\Delta\hat{P})]
+								\[\Delta P=\Delta\hat{P}+(\Delta P-\Delta\hat{P})\]
 							</div>
 							<p>
 								其中 \(\Delta\hat{P}\) 是 <span class="kw">modelled move</span>，即<span class="kw">模型解釋</span>到的<span class="kw">價格</span>變動；而 \(\Delta P-\Delta\hat{P}\) 則是 <span class="kw">residual</span> 或 <span class="kw">model risk</span>，即<span class="kw">模型風險</span>。
@@ -414,13 +414,13 @@
 								Dominic 接着示範如何把<span class="kw">模型價格</span>變動進一步拆解成不同 <span class="kw">risk drivers</span> 的貢獻。假設<span class="kw">模型價格</span>是：
 							</p>
 							<div class="formula">
-								\[\hat{P}_t=f(r_t,S_t,\sigma_t)]
+								\[\hat{P}_t=f(r_t,S_t,\sigma_t)\]
 							</div>
 							<p>
 								由 \(t\) 到 \(t+1\) 的<span class="kw">模型價格</span>變動可以寫成：
 							</p>
 							<div class="formula">
-								\[\Delta\hat{P}=f(r_{t+1},S_{t+1},\sigma_{t+1}) - f(r_t,S_t,\sigma_t)]
+								\[\Delta\hat{P}=f(r_{t+1},S_{t+1},\sigma_{t+1}) - f(r_t,S_t,\sigma_t)\]
 							</div>
 							<p>
 								Dominic 說明，可以再次使用 telescoping 的想法，逐步改變模型中的 input。首先只改變利率，再改變股價，最後改變波動率：
@@ -466,7 +466,7 @@
 								Dominic 用傳統<span class="kw">統計學</span>的 <span class="kw">workflow</span> 說明：
 							</p>
 							<div class="formula">
-								\[\text{Data}\rightarrow\text{Statistical Model}\rightarrow\text{Metrics}\rightarrow\text{Data}]
+								\[\text{Data}\rightarrow\text{Statistical Model}\rightarrow\text{Metrics}\rightarrow\text{Data}\]
 							</div>
 							<p>
 								統計工作通常先有數據，然後建立模型，再用 <span class="kw">metrics</span> <span class="kw">評估模型</span>表現，例如 <span class="kw">forecast error</span>、accuracy、<span class="kw">RMSE</span>、<span class="kw">backtesting PnL</span> 等。<span class="kw">評估</span>之後，再根據結果修正模型或收集更多數據，形成一個循環。
@@ -475,7 +475,7 @@
 								Dominic 指出，<span class="kw">AI system</span> 其實也有類似循環：
 							</p>
 							<div class="formula">
-								\[\text{Data}\rightarrow\text{Agent}\rightarrow\text{Feedback}\rightarrow\text{Data}]
+								\[\text{Data}\rightarrow\text{Agent}\rightarrow\text{Feedback}\rightarrow\text{Data}\]
 							</div>
 							<p>
 								當資料輸入 agent 後，agent 透過<span class="kw">大型語言模型</span>和 <span class="kw">tools</span> 產生回應或執行任務，之後產生 feedback，而這些 feedback 又可以成為下一輪改進的資料。
@@ -521,7 +521,7 @@
 								Dominic 用一條簡單公式概括 <span class="kw">AI agent</span>：
 							</p>
 							<div class="formula">
-								\[\text{Agent}=\text{LLM}+\text{Tools}]
+								\[\text{Agent}=\text{LLM}+\text{Tools}\]
 							</div>
 							<p>
 								<span class="kw">LLM</span> 是大腦，而 <span class="kw">tools</span> 是它的<span class="kw">手腳和感官</span>。Dominic 指出，如果給 agent <span class="kw">web search tool</span>，它可以查最新資料；如果給它 database query tool，它可以查 <span class="kw">SQL database</span>；如果給它 code execution tool，它可以寫程式和讀<span class="kw">錯誤訊息</span>；如果給它 <span class="kw">charting tool</span>，它可以<span class="kw">生成圖表</span>；如果給它 <span class="kw">memory</span> tool，它可以找回過去對話或文件。
@@ -544,7 +544,7 @@
 								為了量度兩個 vector 是否相似，Dominic 介紹 <span class="kw">cosine similarity</span>：
 							</p>
 							<div class="formula">
-								\[\cos(v,w)=\frac{v\cdot w}{\lVert v\rVert\lVert w\rVert}]
+								\[\cos(v,w)=\frac{v\cdot w}{\lVert v\rVert\lVert w\rVert}\]
 							</div>
 							<p>
 								當 <span class="kw">cosine similarity</span> 接近 1，代表兩者<span class="kw">語義相似度</span>高。Dominic 指出，這比傳統 keyword search 更強，因為 <span class="kw">embedding search</span> 可以找語義相近的內容，而不只找完全相同的字。
@@ -810,7 +810,7 @@ cd my-app</code></pre>
 								Dominic 在總結中指出，未來 AI 的核心不是單一模型，而是：
 							</p>
 							<div class="formula">
-								\[\text{LLM}+\text{Tools}+\text{Context}+\text{Workflow}+\text{Evaluation}]
+								\[\text{LLM}+\text{Tools}+\text{Context}+\text{Workflow}+\text{Evaluation}\]
 							</div>
 							<p>
 								如果只有 <span class="kw">LLM</span>，它只是一個會說話的模型；如果加上 <span class="kw">tools</span>，它可以做事；如果加上 context，它知道在什麼環境下做事；如果加上 <span class="kw">workflow</span>，它可以持續完成任務；如果加上 <span class="kw">evaluation</span>，它才有機會<span class="kw">可靠</span>。
@@ -912,7 +912,7 @@ cd my-app</code></pre>
 								He explained that in financial markets, whether one works on the <span class="kw">buy-side</span> at a <span class="kw">hedge fund</span> or on the <span class="kw">sell-side</span> at an <span class="kw">investment bank</span>, a central question is always: How much money did the portfolio make or lose, and why? From a <span class="kw">risk management</span> perspective, it is not enough to look only at the final number. One must understand where the profit or loss came from.
 							</p>
 							<div class="formula">
-								\[\text{Value}=Q\times P]
+								\[\text{Value}=Q\times P\]
 							</div>
 							<p>
 								Here, \(Q\) stands for quantity, meaning the number of units or shares held, while \(P\) stands for price. For example, if an investor holds 100 shares of <span class="kw">Tencent</span>, then the number of shares multiplied by the share price gives the total market value of that holding.
@@ -938,7 +938,7 @@ cd my-app</code></pre>
 								Dominic then moved from the formula \(Q\times P\) to the concept of <span class="kw">PnL</span>, which stands for <span class="kw">profit and loss</span>. He considered a simple situation: suppose yesterday’s position was \(Q_t\) and yesterday’s price was \(P_t\), while today’s position is \(Q_{t+1}\) and today’s price is \(P_{t+1}\). The total PnL can be written as:
 							</p>
 							<div class="formula">
-								\[\text{PnL}=Q_{t+1}P_{t+1}-Q_tP_t]
+								\[\text{PnL}=Q_{t+1}P_{t+1}-Q_tP_t\]
 							</div>
 							<p>
 								This represents today’s position value minus yesterday’s position value.
@@ -950,10 +950,10 @@ cd my-app</code></pre>
 								He introduced a mathematical technique called <span class="kw">telescoping decomposition</span>. By adding and subtracting the same term, the PnL can be decomposed as follows:
 							</p>
 							<div class="formula">
-								\[Q_{t+1}P_{t+1}-Q_tP_t=(Q_{t+1}P_{t+1}-Q_tP_{t+1})+(Q_tP_{t+1}-Q_tP_t)]
+								\[Q_{t+1}P_{t+1}-Q_tP_t=(Q_{t+1}P_{t+1}-Q_tP_{t+1})+(Q_tP_{t+1}-Q_tP_t)\]
 							</div>
 							<div class="formula">
-								\[\text{PnL}=(Q_{t+1}-Q_t)P_{t+1}+Q_t(P_{t+1}-P_t)]
+								\[\text{PnL}=(Q_{t+1}-Q_t)P_{t+1}+Q_t(P_{t+1}-P_t)\]
 							</div>
 							<p>
 								Dominic explained that the first part, \((Q_{t+1}-Q_t)P_{t+1}\), can be understood as <span class="kw">trading PnL</span>. It reflects the part of the change caused by changes in the quantity held. The second part, \(Q_t(P_{t+1}-P_t)\), is <span class="kw">market PnL</span>. It reflects the profit or loss caused by market price movements on the original position.
@@ -973,7 +973,7 @@ cd my-app</code></pre>
 								Dominic then discussed <span class="kw">market PnL</span> in greater detail. <span class="kw">Market PnL</span> can be expressed as:
 							</p>
 							<div class="formula">
-								\[\text{Market PnL}=Q_t\Delta P]
+								\[\text{Market PnL}=Q_t\Delta P\]
 							</div>
 							<p>
 								where \(\Delta P=P_{t+1}-P_t\), representing the change in market price.
@@ -982,7 +982,7 @@ cd my-app</code></pre>
 								Dominic explained that in <span class="kw">financial modelling</span>, risk managers do not rely only on observed market prices. They often build a <span class="kw">model price</span>:
 							</p>
 							<div class="formula">
-								\[\hat{P}_t=f(r_t,S_t,\sigma_t)]
+								\[\hat{P}_t=f(r_t,S_t,\sigma_t)\]
 							</div>
 							<p>
 								Here, \(f\) represents a <span class="kw">pricing model</span>. The variable \(r_t\) may represent the <span class="kw">interest rate</span>, \(S_t\) may represent the <span class="kw">stock price</span> or <span class="kw">underlying price</span>, and \(\sigma_t\) may represent <span class="kw">volatility</span>.
@@ -991,7 +991,7 @@ cd my-app</code></pre>
 								Dominic pointed out that the market gives the observed price \(P_t\), while the model gives the <span class="kw">model price</span> \(\hat{P}_t\). These two prices may not be exactly the same. When the price changes, the actual price change can be separated into the part that the model explains and the part that the model does not explain:
 							</p>
 							<div class="formula">
-								\[\Delta P=\Delta\hat{P}+(\Delta P-\Delta\hat{P})]
+								\[\Delta P=\Delta\hat{P}+(\Delta P-\Delta\hat{P})\]
 							</div>
 							<p>
 								Here, \(\Delta\hat{P}\) is the <span class="kw">modelled move</span>, meaning the price change explained by the model. The remaining part, \(\Delta P-\Delta\hat{P}\), is the <span class="kw">residual</span> or <span class="kw">model risk</span>.
@@ -1011,13 +1011,13 @@ cd my-app</code></pre>
 								Dominic then showed how the modelled price change can be further decomposed into different <span class="kw">risk drivers</span>. Suppose the <span class="kw">model price</span> is:
 							</p>
 							<div class="formula">
-								\[\hat{P}_t=f(r_t,S_t,\sigma_t)]
+								\[\hat{P}_t=f(r_t,S_t,\sigma_t)\]
 							</div>
 							<p>
 								The <span class="kw">model price</span> change from time \(t\) to time \(t+1\) can be written as:
 							</p>
 							<div class="formula">
-								\[\Delta\hat{P}=f(r_{t+1},S_{t+1},\sigma_{t+1}) - f(r_t,S_t,\sigma_t)]
+								\[\Delta\hat{P}=f(r_{t+1},S_{t+1},\sigma_{t+1}) - f(r_t,S_t,\sigma_t)\]
 							</div>
 							<p>
 								Dominic explained that the same telescoping idea can be used again. The inputs can be changed step by step: first the <span class="kw">interest rate</span>, then the <span class="kw">stock price</span>, and finally <span class="kw">volatility</span>.
@@ -1063,7 +1063,7 @@ cd my-app</code></pre>
 								He described the traditional statistical <span class="kw">workflow</span> as:
 							</p>
 							<div class="formula">
-								\[\text{Data}\rightarrow\text{Statistical Model}\rightarrow\text{Metrics}\rightarrow\text{Data}]
+								\[\text{Data}\rightarrow\text{Statistical Model}\rightarrow\text{Metrics}\rightarrow\text{Data}\]
 							</div>
 							<p>
 								In statistical work, one begins with <span class="kw">data</span>, builds a model, evaluates the model using <span class="kw">metrics</span> such as <span class="kw">forecast error</span>, accuracy, <span class="kw">RMSE</span>, or <span class="kw">backtesting PnL</span>, and then uses the results to improve the model or collect more <span class="kw">data</span>. This forms a loop.
@@ -1072,7 +1072,7 @@ cd my-app</code></pre>
 								Dominic explained that <span class="kw">AI systems</span> follow a similar loop:
 							</p>
 							<div class="formula">
-								\[\text{Data}\rightarrow\text{Agent}\rightarrow\text{Feedback}\rightarrow\text{Data}]
+								\[\text{Data}\rightarrow\text{Agent}\rightarrow\text{Feedback}\rightarrow\text{Data}\]
 							</div>
 							<p>
 								<span class="kw">Data</span> is given to an agent. The agent uses a <span class="kw">large language model</span> and <span class="kw">tools</span> to produce responses or perform tasks. The feedback then becomes <span class="kw">data</span> for the next round of improvement.
@@ -1118,7 +1118,7 @@ cd my-app</code></pre>
 								Dominic summarized the idea of an <span class="kw">AI agent</span> with a simple formula:
 							</p>
 							<div class="formula">
-								\[\text{Agent}=\text{LLM}+\text{Tools}]
+								\[\text{Agent}=\text{LLM}+\text{Tools}\]
 							</div>
 							<p>
 								The <span class="kw">LLM</span> is the brain, while <span class="kw">tools</span> act as the hands, legs, and senses. If an agent is given a <span class="kw">web search tool</span>, it can look up updated information. If it is given a database query tool, it can query an <span class="kw">SQL database</span>. If it is given a code execution tool, it can write code and read error messages. If it is given a <span class="kw">charting tool</span>, it can generate charts. If it is given a <span class="kw">memory</span> tool, it can retrieve previous conversations or documents.
@@ -1141,7 +1141,7 @@ cd my-app</code></pre>
 								To measure the similarity between two vectors, Dominic introduced <span class="kw">cosine similarity</span>:
 							</p>
 							<div class="formula">
-								\[\cos(v,w)=\frac{v\cdot w}{\lVert v\rVert\lVert w\rVert}]
+								\[\cos(v,w)=\frac{v\cdot w}{\lVert v\rVert\lVert w\rVert}\]
 							</div>
 							<p>
 								When <span class="kw">cosine similarity</span> is close to 1, the two pieces of text are semantically similar. Dominic pointed out that this is more powerful than traditional keyword search because <span class="kw">embedding search</span> can find content with similar meanings, not only content that uses exactly the same words.
@@ -1407,7 +1407,7 @@ cd my-app</code></pre>
 								In his summary, Dominic explained that the future of AI is not about a single model alone. Instead, it is about:
 							</p>
 							<div class="formula">
-								\[\text{LLM}+\text{Tools}+\text{Context}+\text{Workflow}+\text{Evaluation}]
+								\[\text{LLM}+\text{Tools}+\text{Context}+\text{Workflow}+\text{Evaluation}\]
 							</div>
 							<p>
 								If there is only an <span class="kw">LLM</span>, it is simply a model that can speak. If <span class="kw">tools</span> are added, it can perform actions. If context is added, it understands the environment in which it is acting. If <span class="kw">workflow</span> is added, it can complete tasks continuously. If <span class="kw">evaluation</span> is added, it has a chance of becoming reliable.
